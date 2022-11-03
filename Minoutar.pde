@@ -32,6 +32,10 @@ public class Minoutar extends AStarSolver {
 
     if (player.moved) {
       move();
+
+      if (player.x == x && player.y == y) {
+        player.alive = false;
+      }
     }
   }
 

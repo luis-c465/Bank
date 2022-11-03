@@ -13,7 +13,7 @@ public class Player {
   }
 
   public void keyPressed() {
-    if (key == CODED) {
+    if (key == CODED && alive) {
       if (keyCode == UP && maze.validPos(x, y - 1)) {
         y--;
         moved = true;
