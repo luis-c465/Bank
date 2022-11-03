@@ -46,23 +46,21 @@ public class Square
 	public Square(int l, int c, boolean w) {
 		this.l = l;
 		this.c = c;
-		this.attribute = null;
+		this.attribute = " ";
 		this.wall = w;
 		this.g = 0;
 		this.h = 0;
 		this.f = 0;
 	}
 
-	public void assignMaze(Maze m)
-	{
+	public void assignMaze(Maze m) {
 		this.maze = m;
 	}
 
 	/*
 	 * Returns the line position of the square in the maze
 	 */
-	public int getLine()
-	{
+	public int getLine() {
 		return l;
 	}
 
@@ -70,16 +68,14 @@ public class Square
 	 * Sets the line position of the square in the maze
 	 * l: Line position
 	 */
-	public void setLine(int l)
-	{
+	public void setLine(int l) {
 		this.l = l;
 	}
 
 	/*
 	 * Returns the column position of the square in the maze
 	 */
-	public int getCol()
-	{
+	public int getCol() {
 		return c;
 	}
 
@@ -87,8 +83,7 @@ public class Square
 	 * Sets the column position of the square in the maze
 	 * c: Column position
 	 */
-	public void setCol(int c)
-	{
+	public void setCol(int c) {
 		this.c = c;
 	}
 
@@ -96,8 +91,7 @@ public class Square
 	 *
 	 * c: The origin Square from where to get the next squares
 	 */
-	public LinkedList<Maze> getNexts()
-	{
+	public LinkedList<Maze> getNexts() {
 		LinkedList<Maze> nexts = new LinkedList<Maze>();
 
 		for(int i = 0; i < 4; i++)
@@ -144,8 +138,7 @@ public class Square
 	 * Returns the Square at North from the given Square
 	 * c: The origin Square from where to get the North Square
 	 */
-	public Square getNorth()
-	{
+	public Square getNorth() {
 		if(this.l - 1 < 0)
 			return null;
 		else
@@ -156,8 +149,7 @@ public class Square
 	 * Returns the Square at West from the given Square
 	 * c: The origin Square from where to get the West Square
 	 */
-	public Square getWest()
-	{
+	public Square getWest() {
 		if(this.c - 1 < 0)
 			return null;
 		else
@@ -168,8 +160,7 @@ public class Square
 	 * Returns the Square at South from the given Square
 	 * c: The origin Square from where to get the South Square
 	 */
-	public Square getSouth()
-	{
+	public Square getSouth() {
 		if(this.l + 1 == this.maze.lMax)
 			return null;
 		else
@@ -180,8 +171,7 @@ public class Square
 	 * Returns the Square at East from the given Square
 	 * c: The origin Square from where to get the East Square
 	 */
-	public Square getEast()
-	{
+	public Square getEast() {
 		if(this.c + 1 == this.maze.cMax)
 			return null;
 		else
@@ -192,8 +182,7 @@ public class Square
 	 * Returns the square attribute
 	 * If the square is a wall, it returns null
 	 */
-	public String getAttribute()
-	{
+	public String getAttribute() {
 		return attribute;
 	}
 
@@ -201,10 +190,9 @@ public class Square
 	 * Sets the square attribute
 	 * If the attribute given is not correct, it changes nothing
 	 */
-	public void setAttribute(String attribute)
-	{
+	public void setAttribute(String attribute) {
 		if(attribute == " " || attribute == "S" || attribute == "E" || attribute == "*")
-		{
+ {
 			this.attribute = attribute;
 			this.wall = false;
 		}
@@ -213,8 +201,7 @@ public class Square
 	/*
 	 * Returns wall attribute
 	 */
-	public boolean isWall()
-	{
+	public boolean isWall() {
 		return this.wall;
 	}
 
@@ -222,8 +209,7 @@ public class Square
 	 * Sets the square as a wall
 	 * 		Also sets the square attribute as null
 	 */
-	public void setWall()
-	{
+	public void setWall() {
 		this.wall = true;
 		this.attribute = null;
 	}
@@ -235,8 +221,7 @@ public class Square
 	/*
 	 * Returns H value
 	 */
-	public double getH()
-	{
+	public double getH() {
 		return this.h;
 	}
 
@@ -244,8 +229,7 @@ public class Square
 	 * Computes the H value with the Manhattan distance
 	 * end: The ending Square in the maze
 	 */
-	public void calcManhattanH()
-	{
+	public void calcManhattanH() {
 		this.h = Math.abs( this.getLine() - this.maze.getEnd().getLine() )
 				 + Math.abs( this.getCol() - this.maze.getEnd().getCol() );
 	}
@@ -254,8 +238,7 @@ public class Square
 	 * Computes the H value with the Euclidean distance
 	 * end: The ending Square in the maze
 	 */
-	public void calcEuclidH()
-	{
+	public void calcEuclidH() {
 		this.h = Math.sqrt(
 					Math.pow( this.getLine() - this.maze.getEnd().getLine(), 2 )
 					+ Math.pow( this.getCol() - this.maze.getEnd().getCol(), 2 )
@@ -269,16 +252,14 @@ public class Square
 	/*
 	 * Returns G value
 	 */
-	public int getG()
-	{
+	public int getG() {
 		return g;
 	}
 
 	/*
 	 * Increases the G value
 	 */
-	public void incG(int prev)
-	{
+	public void incG(int prev) {
 		this.g = 1 + prev;
 	}
 
@@ -289,8 +270,7 @@ public class Square
 	/*
 	 * Computes F value by addition of H and G
 	 */
-	public double calcF()
-	{
+	public double calcF() {
 		this.f = this.g + this.h;
 		return this.f;
 	}
@@ -298,16 +278,14 @@ public class Square
 	/*
 	 * Returns F value
 	 */
-	public double getF()
-	{
+	public double getF() {
 		return this.f;
 	}
 
 	/*
 	 * Returns the Square in a string with the format "[LINE, COLUMN](F)"
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return "[" + this.l + ", " + this.c + "](" + this.f + ")";
 	}
 }

@@ -4,6 +4,7 @@ public class Player {
   private Maze maze;
   public boolean alive = true;
   public boolean won = false;
+  public boolean moved = false;
 
   public Player(int x, int y, Maze m) {
     this.x = x;
@@ -12,28 +13,25 @@ public class Player {
   }
 
   public void keyPressed() {
-    print(key);
-
     if (key == CODED) {
       if (keyCode == UP && maze.validPos(x, y - 1)) {
         y--;
+        moved = true;
       } else if (keyCode == DOWN && maze.validPos(x, y + 1)) {
         y++;
+        moved = true;
       } else if (keyCode == LEFT && maze.validPos(x - 1, y)) {
         x--;
+        moved = true;
       } else if (keyCode == RIGHT && maze.validPos(x + 1, y)) {
         x++;
+        moved = true;
       }
     }
 
-    // if (y < 0)
-    //   y = 0;
-    // else if (y > height - Settings.STEP)
-    //   y = height - Settings.STEP;
-    // else if (x < 0)
-    //   x = 0;
-    // else if (x > width - Settings.STEP)
-    //   x = width - Settings.STEP;
+    if (moved) {
+      println("Player: (" + x + ", " + y + ")");
+    }
   }
 
   public void update() {
@@ -41,13 +39,10 @@ public class Player {
 
     fill(255, 0, 0);
     circle(
-     (x * Settings.STEP) + Settings.STEP / 2,
-     (y * Settings.STEP) + Settings.STEP / 2,
-      Settings.STEP / 2
+        (x * Settings.STEP) + Settings.STEP / 2,
+        (y * Settings.STEP) + Settings.STEP / 2,
+        Settings.STEP / 2
      );
-
-    // int qx = x / Settings.STEP;
-    // int qy = y / Settings.STEP;
 
     Square end = maze.getEnd();
     // If the player is on the winning square!

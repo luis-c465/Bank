@@ -1,8 +1,14 @@
+import java.util.*;
 public class Minoutar extends AStarSolver {
   public int x;
   public int y;
 
+  private int moveCtn = 999;
+
   private Player player;
+
+  private ArrayList<Square> moves = new ArrayList<Square>(5);
+  private static final int REFRESH_MOVES = 5;
 
   public Minoutar(int x, int y, Maze maze, Player player) {
     super(maze, true);
@@ -22,23 +28,42 @@ public class Minoutar extends AStarSolver {
       Settings.STEP / 2
      );
 
-
     pop();
+
+    if (player.moved) {
+      move();
+    }
   }
 
   public void move() {
-    // Moves the minoutar
+    if (moveCtn < min(REFRESH_MOVES, moves.size())) {
+      Square nextMove = moves.get(moveCtn);
+
+      println(maze);
+
+      x = nextMove.getCol();
+      y = nextMove.getLine();
+
+      moveCtn++;
+    } else {
+      updateMoves();
+      moveCtn = 0;
+
+      move();
+    }
   }
 
 
-  public Square firstSquare() {
+  public void updateMoves() {
+    moves.clear();
     this.maze.initMaze(); //Re-init maze
 
     Boolean endfound = false;
     this.nodesCounter = 0;
     this.pathLength = 0;
 
-    Square pos = new Square(x, y, false);
+    Square pos = new Square(y, x, false);
+    pos.assignMaze(maze);
 
     if (manhattan) {
       pos.calcManhattanH();
@@ -118,19 +143,18 @@ public class Minoutar extends AStarSolver {
         Maze temp = revertedTree.getContent();
         state = temp.getCurrState();
 
+        moves.add(state);
+        println(state);
+
         if (!state.equals(this.maze.getEnd())) {
-          // this.result += state.toString() + " <- ";
-          // this.maze.getGrid()[state.getLine()][state.getCol()].setAttribute(
-          //     "*"
-          //   );
           this.pathLength++;
         }
         revertedTree = revertedTree.getFather();
       }
 
-      return state;
+      Collections.reverse(moves);
+      // Limits the moves arraylist to a size of 5
+      moves.subList(min(REFRESH_MOVES, moves.size()), moves.size()).clear();
     }
-    return null;
   }
-
 }

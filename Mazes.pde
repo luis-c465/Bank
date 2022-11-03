@@ -26,10 +26,10 @@ public class Mazes {
     {0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0} ,
     {0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0}
   } ,
-  new Square(1, 0, "S"), // Start location
-    new Square(6, 9, "E"), // End location
+  new Square(0, 1, "S"), // Start location
+    new Square(0, 6, "E"), // End location
     new Square[] {
-      new Square(6, 0, false)
+      new Square(1, 6, false)
     }
    );
 
