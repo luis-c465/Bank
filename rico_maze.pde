@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 Maze easy = new Maze(
   new int[][] {
     {0, 1, 0, 0, 0, 0} , // Maze
@@ -32,14 +34,19 @@ Maze normal = new Maze(
   }
 );
 
+SoundFile stab;
+
 int curMazeNum = 0;
 Maze[] mazes = { easy, normal };
 Maze maze = mazes[curMazeNum];
+boolean didDeath = false;
 
 void setup() {
   size(1000, 1000);
   background(255);
   shapeMode(CENTER);
+
+  stab = new SoundFile(this, "stab.mp3");
 
   println(maze);
 }
@@ -48,6 +55,12 @@ void draw() {
   background(255);
 
   maze.update();
+
+  if (!maze.player.alive && !didDeath) {
+    stab.play();
+
+    didDeath = true;
+  }
 }
 
 void keyPressed() {
@@ -61,4 +74,9 @@ boolean nextMaze() {
   maze = mazes[curMazeNum];
 
   return true;
+}
+
+void restart() {
+  curMazeNum = 0;
+  maze = mazes[curMazeNum];
 }
