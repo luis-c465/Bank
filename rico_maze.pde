@@ -14,6 +14,7 @@ Maze lvl1 = new Maze(
   new Square(5,1, "S"), // Start location
   new Square(0, 1, "E"),// End location
   new Square[] {new Square(4, 4, false)},
+  new Square(4, 1),
   stor
 );
 
@@ -35,6 +36,7 @@ Maze lvl2 = new Maze(
   new Square[] {
     new Square(1, 6, false)
   },
+  new Square(5, 3),
   stor
 );
 
@@ -69,6 +71,7 @@ Maze lvl3 = new Maze(
     new Square(5, 10, false),
     new Square(10, 18, false)
   },
+  new Square(4, 1),
   stor
 );
 
@@ -103,6 +106,7 @@ Maze lvl4 = new Maze(
     new Square(6, 10, false),
     new Square(10, 18, false)
   },
+  new Square(4, 1),
   stor
 );
 
@@ -137,6 +141,7 @@ Maze lvl5 = new Maze(
     new Square(16, 3, false),
     new Square(16, 12, false)
   },
+  new Square(4, 1),
   stor
 );
 
@@ -163,8 +168,7 @@ void setup() {
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
 
-  stor.sus = loadImage("sus.png");
-  stor.player = loadImage("player.png");
+  stor.setup();
 
   imageMode(CENTER);
 
@@ -205,6 +209,7 @@ boolean nextMaze() {
 void restart() {
   curMazeNum = 0;
   maze = mazes[curMazeNum];
+  stab.stop();
   stab.jump(0);
 
   for(Maze m : mazes) {

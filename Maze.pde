@@ -16,6 +16,7 @@ public class Maze
   public Player player;
   public Square[] minPos;
   public ImageStor stor;
+  public Gun gun;
 
   /*
   * Constructor with no file
@@ -24,7 +25,7 @@ public class Maze
   * start: The starting square of the maze
   * end: the ending square of the maze
   */
-  public Maze(int[][] maze, Square start, Square end, Square[] minPos, ImageStor stor) {
+  public Maze(int[][] maze, Square start, Square end, Square[] minPos, Square gunPos, ImageStor stor) {
     //Set max values
     this.lMax = maze.length;
     this.cMax = maze[0].length;
@@ -57,6 +58,7 @@ public class Maze
       minoutars[i] = new Minoutar(s.c, s.l, this, player);
       i++;
     }
+    gun = new Gun(gunPos.c, gunPos.l, this);
   }
 
   public void keyPressed() {
@@ -67,6 +69,7 @@ public class Maze
     draw();
 
     player.update();
+    gun.update();
 
     for (Minoutar m : minoutars) {
       m.update();

@@ -6,6 +6,7 @@ public class Player {
   public boolean won = false;
   public boolean moved = false;
   public boolean canMove = true;
+  public Gun gun;
 
   public Player(int x, int y, Maze m) {
     this.x = x;
@@ -35,16 +36,28 @@ public class Player {
     }
   }
 
-  public void update() {
-    push();
+  public void tick() {
+    if (gun == null && x == maze.gun.x && y == maze.gun.y) {
+      gun = maze.gun;
+      gun.pickedUp = true;
+    }
+  }
 
-    fill(255, 0, 0);
+  public void update() {
+    tick();
+
+    if (gun != null && !gun.broken) {
+      image(
+        maze.stor.gunSmall,
+        (x * Settings.STEP) + Settings.STEP / 2,
+        (y * Settings.STEP) - Settings.STEP / 6
+      );
+    }
+
     image(
         maze.stor.player,
         (x * Settings.STEP) + Settings.STEP / 2,
         (y * Settings.STEP) + Settings.STEP / 2
      );
-
-    pop();
   }
 }

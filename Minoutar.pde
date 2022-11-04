@@ -3,6 +3,8 @@ public class Minoutar extends AStarSolver {
   public int x;
   public int y;
   public Maze m;
+  public boolean alive = true;
+  public Square diedAt;
 
   private int moveCtn = 999;
 
@@ -20,28 +22,29 @@ public class Minoutar extends AStarSolver {
   }
 
   public void update() {
-    color c = color(0, 0, 255);
-    push();
+    if (!alive) {
+      // Draw a blot splot!
+      return;
+    }
 
-    fill(c);
+    color c = color(0, 0, 255);
+
     image(
       m.stor.sus,
       (x * Settings.STEP) + Settings.STEP / 2,
       (y * Settings.STEP) + Settings.STEP / 2
     );
-    // circle(
-    //   (x * Settings.STEP) + Settings.STEP / 2,
-    //   (y * Settings.STEP) + Settings.STEP / 2,
-    //   Settings.STEP / 2
-    //  );
-
-    pop();
 
     if (player.moved) {
       move();
 
       if (player.x == x && player.y == y) {
-        player.alive = false;
+        if (player.gun != null && player.gun.use()) {
+          this.alive = false;
+          diedAt = new Square(y, x);
+        } else {
+          player.alive = false;
+        }
       }
     }
   }

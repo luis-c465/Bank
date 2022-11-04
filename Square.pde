@@ -53,6 +53,10 @@ public class Square
 		this.f = 0;
 	}
 
+	public Square(int l, int c) {
+		this(l, c, false);
+	}
+
 	public void assignMaze(Maze m) {
 		this.maze = m;
 	}
