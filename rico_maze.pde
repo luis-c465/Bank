@@ -1,6 +1,6 @@
 import processing.sound.*;
 
-Maze easy = new Maze(
+Maze lvl1 = new Maze(
   new int[][] {
     {0, 1, 0, 0, 0, 0} , // Maze
     {0, 1, 0, 0, 0, 0} ,
@@ -14,7 +14,7 @@ Maze easy = new Maze(
   new Square[] {new Square(4, 4, false)}
 );
 
-Maze normal = new Maze(
+Maze lvl2 = new Maze(
   new int[][] {
     {0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0}, // Maze
     {0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0},
@@ -140,7 +140,7 @@ TransitionOut transitionOut;
 
 int curMazeNum = 0;
 // Maze[] mazes = { easy, normal, lvl3 };
-Maze[] mazes = { lvl5 };
+Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
 Maze maze = mazes[curMazeNum];
 boolean didDeath = false;
 boolean levelTransition = false;
