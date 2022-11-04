@@ -46,15 +46,6 @@ public class Player {
         Settings.STEP / 2
      );
 
-    Square end = maze.getEnd();
-    // If the player is on the winning square!
-    if (x == end.l && y == end.c) {
-      fill(0, 408, 612);
-      textSize(128);
-      text("winner", 40, 120);
-      noLoop();
-    }
-
     pop();
   }
 }
