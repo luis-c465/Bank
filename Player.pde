@@ -39,10 +39,10 @@ public class Player {
     push();
 
     fill(255, 0, 0);
-    circle(
+    image(
+        maze.stor.sus,
         (x * Settings.STEP) + Settings.STEP / 2,
-        (y * Settings.STEP) + Settings.STEP / 2,
-        Settings.STEP / 2
+        (y * Settings.STEP) + Settings.STEP / 2
      );
 
     pop();

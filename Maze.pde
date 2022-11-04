@@ -15,6 +15,7 @@ public class Maze
   public Minoutar[] minoutars;
   public Player player;
   public Square[] minPos;
+  public ImageStor stor;
 
   /*
   * Constructor with no file
@@ -23,11 +24,13 @@ public class Maze
   * start: The starting square of the maze
   * end: the ending square of the maze
   */
-  public Maze(int[][] maze, Square start, Square end, Square[] minPos) {
+  public Maze(int[][] maze, Square start, Square end, Square[] minPos, ImageStor stor) {
     //Set max values
     this.lMax = maze.length;
     this.cMax = maze[0].length;
     this.minPos = minPos;
+
+    this.stor = stor;
 
     //Init grid
     this.grid = new Square[lMax][cMax];

@@ -15,5 +15,6 @@ public class TransitionIn {
 
   public void reset() {
     opacity = 0;
+    done = false;
   }
 }

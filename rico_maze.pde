@@ -1,5 +1,7 @@
 import processing.sound.*;
 
+ImageStor stor = new ImageStor();
+
 Maze lvl1 = new Maze(
   new int[][] {
     {0, 1, 0, 0, 0, 0} , // Maze
@@ -11,7 +13,8 @@ Maze lvl1 = new Maze(
   },
   new Square(5,1, "S"), // Start location
   new Square(0, 1, "E"),// End location
-  new Square[] {new Square(4, 4, false)}
+  new Square[] {new Square(4, 4, false)},
+  stor
 );
 
 Maze lvl2 = new Maze(
@@ -31,7 +34,8 @@ Maze lvl2 = new Maze(
   new Square(0, 6, "E"), // End location
   new Square[] {
     new Square(1, 6, false)
-  }
+  },
+  stor
 );
 
 Maze lvl3 = new Maze(
@@ -64,7 +68,8 @@ Maze lvl3 = new Maze(
     new Square(19, 6, false),
     new Square(5, 10, false),
     new Square(10, 18, false)
-  }
+  },
+  stor
 );
 
 Maze lvl4 = new Maze(
@@ -97,7 +102,8 @@ Maze lvl4 = new Maze(
     new Square(19, 4, false),
     new Square(6, 10, false),
     new Square(10, 18, false)
-  }
+  },
+  stor
 );
 
 Maze lvl5 = new Maze(
@@ -130,7 +136,8 @@ Maze lvl5 = new Maze(
     new Square(4, 17, false),
     new Square(16, 3, false),
     new Square(16, 12, false)
-  }
+  },
+  stor
 );
 
 
@@ -154,6 +161,8 @@ void setup() {
   stab = new SoundFile(this, "stab.mp3");
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
+  stor.sus = loadImage("sus.png");
+  imageMode(CENTER);
 
   println(maze);
 }
