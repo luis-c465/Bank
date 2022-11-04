@@ -36,11 +36,13 @@ Maze normal = new Maze(
 
 SoundFile stab;
 TransitionIn transitionIn;
+TransitionOut transitionOut;
 
 int curMazeNum = 0;
 Maze[] mazes = { easy, normal };
 Maze maze = mazes[curMazeNum];
 boolean didDeath = false;
+boolean levelTransition = false;
 
 void setup() {
   size(1000, 1000);
@@ -50,6 +52,7 @@ void setup() {
 
   stab = new SoundFile(this, "stab.mp3");
   transitionIn = new TransitionIn();
+  transitionOut = new TransitionOut();
 
   println(maze);
 }
@@ -61,6 +64,10 @@ void draw() {
 
   if (!maze.player.alive) {
     onPlayerDeath();
+  }
+
+  if (maze.player.x == maze.end.c && maze.player.y == maze.end.l || levelTransition) {
+    levelTransition();
   }
 }
 
@@ -110,4 +117,35 @@ void onPlayerDeath() {
 
     pop();
   }
+}
+
+void levelTransition() {
+  maze.player.canMove = false;
+  levelTransition = true;
+  transitionIn.update();
+
+  push();
+
+  textSize(255);
+  fill(255);
+  text("Level " + (curMazeNum + 1), width / 2, height/2);
+
+  pop();
+
+  if (transitionIn.done) {
+    if (transitionOut.opacity == 255) {
+      nextMaze();
+    }
+
+    transitionOut.update();
+  }
+
+  if (transitionIn.done && transitionOut.done) {
+    transitionIn.reset();
+    transitionOut.reset();
+
+    levelTransition = false;
+    maze.player.canMove = true;
+  }
+
 }

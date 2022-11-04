@@ -4,8 +4,8 @@ import java.util.LinkedList;
 public class Square
 {
 	private Maze maze;
-	private int l;
-	private int c;
+	public int l;
+	public int c;
 	private String attribute;
 	private boolean wall;
 

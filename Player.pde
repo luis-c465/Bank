@@ -5,6 +5,7 @@ public class Player {
   public boolean alive = true;
   public boolean won = false;
   public boolean moved = false;
+  public boolean canMove = true;
 
   public Player(int x, int y, Maze m) {
     this.x = x;
@@ -13,7 +14,8 @@ public class Player {
   }
 
   public void keyPressed() {
-    if (key == CODED && alive) {
+    println(alive, canMove);
+    if (key == CODED && alive && canMove) {
       if (keyCode == UP && maze.validPos(x, y - 1)) {
         y--;
         moved = true;
