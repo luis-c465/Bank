@@ -6,11 +6,9 @@ public class TransitionOut {
     fill(0, opacity);
     rect(0, 0, width, height);
 
-    print(opacity);
     if (opacity >= 0) {
       opacity-=8;
     } else {
-      print(done);
       done = true;
     }
   }
