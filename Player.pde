@@ -40,7 +40,7 @@ public class Player {
 
     fill(255, 0, 0);
     image(
-        maze.stor.sus,
+        maze.stor.player,
         (x * Settings.STEP) + Settings.STEP / 2,
         (y * Settings.STEP) + Settings.STEP / 2
      );

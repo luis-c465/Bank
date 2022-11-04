@@ -2,6 +2,7 @@ import java.util.*;
 public class Minoutar extends AStarSolver {
   public int x;
   public int y;
+  public Maze m;
 
   private int moveCtn = 999;
 
@@ -15,6 +16,7 @@ public class Minoutar extends AStarSolver {
     this.x = x;
     this.y = y;
     this.player = player;
+    this.m = maze;
   }
 
   public void update() {
@@ -22,11 +24,16 @@ public class Minoutar extends AStarSolver {
     push();
 
     fill(c);
-    circle(
+    image(
+      m.stor.sus,
       (x * Settings.STEP) + Settings.STEP / 2,
-      (y * Settings.STEP) + Settings.STEP / 2,
-      Settings.STEP / 2
-     );
+      (y * Settings.STEP) + Settings.STEP / 2
+    );
+    // circle(
+    //   (x * Settings.STEP) + Settings.STEP / 2,
+    //   (y * Settings.STEP) + Settings.STEP / 2,
+    //   Settings.STEP / 2
+    //  );
 
     pop();
 

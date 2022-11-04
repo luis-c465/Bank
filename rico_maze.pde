@@ -159,9 +159,13 @@ void setup() {
   textAlign(CENTER);
 
   stab = new SoundFile(this, "stab.mp3");
+
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
+
   stor.sus = loadImage("sus.png");
+  stor.player = loadImage("player.png");
+
   imageMode(CENTER);
 
   println(maze);
