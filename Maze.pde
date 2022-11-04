@@ -14,6 +14,7 @@ public class Maze
   public char[] order = {'N', 'E', 'S', 'W'}; //Shift order in the grid during solving in cardinals
   public Minoutar[] minoutars;
   public Player player;
+  public Square[] minPos;
 
   /*
   * Constructor with no file
@@ -26,6 +27,7 @@ public class Maze
     //Set max values
     this.lMax = maze.length;
     this.cMax = maze[0].length;
+    this.minPos = minPos;
 
     //Init grid
     this.grid = new Square[lMax][cMax];
@@ -81,6 +83,23 @@ public class Maze
     this.currState = currState;
     this.lMax = lMax;
     this.cMax = cMax;
+  }
+
+  /**
+   * Resets the maze
+  */
+  public void reset() {
+    this.currState = this.getStart();
+    player = new Player(start.c, start.l, this);
+
+    minoutars = new Minoutar[minPos.length];
+    int i = 0;
+    for (Square s : minPos) {
+      minoutars[i] = new Minoutar(s.c, s.l, this, player);
+      i++;
+    }
+
+    transitionIn.reset();
   }
 
   /*

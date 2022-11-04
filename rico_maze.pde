@@ -35,6 +35,7 @@ Maze normal = new Maze(
 );
 
 SoundFile stab;
+TransitionIn transitionIn;
 
 int curMazeNum = 0;
 Maze[] mazes = { easy, normal };
@@ -45,8 +46,10 @@ void setup() {
   size(1000, 1000);
   background(255);
   shapeMode(CENTER);
+  textAlign(CENTER);
 
   stab = new SoundFile(this, "stab.mp3");
+  transitionIn = new TransitionIn();
 
   println(maze);
 }
@@ -56,15 +59,17 @@ void draw() {
 
   maze.update();
 
-  if (!maze.player.alive && !didDeath) {
-    stab.play();
-
-    didDeath = true;
+  if (!maze.player.alive) {
+    onPlayerDeath();
   }
 }
 
 void keyPressed() {
   maze.keyPressed();
+
+  if (!maze.player.alive && key == ' ') {
+    restart();
+  }
 }
 
 boolean nextMaze() {
@@ -79,4 +84,30 @@ boolean nextMaze() {
 void restart() {
   curMazeNum = 0;
   maze = mazes[curMazeNum];
+
+  for(Maze m : mazes) {
+    m.reset();
+  }
+}
+
+void onPlayerDeath() {
+  if (!didDeath) {
+    stab.play();
+    didDeath = true;
+  }
+
+  transitionIn.update();
+
+  if (transitionIn.done) {
+    push();
+
+    fill(255);
+    textSize(100);
+    text("You died",width / 2, height/2 - 100);
+
+    textSize(75);
+    text("Press <Space> to restart", width/2, height/2 + 100);
+
+    pop();
+  }
 }
