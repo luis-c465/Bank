@@ -1,3 +1,3 @@
 public class Settings {
-  public static final int STEP = 60;
+  public static final int STEP = 55;
 }

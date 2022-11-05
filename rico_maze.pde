@@ -161,7 +161,7 @@ boolean intro = true;
 boolean introTransition = false;
 
 void setup() {
-  size(1500, 1500);
+  size(1200, 1200);
   background(255);
   shapeMode(CENTER);
   textAlign(CENTER);
@@ -349,7 +349,7 @@ void drawIntro() {
   image(stor.left, x - 40, y);
   image(stor.right, x + 40, y);
 
-  text("Get to this square of the maze to go to the text level!", width - 400, y - 100);
+  text("Go here to solve the maze!", width - 400, y - 100);
   fill(0, 0, 255);
   square(width - 400, y, Settings.STEP);
 
@@ -376,7 +376,7 @@ void drawIntro() {
 
   stor.enter.resize(160, 80);
 
-  y = 900;
+  y = 1000;
   fill(0);
   textSize(52);
   text("Press ", cw - 150, y);
