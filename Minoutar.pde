@@ -23,7 +23,11 @@ public class Minoutar extends AStarSolver {
 
   public void update() {
     if (!alive) {
-      // Draw a blot splot!
+      image(
+        m.stor.susDead,
+        (diedAt.c * Settings.STEP) + Settings.STEP / 2,
+        (diedAt.l * Settings.STEP) + Settings.STEP / 2
+      );
       return;
     }
 
