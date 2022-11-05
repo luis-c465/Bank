@@ -56,22 +56,21 @@ public class Minoutar extends AStarSolver {
 
   public void move() {
     if (moveCtn < min(REFRESH_MOVES, moves.size())) {
-      try {
-        Square nextMove = moves.get(moveCtn);
-        println(maze);
+      Square nextMove = moves.get(moveCtn);
+      println(maze);
 
-        x = nextMove.getCol();
-        y = nextMove.getLine();
+      x = nextMove.getCol();
+      y = nextMove.getLine();
 
-        moveCtn++;
-      } catch(StackOverflowError e) {
-        // I am too lazy to fix this issue :(
-      }
+      moveCtn++;
     } else {
-      updateMoves();
-      moveCtn = 0;
-
-      move();
+      try {
+        updateMoves();
+        moveCtn = 0;
+        move();
+      } catch(StackOverflowError e) {
+          // I am too lazy to fix this issue :(
+      }
     }
   }
 

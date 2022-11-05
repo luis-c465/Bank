@@ -59,6 +59,7 @@ public class Maze
       minoutars[i] = new Minoutar(s.c, s.l, this, player);
       i++;
     }
+    this.gunPos = gunPos;
     gun = new Gun(gunPos.c, gunPos.l, this);
   }
 
