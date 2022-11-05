@@ -1,6 +1,6 @@
 import processing.sound.*;
 
-ImageStor stor = new ImageStor();
+Stor stor = new Stor();
 PFont mono;
 
 Maze lvl1 = new Maze(
@@ -171,7 +171,7 @@ void setup() {
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
 
-  stor.setup();
+  stor.setup(this);
   mono = createFont("fonts/ThaleahFat.ttf", 64);
   textFont(mono);
 

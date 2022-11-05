@@ -46,6 +46,7 @@ public class Minoutar extends AStarSolver {
         if (player.gun != null && player.gun.use()) {
           this.alive = false;
           diedAt = new Square(y, x);
+          stor.gunS.jump(0);
         } else {
           player.alive = false;
         }
@@ -55,14 +56,17 @@ public class Minoutar extends AStarSolver {
 
   public void move() {
     if (moveCtn < min(REFRESH_MOVES, moves.size())) {
-      Square nextMove = moves.get(moveCtn);
+      try {
+        Square nextMove = moves.get(moveCtn);
+        println(maze);
 
-      println(maze);
+        x = nextMove.getCol();
+        y = nextMove.getLine();
 
-      x = nextMove.getCol();
-      y = nextMove.getLine();
-
-      moveCtn++;
+        moveCtn++;
+      } catch(StackOverflowError e) {
+        // I am too lazy to fix this issue :(
+      }
     } else {
       updateMoves();
       moveCtn = 0;

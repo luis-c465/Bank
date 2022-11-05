@@ -1,4 +1,4 @@
-public class ImageStor {
+public class Stor {
   public PImage sus;
   public PImage player;
   public PImage gun;
@@ -24,7 +24,9 @@ public class ImageStor {
   public PImage space;
   public PImage spaceP;
 
-  public void setup() {
+  public SoundFile gunS;
+
+  public void setup(PApplet p) {
     sus = loadImage("sus.png");
     player = loadImage("player.png");
     gun = loadImage("gun.png");
@@ -48,5 +50,12 @@ public class ImageStor {
 
     space = loadImage("btn/space.png");
     spaceP = loadImage("btn/space-p.png");
+
+    /**
+     * LOAD SOUNDS
+     */
+    gunS = new SoundFile(p, "gun.mp3");
+    println(gunS);
+    // gunS.play();
   }
 }
