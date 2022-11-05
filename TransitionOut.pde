@@ -7,7 +7,7 @@ public class TransitionOut {
     rect(0, 0, width, height);
 
     if (opacity >= 0) {
-      opacity-=8;
+      opacity-=4;
     } else {
       done = true;
     }

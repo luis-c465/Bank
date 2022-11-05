@@ -1,6 +1,7 @@
 import processing.sound.*;
 
 ImageStor stor = new ImageStor();
+PFont mono;
 
 Maze lvl1 = new Maze(
   new int[][] {
@@ -156,6 +157,8 @@ Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
 Maze maze = mazes[curMazeNum];
 boolean didDeath = false;
 boolean levelTransition = false;
+boolean intro = true;
+boolean introTransition = false;
 
 void setup() {
   size(1500, 1500);
@@ -169,6 +172,8 @@ void setup() {
   transitionOut = new TransitionOut();
 
   stor.setup();
+  mono = createFont("fonts/ThaleahFat.ttf", 64);
+  textFont(mono);
 
   imageMode(CENTER);
 
@@ -177,6 +182,13 @@ void setup() {
 
 void draw() {
   background(255);
+
+  if (intro) {
+    drawIntro();
+    return;
+  } else if (introTransition) {
+    introTransition();
+  }
 
   maze.update();
 
@@ -191,6 +203,11 @@ void draw() {
 
 void keyPressed() {
   maze.keyPressed();
+
+  if (intro && keyCode == ENTER) {
+    intro = false;
+    introTransition();
+  }
 
   if (!maze.player.alive && key == ' ') {
     restart();
@@ -241,6 +258,28 @@ void onPlayerDeath() {
   }
 }
 
+void introTransition() {
+  maze.player.canMove = false;
+  introTransition = true;
+  transitionOut.update();
+
+  push();
+
+  textSize(255);
+  fill(255);
+  text("Level " + (curMazeNum + 1), width / 2, height/2);
+
+  pop();
+
+
+  if (transitionOut.done) {
+    transitionOut.reset();
+
+    introTransition = false;
+    maze.player.canMove = true;
+  }
+}
+
 void levelTransition() {
   maze.player.canMove = false;
   levelTransition = true;
@@ -269,5 +308,80 @@ void levelTransition() {
     levelTransition = false;
     maze.player.canMove = true;
   }
+}
 
+void drawIntro() {
+  push();
+
+  int cw = width / 2;
+  int ch = height / 2;
+
+  // Player image x and y to be draw in the intro
+  int x = 300;
+  int y = 400;
+
+
+  // TODO: add buttons for W A S D
+  fill(0);
+  textSize(64);
+  text("Toutorial", cw, 200);
+
+  textSize(32);
+  text("Use the arrow keys to move", x, y-100);
+  image(
+    stor.player,
+    x,
+    y
+  );
+
+  // Draw the buttons to move the player
+  image(
+    stor.up,
+    x,
+    y - 40
+  );
+  image(
+    stor.down,
+    x,
+    y + 40
+  );
+
+  image(stor.left, x - 40, y);
+  image(stor.right, x + 40, y);
+
+  text("Get to this square of the maze to go to the text level!", width - 400, y - 100);
+  fill(0, 0, 255);
+  square(width - 400, y, Settings.STEP);
+
+  // Reset the fill color back to black
+  fill(0);
+
+  y = 700;
+  text("Watch out for the impostors though", x, y);
+  textSize(20);
+  fill(100);
+  text("They will follow you and kill you :(", x, y + 20);
+
+  image(stor.sus, x, y + 100);
+
+  fill(0);
+  // Sword part
+  textSize(32);
+  text("The gun can protect you though", width - x, y);
+  textSize(20);
+  fill(100);
+  text("Though it is a bit fragile", width - x, y + 20);
+
+  image(stor.gun, width-x, y + 100);
+
+  stor.enter.resize(160, 80);
+
+  y = 900;
+  fill(0);
+  textSize(52);
+  text("Press ", cw - 150, y);
+  image(stor.enter, cw, y - 10);
+  text("to start the game", cw + 300, y);
+
+  pop();
 }
