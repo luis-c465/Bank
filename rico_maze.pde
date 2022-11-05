@@ -163,7 +163,7 @@ void setup() {
   shapeMode(CENTER);
   textAlign(CENTER);
 
-  stab = new SoundFile(this, "stab.mp3");
+  stab = new SoundFile(this, "stab.mp3", true);
 
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
@@ -209,8 +209,7 @@ boolean nextMaze() {
 void restart() {
   curMazeNum = 0;
   maze = mazes[curMazeNum];
-  stab.stop();
-  stab.jump(0);
+  stab.cue(0.0);
 
   for(Maze m : mazes) {
     m.reset();
@@ -219,7 +218,7 @@ void restart() {
 
 void onPlayerDeath() {
   if (!didDeath) {
-    stab.play();
+    stab.play(0);
     didDeath = true;
   }
 
@@ -234,6 +233,9 @@ void onPlayerDeath() {
 
     textSize(75);
     text("Press <Space> to restart", width/2, height/2 + 100);
+
+    stor.playerDead.resize(200, 200);
+    image(stor.playerDead, width/2, height/2 + 400);
 
     pop();
   }
