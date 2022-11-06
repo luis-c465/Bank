@@ -30,10 +30,6 @@ public class Player {
         moved = true;
       }
     }
-
-    if (moved) {
-      println("Player: (" + x + ", " + y + ")");
-    }
   }
 
   public void tick() {

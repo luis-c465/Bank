@@ -181,8 +181,6 @@ void setup() {
   textFont(mono);
 
   imageMode(CENTER);
-
-  println(maze);
 }
 
 void draw() {

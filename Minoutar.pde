@@ -57,7 +57,6 @@ public class Minoutar extends AStarSolver {
   public void move() {
     if (moveCtn < min(REFRESH_MOVES, moves.size())) {
       Square nextMove = moves.get(moveCtn);
-      println(maze);
 
       x = nextMove.getCol();
       y = nextMove.getLine();
@@ -165,7 +164,6 @@ public class Minoutar extends AStarSolver {
         state = temp.getCurrState();
 
         moves.add(state);
-        println(state);
 
         if (!state.equals(this.maze.getEnd())) {
           this.pathLength++;
