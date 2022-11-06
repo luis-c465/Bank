@@ -29,7 +29,7 @@ public class Stor {
   public SoundFile gunS;
   public SoundFile susDrip;
 
-  public void setup(PApplet p) {
+  public void _setup(PApplet p) {
     sus = loadImage("sus.png");
     player = loadImage("player.png");
     gun = loadImage("gun.png");

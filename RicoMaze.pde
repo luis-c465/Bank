@@ -1,8 +1,8 @@
 import gifAnimation.*;
 import processing.sound.*;
 
-Gif drip;
 Stor stor = new Stor();
+Gif dripGif;
 PFont mono;
 
 Maze lvl1 = new Maze(
@@ -154,8 +154,8 @@ TransitionIn transitionIn;
 TransitionOut transitionOut;
 
 int curMazeNum = 0;
-Maze[] mazes = { lvl1 };
-// Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
+// Maze[] mazes = { lvl1 };
+Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
 Maze maze = mazes[curMazeNum];
 boolean didDeath = false;
 boolean levelTransition = false;
@@ -174,8 +174,8 @@ void setup() {
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
 
-  stor.setup(this);
-  drip = new Gif(this, "susy-drip.gif");
+  stor._setup(this);
+  dripGif = new Gif(this, "susy-drip.gif");
 
   mono = createFont("fonts/ThaleahFat.ttf", 64);
   textFont(mono);
@@ -407,7 +407,7 @@ void drawWinner() {
 
     if (transitionOut.opacity < 0) {
       stor.susDrip.loop();
-      drip.loop();
+      dripGif.loop();
     }
   }
 
@@ -421,7 +421,7 @@ void drawWinner() {
   text("You beat the impostors", cw, 100);
 
   image(stor.winner, cw, 300);
-  image(drip, cw, 700);
+  image(dripGif, cw, 700);
 
   pop();
 }
