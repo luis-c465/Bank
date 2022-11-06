@@ -1,5 +1,7 @@
+import gifAnimation.*;
 import processing.sound.*;
 
+Gif drip;
 Stor stor = new Stor();
 PFont mono;
 
@@ -152,13 +154,14 @@ TransitionIn transitionIn;
 TransitionOut transitionOut;
 
 int curMazeNum = 0;
-// Maze[] mazes = { easy, normal, lvl3 };
-Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
+Maze[] mazes = { lvl1 };
+// Maze[] mazes = { lvl1, lvl2, lvl3, lvl4, lvl5 };
 Maze maze = mazes[curMazeNum];
 boolean didDeath = false;
 boolean levelTransition = false;
 boolean intro = true;
 boolean introTransition = false;
+boolean winner = false;
 
 void setup() {
   size(1200, 1200);
@@ -172,6 +175,8 @@ void setup() {
   transitionOut = new TransitionOut();
 
   stor.setup(this);
+  drip = new Gif(this, "susy-drip.gif");
+
   mono = createFont("fonts/ThaleahFat.ttf", 64);
   textFont(mono);
 
@@ -188,6 +193,11 @@ void draw() {
     return;
   } else if (introTransition) {
     introTransition();
+  }
+
+  if (winner) {
+    drawWinner();
+    return;
   }
 
   maze.update();
@@ -215,7 +225,10 @@ void keyPressed() {
 }
 
 boolean nextMaze() {
-  if (curMazeNum +1 >= mazes.length) return false;
+  if (curMazeNum +1 >= mazes.length) {
+    winner = true;
+    return false;
+  }
 
   curMazeNum++;
   maze = mazes[curMazeNum];
@@ -382,6 +395,33 @@ void drawIntro() {
   text("Press ", cw - 150, y);
   image(stor.enter, cw, y - 10);
   text("to start the game", cw + 300, y);
+
+  pop();
+}
+
+void drawWinner() {
+  maze.player.canMove = false;
+
+  if (!transitionOut.done) {
+    transitionOut.update();
+
+    if (transitionOut.opacity < 0) {
+      stor.susDrip.loop();
+      drip.loop();
+    }
+  }
+
+  background(255);
+  push();
+
+  fill(0);
+  textSize(64);
+  int cw = width/2;
+  int ch = height / 2;
+  text("You beat the impostors", cw, 100);
+
+  image(stor.winner, cw, 300);
+  image(drip, cw, 700);
 
   pop();
 }

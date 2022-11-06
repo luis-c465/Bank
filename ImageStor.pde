@@ -24,7 +24,10 @@ public class Stor {
   public PImage space;
   public PImage spaceP;
 
+  public PImage winner;
+
   public SoundFile gunS;
+  public SoundFile susDrip;
 
   public void setup(PApplet p) {
     sus = loadImage("sus.png");
@@ -51,11 +54,12 @@ public class Stor {
     space = loadImage("btn/space.png");
     spaceP = loadImage("btn/space-p.png");
 
+    winner = loadImage("winner.jpeg");
+
     /**
      * LOAD SOUNDS
      */
     gunS = new SoundFile(p, "gun.mp3");
-    println(gunS);
-    // gunS.play();
+    susDrip = new SoundFile(p, "sus-drip.mp3");
   }
 }
