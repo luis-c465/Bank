@@ -1,3 +1,6 @@
+/**
+ * Used by the player to defeat Enemies (Minoutars)
+ */
 public class Gun {
   public int x;
   public int y;
@@ -14,6 +17,13 @@ public class Gun {
     this.m = m;
   }
 
+  /**
+   * Uses the gun
+   *
+   * If the gun breaks after using it will still return true
+   * Returns true if the broken boolean is true
+   *
+   */
   public boolean use() {
     if (broken) return false;
 
@@ -21,11 +31,16 @@ public class Gun {
     return true;
   }
 
+  /** Returns if the sword should break when used */
   public boolean willBreak() {
     double r = Math.random();
     return (r >= chance);
   }
 
+  /**
+   * Will render nothing if the gun has been picked up
+   * Else renders a pixel art gun to the screen
+   */
   public void update() {
     if (pickedUp) return;
 

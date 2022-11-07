@@ -1,3 +1,9 @@
+/**
+ * Class whitch stores images and audio to be played back
+ * in the game
+ *
+ * Call the _setup method to load all the images and the sounds
+ */
 public class Stor {
   public PImage sus;
   public PImage player;

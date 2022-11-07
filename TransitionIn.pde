@@ -1,3 +1,8 @@
+/**
+ * Transitions in between 2 screens
+ *
+ * The update method should be called durring each draw for this to work
+ */
 public class TransitionIn {
   public int opacity = 0;
   public boolean done = false;
