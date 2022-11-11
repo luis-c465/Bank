@@ -12,7 +12,6 @@ final int WINDOW_SIZE = 1_000;
 
 Stor stor = new Stor();
 Gif dripGif;
-PFont mono;
 
 Test t = new Test(NUM_QUESTIONS);
 
@@ -37,18 +36,20 @@ void setup() {
   textAlign(CENTER);
   imageMode(CENTER);
 
+  // Default fill color is black
+  fill(0);
+
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
 
   stor._setup(this);
 
   // TODO: Replace this with a solid sans font from google fonts
-  mono = createFont("fonts/ThaleahFat.ttf", 64);
-  textFont(mono);
+  textFont(stor.nunito);
 
   t._setup();
 }
 
 void draw() {
-  // Do some drawing!
+  t._draw();
 }
