@@ -13,7 +13,7 @@ final int WINDOW_SIZE = 1_000;
 Stor stor = new Stor();
 Gif dripGif;
 
-Test t = new Test(NUM_QUESTIONS);
+Test t = new Test(NUM_QUESTIONS, stor);
 
 TransitionIn transitionIn;
 TransitionOut transitionOut;
@@ -35,6 +35,7 @@ void setup() {
   shapeMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
+  noStroke();
 
   // Default fill color is black
   fill(0);

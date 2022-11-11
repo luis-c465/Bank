@@ -33,6 +33,10 @@ public class Stor {
 
   public PImage winner;
 
+  // * SHAPES
+  public PShape plus;
+  public PShape minus;
+
   // * SOUNDS
   public SoundFile gunS;
   public SoundFile susDrip;
@@ -67,6 +71,9 @@ public class Stor {
     // spaceP = loadImage("btn/space-p.png");
 
     winner = loadImage("winner.jpeg");
+
+    plus = loadShape("plus.svg");
+    minus = loadShape("minus.svg");
 
     // * LOAD SOUNDS
     gunS = new SoundFile(p, "gun.mp3");
