@@ -10,8 +10,14 @@ public class Test {
   public Test(int q) {
     numQuestions = q;
     questions = new Question[q];
-    for(int i = 0; i<q; i++) {
+    for(int i = 0; i < q; i++) {
       questions[i] = new Question();
+    }
+  }
+
+  public void _setup() {
+    for(Question u : questions) {
+      println(u);
     }
   }
 }

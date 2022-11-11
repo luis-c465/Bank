@@ -2,7 +2,7 @@ import gifAnimation.*;
 import processing.sound.*;
 
 // * CONSTANTS
-final int NUM_QUESTIONS = 0;
+final int NUM_QUESTIONS = 10;
 
 // ! This size is set to avoid issues where the program wont fit on the screen of school computers
 final int WINDOW_SIZE = 1_000;
@@ -14,7 +14,7 @@ Stor stor = new Stor();
 Gif dripGif;
 PFont mono;
 
-Test t = new Test(NUM_QUESTIONS );
+Test t = new Test(NUM_QUESTIONS);
 
 TransitionIn transitionIn;
 TransitionOut transitionOut;
@@ -35,6 +35,7 @@ void setup() {
   background(255);
   shapeMode(CENTER);
   textAlign(CENTER);
+  imageMode(CENTER);
 
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
@@ -45,7 +46,7 @@ void setup() {
   mono = createFont("fonts/ThaleahFat.ttf", 64);
   textFont(mono);
 
-  imageMode(CENTER);
+  t._setup();
 }
 
 void draw() {
