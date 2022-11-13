@@ -8,6 +8,7 @@ public class Question {
   public int num1 = -1;
   public int num2 = -1;
   public int answer;
+  public String sAnswer;
 
   public Question() {
     addition = rand();
@@ -24,6 +25,8 @@ public class Question {
 
       answer = num1 - num2;
     }
+
+    sAnswer = "" + answer;
   }
 
   public boolean rand() {

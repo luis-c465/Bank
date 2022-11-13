@@ -39,6 +39,9 @@ public class Stor {
   public PShape plus;
   public PShape minus;
 
+  public PShape check;
+  public PShape wrong;
+
   // * SOUNDS
   public SoundFile gunS;
   public SoundFile susDrip;
@@ -48,6 +51,7 @@ public class Stor {
   public PFont nunito;
 
   public void _setup(PApplet p) {
+    // * LOAD IMAGES
     sus = loadImage("sus.png");
     player = loadImage("player.png");
     gun = loadImage("gun.png");
@@ -77,9 +81,12 @@ public class Stor {
     buttons = loadImage("buttons-sml.png");
 
     // * LOAD SHAPES
-
     plus = loadShape("plus.svg");
     minus = loadShape("minus.svg");
+
+    check = loadShape("check.svg");
+    wrong = loadShape("close.svg");
+    // loadShape("wrong2.svg");
 
     // * LOAD SOUNDS
     gunS = new SoundFile(p, "gun.mp3");

@@ -28,7 +28,6 @@ boolean levelTransition = false;
 boolean intro = true;
 boolean introTransition = false;
 boolean winner = false;
-boolean check = false;
 
 void settings() {
   size(WINDOW_SIZE, WINDOW_SIZE);
@@ -70,6 +69,9 @@ void draw() {
 }
 
 void mousePressed() {
+  // Prevent the user from changing their answer when they have already checked it
+  if (t.qCheck) return;
+
   String btn = getBtn();
   println(btn);
 
@@ -78,7 +80,7 @@ void mousePressed() {
       t.input = "";
       return;
     case "check":
-      check = true;
+      t.check();
       return;
     case "Null":
       return;

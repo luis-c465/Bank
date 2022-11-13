@@ -10,6 +10,8 @@ public class Test {
   public boolean done = false;
   private Stor s;
   public String input = "";
+  public boolean qCheck = false;
+  public boolean correct = false;
 
   // Center width and center height respectively of the canvas
   private int cw;
@@ -54,6 +56,10 @@ public class Test {
     drawTop();
     drawQuestion();
     drawAnswer();
+
+    if (qCheck) {
+      drawCorrect();
+    }
   }
 
   private void drawTop() {
@@ -111,5 +117,21 @@ public class Test {
     text(input, 260, ansStart);
 
     pop();
+  }
+
+  private void drawCorrect() {
+    shape(
+      correct ? s.check : s.wrong,
+      200,
+      ansStart + 10,
+      50,
+      50
+    );
+  }
+
+  public void check() {
+    qCheck = true;
+    Question q = questions[curQues];
+    correct = input.equals(q.sAnswer);
   }
 }
