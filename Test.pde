@@ -7,7 +7,9 @@ public class Test {
   public double percentCor = 0.0;
   public Question[] questions;
   public int curQues = 0;
+  public boolean done = false;
   private Stor s;
+  public String input = "";
 
   // Center width and center height respectively of the canvas
   private int cw;
@@ -24,6 +26,9 @@ public class Test {
   private final int quesStart = 225;
   private final int quesSpace = 50;
   private final color dividerC = #6b728099;
+
+  // * Answer
+  private final int ansStart = 430;
 
   public Test(int q, Stor s) {
     numQuestions = q;
@@ -48,7 +53,7 @@ public class Test {
   public void _draw() {
     drawTop();
     drawQuestion();
-    drawNext();
+    drawAnswer();
   }
 
   private void drawTop() {
@@ -93,16 +98,18 @@ public class Test {
     );
 
     fill(dividerC);
-    // circle(cw - quesSpace, quesStart + 120, 10);
-    // circle(cw + quesSpace, quesStart + 120, 10);
 
-    // shapeMode(LEFT, TOP);
     rect(cw - quesSpace - 30, quesStart + 120,  quesSpace * 4, 10, 10);
 
     pop();
   }
 
-  private void drawNext() {
+  private void drawAnswer() {
+    push();
 
+    textAlign(LEFT, CENTER);
+    text(input, 260, ansStart);
+
+    pop();
   }
 }
