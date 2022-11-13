@@ -13,6 +13,11 @@ public class Test {
   public boolean qCheck = false;
   public boolean correct = false;
 
+  // Cycles before next question
+  public int cyclesBNQ = 0;
+
+  public final int CYCLES = 50;
+
   // Center width and center height respectively of the canvas
   private int cw;
   private int ch;
@@ -59,6 +64,10 @@ public class Test {
 
     if (qCheck) {
       drawCorrect();
+
+      if (--cyclesBNQ <= 0) {
+        nextQ();
+      }
     }
   }
 
@@ -133,5 +142,18 @@ public class Test {
     qCheck = true;
     Question q = questions[curQues];
     correct = input.equals(q.sAnswer);
+    if (correct) {
+      numCorrect++;
+    }
+    cyclesBNQ = CYCLES;
+  }
+
+  public boolean nextQ() {
+    if (curQues + 1 < questions.length) return false;
+
+    qCheck = false;
+    input = "";
+    curQues++;
+    return true;
   }
 }
