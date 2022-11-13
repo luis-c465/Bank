@@ -33,6 +33,8 @@ public class Stor {
 
   public PImage winner;
 
+  public PImage buttons;
+
   // * SHAPES
   public PShape plus;
   public PShape minus;
@@ -71,6 +73,10 @@ public class Stor {
     // spaceP = loadImage("btn/space-p.png");
 
     winner = loadImage("winner.jpeg");
+
+    buttons = loadImage("buttons-sml.png");
+
+    // * LOAD SHAPES
 
     plus = loadShape("plus.svg");
     minus = loadShape("minus.svg");

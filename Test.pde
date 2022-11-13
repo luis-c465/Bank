@@ -21,7 +21,7 @@ public class Test {
   private final int topSafe = 10;
 
   // * Question
-  private final int quesStart = 200;
+  private final int quesStart = 225;
   private final int quesSpace = 50;
   private final color dividerC = #6b728099;
 
@@ -73,6 +73,8 @@ public class Test {
    */
   private void drawQuestion() {
     push();
+    image(stor.buttons, cw, ch);
+
     Question q = questions[curQues];
 
     // Draw the questions numbers
