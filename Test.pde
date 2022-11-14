@@ -29,6 +29,13 @@ public class Test {
   private final color topBg = #1e293b;
   private final int topSafe = 10;
 
+  private final int taskBW = 600;
+  private final int taskBH = 65;
+  private final int space = 5;
+  private final int borderSpace = 8;
+  private int taskMid = (taskBH + space * 4) / 2;
+  private int spaceBBars;
+
   // * Question
   private final int quesStart = 225;
   private final int quesSpace = 50;
@@ -45,6 +52,8 @@ public class Test {
     for(int i = 0; i < q; i++) {
       questions[i] = new Question();
     }
+
+    spaceBBars = (taskBW - space * 2) / q;
   }
 
   public void _setup() {
@@ -74,16 +83,60 @@ public class Test {
   private void drawTop() {
     push();
 
-    fill(topBg);
-    rect(0, 0, width, 100);
+    noStroke();
+    fill(#323f2f);
+    rect(topSafe, topSafe, taskBW + topSafe, taskBH + topSafe);
+    noFill();
 
+    fill(0);
+    shapeMode(CORNER);
+    for (int i = 0; i <= taskBW - space * 2; i+=spaceBBars) {
+      int temp = i / spaceBBars;
+      println(i, temp, spaceBBars);
+      fill(#43d748);
+      if (temp < curQues) {
+        rect(
+          i + topSafe + space,
+          topSafe + space,
+          spaceBBars,
+          taskBH
+        );
+      }
+      fill(0);
+
+      rect(
+        i + topSafe + space,
+        topSafe + space,
+        space,
+        taskBH
+      );
+
+    }
+
+    noFill();
+    strokeWeight(space);
+    stroke(0);
+    rect(topSafe, topSafe, taskBW + topSafe, taskBH + topSafe);
+
+
+    strokeWeight(borderSpace);
+    stroke(163,182,187);
+    rect(topSafe+space, topSafe+space, taskBW + topSafe-space*2, taskBH + topSafe-space*2);
+
+    textAlign(LEFT, CENTER);
+    textSize(28);
+    stroke(0);
+    strokeWeight(2);
     fill(255);
-    textSize(25);
-    textAlign(LEFT, TOP);
-    text("Q# " + (curQues + 1) + " / 10", topSafe, topSafe);
+    text("TOTAL TASKS COMPLETED", topSafe+space*4, taskMid);
 
-    textAlign(RIGHT, TOP);
-    text("#Correct " + (numCorrect) + " / 10", width-topSafe, topSafe);
+    // fill(255);
+    // textSize(25);
+    // textAlign(LEFT, TOP);
+    // text("Q# " + (curQues + 1) + " / 10", topSafe, topSafe);
+
+    // textAlign(RIGHT, TOP);
+    // text("#Correct " + (numCorrect) + " / 10", width-topSafe, topSafe);
 
     pop();
   }
