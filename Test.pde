@@ -65,7 +65,6 @@ public class Test {
     if (qCheck) {
       drawCorrect();
 
-      println(cyclesBNQ);
       if (--cyclesBNQ <= 0) {
         nextQ();
       }
