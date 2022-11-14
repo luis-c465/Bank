@@ -108,7 +108,7 @@ public class Test {
         i + topSafe + space,
         topSafe + space,
         space,
-        taskBH //<>// //<>//
+        taskBH //<>//
       );
 
     }
@@ -134,7 +134,7 @@ public class Test {
     textSize(25);
 
     textAlign(RIGHT, CENTER);
-    double percent = curQues != 0 ? (double) numCorrect / curQues : 1.0;
+    double percent = (double) numCorrect / numQuestions;
     String percentS = "" + Math.floor(percent*100) + "%";
     println(percentS);
     text("#Correct " + (numCorrect) + " / 10 (" + percentS + ")", width-topSafe*3, taskMid);
