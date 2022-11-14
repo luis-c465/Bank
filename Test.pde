@@ -65,6 +65,7 @@ public class Test {
     if (qCheck) {
       drawCorrect();
 
+      println(cyclesBNQ);
       if (--cyclesBNQ <= 0) {
         nextQ();
       }
@@ -149,7 +150,7 @@ public class Test {
   }
 
   public boolean nextQ() {
-    if (curQues + 1 < questions.length) return false;
+    if (curQues + 1 >= questions.length) return false;
 
     qCheck = false;
     input = "";
