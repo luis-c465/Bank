@@ -55,6 +55,7 @@ void setup() {
 }
 
 void draw() {
+  background(255);
   t._draw();
 
   // push();

@@ -108,7 +108,7 @@ public class Test {
         i + topSafe + space,
         topSafe + space,
         space,
-        taskBH
+        taskBH //<>// //<>//
       );
 
     }
@@ -130,13 +130,14 @@ public class Test {
     fill(255);
     text("TOTAL TASKS COMPLETED", topSafe+space*4, taskMid);
 
-    // fill(255);
-    // textSize(25);
-    // textAlign(LEFT, TOP);
-    // text("Q# " + (curQues + 1) + " / 10", topSafe, topSafe);
+    fill(0);
+    textSize(25);
 
-    // textAlign(RIGHT, TOP);
-    // text("#Correct " + (numCorrect) + " / 10", width-topSafe, topSafe);
+    textAlign(RIGHT, CENTER);
+    double percent = curQues != 0 ? (double) numCorrect / curQues : 1.0;
+    String percentS = "" + Math.floor(percent*100) + "%";
+    println(percentS);
+    text("#Correct " + (numCorrect) + " / 10 (" + percentS + ")", width-topSafe*3, taskMid);
 
     pop();
   }
@@ -195,9 +196,9 @@ public class Test {
     qCheck = true;
     Question q = questions[curQues];
     correct = input.equals(q.sAnswer);
-    if (correct) {
-      numCorrect++;
-    }
+    // if (correct) {
+    //   numCorrect++;
+    // }
     cyclesBNQ = CYCLES;
   }
 
@@ -207,6 +208,9 @@ public class Test {
     qCheck = false;
     input = "";
     curQues++;
+    if (correct) {
+      numCorrect++;
+    }
     return true;
   }
 }
