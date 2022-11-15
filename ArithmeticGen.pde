@@ -56,6 +56,14 @@ void setup() {
 
 void draw() {
   background(255);
+
+  push();
+
+  imageMode(CORNERS);
+  image(stor.skeld, 0, 0, width, height);
+
+  pop();
+
   t._draw();
 
   // push();

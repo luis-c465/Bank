@@ -130,7 +130,7 @@ public class Test {
     fill(255);
     text("TOTAL TASKS COMPLETED", topSafe+space*4, taskMid);
 
-    fill(0);
+    fill(255);
     textSize(25);
 
     textAlign(RIGHT, CENTER);
