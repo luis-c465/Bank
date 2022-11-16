@@ -101,13 +101,17 @@ void mousePressed() {
   println(t.input);
 }
 
-// TODO: Add support for keyboard input!
-// void keyPressed() {
-//   switch (key) {
-//     case '1':
+void keyPressed() {
+  if (Character.isDigit(key) && t.input.length() < 12) {
+    t.input += key;
+  }
 
-//   }
-// }
+  if (keyCode == BACKSPACE && t.input.length() > 0) {
+    t.input = t.input.substring(0, t.input.length() - 1);
+  } else if (keyCode == ENTER || keyCode == RETURN) {
+    t.check();
+  }
+}
 
 /**
  * Should only be called when the mouse has been pressed
