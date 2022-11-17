@@ -4,7 +4,6 @@
 public class Test {
   public int numQuestions = 0;
   public int numCorrect = 0;
-  public double percentCor = 0.0;
   public Question[] questions;
   public int curQues = 0;
   public boolean done = false;
@@ -67,6 +66,8 @@ public class Test {
   }
 
   public void _draw() {
+    if (done) return;
+
     drawTop();
     drawQuestion();
     drawAnswer();
@@ -107,7 +108,7 @@ public class Test {
         i + topSafe + space,
         topSafe + space,
         space,
-        taskBH //<>//
+        taskBH
       );
 
     }
@@ -194,21 +195,19 @@ public class Test {
     qCheck = true;
     Question q = questions[curQues];
     correct = input.equals(q.sAnswer);
-    // if (correct) {
-    //   numCorrect++;
-    // }
     cyclesBNQ = CYCLES;
   }
 
   public boolean nextQ() {
-    if (curQues + 1 >= questions.length) return false;
-
     qCheck = false;
     input = "";
     curQues++;
     if (correct) {
       numCorrect++;
     }
+
+    if (curQues + 1 >= questions.length) return false;
+
     return true;
   }
 }

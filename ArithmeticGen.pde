@@ -11,6 +11,9 @@ final int WINDOW_SIZE = 1_000;
 final int BTN_SIZE = 70;
 final int BTN_SPACE = 7;
 
+// Shows the looser screen if the percent correct is less than this number
+final double LOOSER_BELLOW = 0.70;
+
 
 // * CLASSES
 
@@ -189,15 +192,25 @@ String getBtn() {
  * else they are shown the looser screen
  */
 void drawEnd() {
+  double percent = (double) t.numCorrect / t.numQuestions;
+  boolean win = percent >= LOOSER_BELLOW;
   // First show the transition
   if (!transitionIn.done) {
     transitionIn.update();
     if (transitionIn.opacity > 255) {
-      stor.Mwinner.play();
+      if (win) {
+        stor.Mwinner.play();
+      } else {
+        stor.Mdefeat.play();
+      }
     }
   } else {
     // TODO: Should check if the user has actually won but for now just displays a winner :)
-    drawWinner();
+    if (win) {
+      drawWinner();
+    } else {
+      drawLooser();
+    }
   }
 }
 
@@ -212,6 +225,21 @@ void drawWinner() {
 
   fill(255);
   text("!rico", width / 2, height / 2 + 200);
+
+  pop();
+}
+
+void drawLooser() {
+  push();
+
+  imageMode(CENTER);
+  image(stor.Mdefeat, width / 2, height / 2, width * 1.4, height);
+
+  image(stor.impostor, width / 2, height / 2 + 50, 300, 300);
+  textSize(24);
+
+  fill(255);
+  text("When the impostor is susy", width / 2, height / 2 + 300);
 
   pop();
 }

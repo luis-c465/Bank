@@ -6,7 +6,7 @@
  */
 public class Stor {
   // * IMAGES
-  public PImage sus;
+  public PImage impostor;
   public PImage player;
   public PImage gun;
   public PImage gunSmall;
@@ -53,10 +53,11 @@ public class Stor {
 
   // * MOVIES
   public Movie Mwinner;
+  public Movie Mdefeat;
 
   public void _setup(PApplet p) {
     // * LOAD IMAGES
-    sus = loadImage("sus.png");
+    impostor = loadImage("chad.png");
     player = loadImage("susy.png");
     gun = loadImage("gun.png");
     gunSmall = loadImage("gun-small.png");
@@ -103,5 +104,6 @@ public class Stor {
 
     // * LOAD MOVIES
     Mwinner = new Movie(p, "victory.mp4");
+    Mdefeat = new Movie(p, "defeat.mp4");
   }
 }
