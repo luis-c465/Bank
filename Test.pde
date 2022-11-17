@@ -75,7 +75,7 @@ public class Test {
       drawCorrect();
 
       if (--cyclesBNQ <= 0) {
-        nextQ();
+        done = !nextQ();
       }
     }
   }
@@ -92,7 +92,6 @@ public class Test {
     shapeMode(CORNER);
     for (int i = 0; i <= taskBW - space * 2; i+=spaceBBars) {
       int temp = i / spaceBBars;
-      println(i, temp, spaceBBars);
       fill(#43d748);
       if (temp < curQues) {
         rect(
@@ -136,7 +135,6 @@ public class Test {
     textAlign(RIGHT, CENTER);
     double percent = (double) numCorrect / numQuestions;
     String percentS = "" + Math.floor(percent*100) + "%";
-    println(percentS);
     text("#Correct " + (numCorrect) + " / 10 (" + percentS + ")", width-topSafe*3, taskMid);
 
     pop();

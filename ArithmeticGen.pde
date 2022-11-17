@@ -1,8 +1,9 @@
-import gifAnimation.*;
+import processing.video.*;
 import processing.sound.*;
 
 // * CONSTANTS
-final int NUM_QUESTIONS = 10;
+final int NUM_QUESTIONS = 1;
+// final int NUM_QUESTIONS = 10;
 
 // ! This size is set to avoid issues where the program wont fit on the screen of school computers
 final int WINDOW_SIZE = 1_000;
@@ -14,7 +15,6 @@ final int BTN_SPACE = 7;
 // * CLASSES
 
 Stor stor = new Stor();
-Gif dripGif;
 
 Test t = new Test(NUM_QUESTIONS, stor);
 
@@ -66,15 +66,9 @@ void draw() {
 
   t._draw();
 
-  // push();
-  // shapeMode(CENTER);
-
-  // fill(0);
-  // square(width / 2 - 125, height / 2, BTN_SIZE);
-
-  // fill(255);
-  // square(width / 2 + 50, height / 2, BTN_SIZE);
-  // pop();
+  if (t.done) {
+    drawEnd();
+  }
 }
 
 void mousePressed() {
@@ -82,7 +76,6 @@ void mousePressed() {
   if (t.qCheck) return;
 
   String btn = getBtn();
-  println(btn);
 
   switch(btn) {
     case "x":
@@ -98,7 +91,6 @@ void mousePressed() {
   if (t.input.length() < 12) {
     t.input += btn;
   }
-  println(t.input);
 }
 
 void keyPressed() {
@@ -112,6 +104,13 @@ void keyPressed() {
     t.check();
   }
 }
+
+// ! BLACK MAGIC DO NOT TOUCH LOL
+// Called every time a new frame is available to read
+void movieEvent(Movie m) {
+  m.read();
+}
+
 
 /**
  * Should only be called when the mouse has been pressed
@@ -181,4 +180,38 @@ String getBtn() {
   }
 
   return "Null";
+}
+
+/**
+ * Draws the end of the game
+ * if the user has won the game (completed with a certain percent of accuracy)
+ * they are shown the winner screen
+ * else they are shown the looser screen
+ */
+void drawEnd() {
+  // First show the transition
+  if (!transitionIn.done) {
+    transitionIn.update();
+    if (transitionIn.opacity > 255) {
+      stor.Mwinner.play();
+    }
+  } else {
+    // TODO: Should check if the user has actually won but for now just displays a winner :)
+    drawWinner();
+  }
+}
+
+void drawWinner() {
+  push();
+
+  imageMode(CENTER);
+  image(stor.Mwinner, width / 2, height / 2, width * 1.4, height);
+
+  image(stor.player, width / 2, height / 2 + 50);
+  textSize(24);
+
+  fill(255);
+  text("!rico", width / 2, height / 2 + 200);
+
+  pop();
 }

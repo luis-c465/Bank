@@ -51,10 +51,13 @@ public class Stor {
   public PFont mono;
   public PFont nunito;
 
+  // * MOVIES
+  public Movie Mwinner;
+
   public void _setup(PApplet p) {
     // * LOAD IMAGES
     sus = loadImage("sus.png");
-    player = loadImage("player.png");
+    player = loadImage("susy.png");
     gun = loadImage("gun.png");
     gunSmall = loadImage("gun-small.png");
 
@@ -97,5 +100,8 @@ public class Stor {
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);
     nunito = createFont("fonts/Nunito.ttf", 64);
+
+    // * LOAD MOVIES
+    Mwinner = new Movie(p, "victory.mp4");
   }
 }
