@@ -15,7 +15,7 @@ final int BTN_SPACE = 7;
 final double LOOSER_BELLOW = 0.70;
 
 final int REPLAY_SAFE = 150;
-final int REPLAY_SIZE = 200;
+final int REPLAY_SIZE = 500;
 
 
 // * CLASSES
@@ -84,10 +84,10 @@ void mousePressed() {
   // If the game is done check if the user clicks on the play again button
   if (
     t.done &&
-    mouseX < width - REPLAY_SAFE &&
-    mouseX > width - (REPLAY_SIZE + REPLAY_SAFE) &&
-    mouseY < height - REPLAY_SAFE &&
-    mouseY > height - (REPLAY_SIZE + REPLAY_SAFE)
+    mouseX < width - REPLAY_SAFE / 2 &&
+    mouseX > width - (REPLAY_SIZE / 2 + REPLAY_SAFE) &&
+    mouseY < height - REPLAY_SAFE / 2 &&
+    mouseY > height - (REPLAY_SIZE / 2 + REPLAY_SAFE)
   ) {
     reset();
     return;
