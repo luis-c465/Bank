@@ -14,6 +14,9 @@ final int BTN_SPACE = 7;
 // Shows the looser screen if the percent correct is less than this number
 final double LOOSER_BELLOW = 0.70;
 
+final int REPLAY_SAFE = 150;
+final int REPLAY_SIZE = 200;
+
 
 // * CLASSES
 
@@ -24,13 +27,9 @@ Test t = new Test(NUM_QUESTIONS, stor);
 TransitionIn transitionIn;
 TransitionOut transitionOut;
 
-//  * GLOBAL VARIABLES
-int curMazeNum = 0;
-boolean didDeath = false;
-boolean levelTransition = false;
-boolean intro = true;
-boolean introTransition = false;
-boolean winner = false;
+// * GLOABAL VARIABLES
+boolean replayTrans = false;
+boolean shouldDrawTest = true;
 
 void settings() {
   size(WINDOW_SIZE, WINDOW_SIZE);
@@ -67,14 +66,33 @@ void draw() {
 
   pop();
 
-  t._draw();
+  // ! Prevents a crash when replaying the game durring a level transition
+  if (shouldDrawTest)
+    t._draw();
 
   if (t.done) {
     drawEnd();
   }
+
+
+  if (replayTrans) {
+    replayTransition();
+  }
 }
 
 void mousePressed() {
+  // If the game is done check if the user clicks on the play again button
+  if (
+    t.done &&
+    mouseX < width - REPLAY_SAFE &&
+    mouseX > width - (REPLAY_SIZE + REPLAY_SAFE) &&
+    mouseY < height - REPLAY_SAFE &&
+    mouseY > height - (REPLAY_SIZE + REPLAY_SAFE)
+  ) {
+    reset();
+    return;
+  }
+
   // Prevent the user from changing their answer when they have already checked it
   if (t.qCheck) return;
 
@@ -97,6 +115,11 @@ void mousePressed() {
 }
 
 void keyPressed() {
+  // If the game is complete do not allow keyboard input
+  if (t.done) {
+    return;
+  }
+
   if (Character.isDigit(key) && t.input.length() < 12) {
     t.input += key;
   }
@@ -211,6 +234,8 @@ void drawEnd() {
     } else {
       drawLooser();
     }
+
+    drawButtons();
   }
 }
 
@@ -242,4 +267,64 @@ void drawLooser() {
   text("When the impostor is susy", width / 2, height / 2 + 300);
 
   pop();
+}
+
+// Should be caled when the plyaer has won
+// Click to restart
+void drawButtons() {
+  push();
+
+  imageMode(CENTER);
+  image(stor.playAgain, width - REPLAY_SAFE, height - REPLAY_SAFE);
+
+  pop();
+}
+
+/**
+ * Restes the game and starts a new one
+ */
+void reset() {
+  println("RESET");
+
+  transitionIn.reset();
+  transitionOut.reset();
+
+  replayTrans = true;
+  shouldDrawTest = false;
+}
+
+void replayTransition() {
+  if (!transitionIn.done) {
+    transitionIn.update();
+
+    if (transitionIn.opacity > 255) {
+      shouldDrawTest = true;
+      double percent = (double) t.numCorrect / t.numQuestions;
+      boolean win = percent >= LOOSER_BELLOW;
+
+      // Setup a new test
+      t = new Test(NUM_QUESTIONS, stor);
+      t._setup();
+
+      // restart the ending videos
+      if (win) {
+        println("winner stopped");
+        stor.Mwinner.stop();
+      } else {
+        println("defeat stopped");
+        stor.Mdefeat.stop();
+      }
+    }
+  }
+
+  if (transitionIn.done) {
+    transitionOut.update();
+  }
+
+  if (transitionIn.done && transitionOut.done) {
+    transitionIn.reset();
+    transitionOut.reset();
+
+    replayTrans = false;
+  }
 }
