@@ -1,9 +1,9 @@
-import processing.video.*;
+import gifAnimation.*;
 import processing.sound.*;
 
 // * CONSTANTS
-final int NUM_QUESTIONS = 1;
-// final int NUM_QUESTIONS = 10;
+// final int NUM_QUESTIONS = 1;
+final int NUM_QUESTIONS = 10;
 
 // ! This size is set to avoid issues where the program wont fit on the screen of school computers
 final int WINDOW_SIZE = 1_000;
@@ -161,13 +161,6 @@ void keyPressed() {
     t.check();
   }
 }
-
-// ! BLACK MAGIC DO NOT TOUCH LOL
-// Called every time a new frame is available to read
-void movieEvent(Movie m) {
-  m.read();
-}
-
 
 /**
  * Should only be called when the mouse has been pressed

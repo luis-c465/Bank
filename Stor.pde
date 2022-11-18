@@ -35,8 +35,8 @@ public class Stor {
   public PFont nunito;
 
   // * MOVIES
-  public Movie Mwinner;
-  public Movie Mdefeat;
+  public Gif Mwinner;
+  public Gif Mdefeat;
 
   public void _setup(PApplet p) {
     // * LOAD IMAGES
@@ -68,7 +68,7 @@ public class Stor {
     nunito = createFont("fonts/Nunito.ttf", 64);
 
     // * LOAD MOVIES
-    Mwinner = new Movie(p, "victory.mp4");
-    Mdefeat = new Movie(p, "defeat.mp4");
+    Mwinner = new Gif(p, "victory.gif");
+    Mdefeat = new Gif(p, "defeat.gif");
   }
 }
