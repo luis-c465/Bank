@@ -19,6 +19,8 @@ public class Stor {
 
   public PImage playAgain;
 
+  public PImage intro;
+
   // * SHAPES
   public PShape plus;
   public PShape minus;
@@ -49,6 +51,8 @@ public class Stor {
     skeld = loadImage("skeld.png");
 
     playAgain = loadImage("play-again.png");
+
+    intro = loadImage("intro.png");
 
     // * LOAD SHAPES
     plus = loadShape("plus.svg");

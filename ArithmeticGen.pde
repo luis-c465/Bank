@@ -17,6 +17,9 @@ final double LOOSER_BELLOW = 0.70;
 final int REPLAY_SAFE = 150;
 final int REPLAY_SIZE = 500;
 
+final int STARTBTN_SIZE = 200;
+final int STARTBTN_HEIGHT = 700;
+
 
 // * CLASSES
 
@@ -30,6 +33,9 @@ TransitionOut transitionOut;
 // * GLOABAL VARIABLES
 boolean replayTrans = false;
 boolean shouldDrawTest = true;
+
+boolean intro = true;
+boolean introTrans = false;
 
 void settings() {
   size(WINDOW_SIZE, WINDOW_SIZE);
@@ -59,10 +65,19 @@ void setup() {
 void draw() {
   background(255);
 
+  if (intro) {
+    drawIntro();
+
+    if (introTrans) {
+      drawIntroTransition();
+    }
+    return;
+  }
+
   push();
 
   imageMode(CORNERS);
-  image(stor.skeld, 0, 0, width, height);
+  image(stor.skeld, 0, 0, width, height); //<>//
 
   pop();
 
@@ -78,9 +93,25 @@ void draw() {
   if (replayTrans) {
     replayTransition();
   }
+
+  if (!intro && introTrans) {
+    drawIntroTransition();
+  }
 }
 
 void mousePressed() {
+  if(
+    intro &&
+    mouseX < width / 2 + STARTBTN_SIZE / 2 &&
+    mouseX > width / 2 - STARTBTN_SIZE / 2 &&
+    mouseY < STARTBTN_HEIGHT + STARTBTN_SIZE / 2 &&
+    mouseY > STARTBTN_HEIGHT - STARTBTN_SIZE / 2
+  ) {
+    println("intro trans!");
+    introTrans = true;
+    return;
+  }
+
   // If the game is done check if the user clicks on the play again button
   if (
     t.done &&
@@ -326,5 +357,35 @@ void replayTransition() {
     transitionOut.reset();
 
     replayTrans = false;
+  }
+}
+
+void drawIntro() {
+  push();
+
+  imageMode(CORNERS);
+  image(stor.intro, 0, 0);
+
+  pop();
+}
+
+void drawIntroTransition() {
+  if (!transitionIn.done) {
+      transitionIn.update();
+
+      if (transitionIn.opacity > 255) {
+        intro = false;
+      }
+    }
+  else {
+    if (!transitionOut.done) {
+      transitionOut.update();
+    }
+  }
+
+  if (transitionIn.done && transitionOut.done) {
+    introTrans = false;
+    transitionIn.reset();
+    transitionOut.reset();
   }
 }

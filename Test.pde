@@ -15,7 +15,7 @@ public class Test {
   // Cycles before next question
   public int cyclesBNQ = 0;
 
-  public final int CYCLES = 50;
+  public final int CYCLES = 25;
 
   // Center width and center height respectively of the canvas
   private int cw;
