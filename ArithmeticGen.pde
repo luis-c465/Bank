@@ -6,7 +6,7 @@ import processing.sound.*;
 final int NUM_QUESTIONS = 10;
 
 // ! This size is set to avoid issues where the program wont fit on the screen of school computers
-final int WINDOW_SIZE = 1_000;
+final int WINDOW_SIZE = 1000;
 
 final int BTN_SIZE = 70;
 final int BTN_SPACE = 7;
@@ -77,7 +77,7 @@ void draw() {
   push();
 
   imageMode(CORNERS);
-  image(stor.skeld, 0, 0, width, height); //<>//
+  image(stor.skeld, 0, 0, width, height);
 
   pop();
 
@@ -129,15 +129,14 @@ void mousePressed() {
 
   String btn = getBtn();
 
-  switch(btn) {
-    case "x":
-      t.input = "";
-      return;
-    case "check":
-      t.check();
-      return;
-    case "Null":
-      return;
+  if (btn.equals("x")) {
+    t.input = "";
+    return;
+  } else if (btn.equals("check")) {
+    t.check();
+    return;
+  } else if (btn.equals("Null")) {
+    return;
   }
 
   if (t.input.length() < 12) {

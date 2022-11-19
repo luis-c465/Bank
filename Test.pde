@@ -206,7 +206,7 @@ public class Test {
       numCorrect++;
     }
 
-    if (curQues + 1 >= questions.length) return false;
+    if (curQues >= questions.length) return false;
 
     return true;
   }
