@@ -240,9 +240,9 @@ void drawEnd() {
     transitionIn.update();
     if (transitionIn.opacity > 255) {
       if (win) {
-        stor.Mwinner.play();
+        // stor.Mwinner.play();
       } else {
-        stor.Mdefeat.play();
+        // stor.Mdefeat.play();
       }
     }
   } else {
@@ -261,7 +261,7 @@ void drawWinner() {
   pushMatrix();
 
   imageMode(CENTER);
-  image(stor.Mwinner, width / 2, height / 2, width * 1.4, height);
+  // image(stor.Mwinner, width / 2, height / 2, width * 1.4, height);
 
   image(stor.player, width / 2, height / 2 + 50);
   textSize(24);
@@ -276,7 +276,7 @@ void drawLooser() {
   pushMatrix();
 
   imageMode(CENTER);
-  image(stor.Mdefeat, width / 2, height / 2, width * 1.4, height);
+  // image(stor.Mdefeat, width / 2, height / 2, width * 1.4, height);
 
   image(stor.impostor, width / 2, height / 2 + 50, 300, 300);
   textSize(24);
@@ -327,10 +327,8 @@ void replayTransition() {
       // restart the ending videos
       if (win) {
         println("winner stopped");
-        stor.Mwinner.stop();
       } else {
         println("defeat stopped");
-        stor.Mdefeat.stop();
       }
     }
   }
