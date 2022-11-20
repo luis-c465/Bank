@@ -5,9 +5,6 @@ import processing.sound.*;
 // final int NUM_QUESTIONS = 1;
 final int NUM_QUESTIONS = 10;
 
-// ! This size is set to avoid issues where the program wont fit on the screen of school computers
-final int WINDOW_SIZE = 1000;
-
 final int BTN_SIZE = 70;
 final int BTN_SPACE = 7;
 
@@ -37,11 +34,9 @@ boolean shouldDrawTest = true;
 boolean intro = true;
 boolean introTrans = false;
 
-void settings() {
-  size(WINDOW_SIZE, WINDOW_SIZE);
-}
-
 void setup() {
+  size(1000, 1000);
+
   background(255);
   shapeMode(CENTER);
   textAlign(CENTER);
@@ -74,12 +69,12 @@ void draw() {
     return;
   }
 
-  push();
+  pushMatrix();
 
   imageMode(CORNERS);
   image(stor.skeld, 0, 0, width, height);
 
-  pop();
+  popMatrix();
 
   // ! Prevents a crash when replaying the game durring a level transition
   if (shouldDrawTest)
@@ -263,7 +258,7 @@ void drawEnd() {
 }
 
 void drawWinner() {
-  push();
+  pushMatrix();
 
   imageMode(CENTER);
   image(stor.Mwinner, width / 2, height / 2, width * 1.4, height);
@@ -274,11 +269,11 @@ void drawWinner() {
   fill(255);
   text("!rico", width / 2, height / 2 + 200);
 
-  pop();
+  popMatrix();
 }
 
 void drawLooser() {
-  push();
+  pushMatrix();
 
   imageMode(CENTER);
   image(stor.Mdefeat, width / 2, height / 2, width * 1.4, height);
@@ -289,18 +284,18 @@ void drawLooser() {
   fill(255);
   text("When the impostor is susy", width / 2, height / 2 + 300);
 
-  pop();
+  popMatrix();
 }
 
 // Should be caled when the plyaer has won
 // Click to restart
 void drawButtons() {
-  push();
+  pushMatrix();
 
   imageMode(CENTER);
   image(stor.playAgain, width - REPLAY_SAFE, height - REPLAY_SAFE);
 
-  pop();
+  popMatrix();
 }
 
 /**
@@ -353,12 +348,12 @@ void replayTransition() {
 }
 
 void drawIntro() {
-  push();
+  pushMatrix();
 
   imageMode(CORNERS);
   image(stor.intro, 0, 0);
 
-  pop();
+  popMatrix();
 }
 
 void drawIntroTransition() {

@@ -38,7 +38,7 @@ public class Test {
   // * Question
   private final int quesStart = 225;
   private final int quesSpace = 50;
-  private final color dividerC = #6b728099;
+  private color dividerC;
 
   // * Answer
   private final int ansStart = 430;
@@ -53,6 +53,7 @@ public class Test {
     }
 
     spaceBBars = (taskBW - space * 2) / q;
+    dividerC = color(107, 114, 128, 99);
   }
 
   public void _setup() {
@@ -82,7 +83,7 @@ public class Test {
   }
 
   private void drawTop() {
-    push();
+    pushMatrix();
 
     noStroke();
     fill(#323f2f);
@@ -138,14 +139,16 @@ public class Test {
     String percentS = "" + Math.floor(percent*100) + "%";
     text("#Correct " + (numCorrect) + " / 10 (" + percentS + ")", width-topSafe*3, taskMid);
 
-    pop();
+    popMatrix();
   }
 
   /**
    * Draws the current question to the canvas
    */
   private void drawQuestion() {
-    push();
+    pushMatrix();
+    shapeMode(CENTER);
+    imageMode(CENTER);
     image(stor.buttons, cw, ch);
 
     Question q = questions[curQues];
@@ -153,6 +156,7 @@ public class Test {
     // Draw the questions numbers
     textSize(64);
     textMode(CENTER);
+    fill(0);
     text("" + q.num1, cw + quesSpace, quesStart);
     text("" + q.num2, cw + quesSpace, quesStart + 100);
 
@@ -165,23 +169,25 @@ public class Test {
       75
     );
 
-    fill(dividerC);
+    // fill(dividerC);
 
-    rect(cw - quesSpace - 30, quesStart + 120,  quesSpace * 4, 10, 10);
+    // rect(cw - quesSpace - 30, quesStart + 130,  quesSpace * 4, 10, 10);
 
-    pop();
+    popMatrix();
   }
 
   private void drawAnswer() {
-    push();
+    pushMatrix();
 
+    fill(0);
     textAlign(LEFT, CENTER);
     text(input, 260, ansStart);
 
-    pop();
+    popMatrix();
   }
 
   private void drawCorrect() {
+    shapeMode(CENTER);
     shape(
       correct ? s.check : s.wrong,
       200,
