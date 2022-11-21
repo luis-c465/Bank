@@ -1,0 +1,53 @@
+name: "release"
+
+on:
+  push:
+    branches:
+      - "master"
+    tags-ignore:
+      - "*"
+
+jobs:
+  gh_pre_release:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Setup Processing
+        uses: ifP1/setup-processing@v1.1.1
+        with:
+          version: 4.0.1
+          platform-filetype: linux64.tgz
+
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2.3.4"
+
+      - run: "./processing/processing-java"
+      - run: "yarn lint"
+      - run: "yarn build"
+      - run: "yarn jest --env=node --colors --forceExit"
+
+      - uses: "./packages/automatic-releases/"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            packages/automatic-releases/dist/index.js
+            packages/keybase-notifications/dist/index.js
+        id: "automatic_releases"
+
+      # marvinpinto/action-keybase-notifications
+      # marvinpinto/action-automatic-releases
+      # marvinpinto/action-inject-ssm-secrets
+      - name: "Automatically mirror release artifacts"
+        env:
+          GITHUB_SUPER_TOKEN: ${{ secrets.GITHUB_SUPER_TOKEN }}
+        run: |
+          ./scripts/mirror-actions.sh "$AUTOMATIC_RELEASES_TAG"
+
+      - uses: "./packages/keybase-notifications"
+        if: always()
+        with:
+          job_status: ${{ job.status }}
+          opensentinel_token: ${{ secrets.OSL_TOKEN }}

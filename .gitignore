@@ -3,3 +3,7 @@ macos-*/
 linux-*/
 export/
 application.*/
+build/out/*
+build/Main.jar
+build/pain/
+build/processing/
