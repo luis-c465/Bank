@@ -15,7 +15,7 @@ done:
 
 # Builds with processing
 proc:
-	./processing/processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
+	cd /opt/hostedtoolcache/processing/3.5.4/x64; ./processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
 
 procLocal:
 	processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
