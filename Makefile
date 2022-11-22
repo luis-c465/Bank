@@ -1,4 +1,5 @@
-all: class jar done
+ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+all: proc class jar done
 
 # First compile with processing
 class:
@@ -11,3 +12,10 @@ jar:
 done:
 	@echo "Done building"
 	@echo "Main.jar located in build directory"
+
+# Builds with processing
+proc:
+	./processing/processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
+
+procLocal:
+	processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
