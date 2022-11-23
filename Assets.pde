@@ -1,12 +1,12 @@
 /**
- * Class whitch stores images and audio to be played back
+ * Class whitch assetses images and audio to be played back
  * in the game
  *
  * Call the _setup method to load all the images and the sounds
  */
-public class Stor {
+public class Assets {
   // * IMAGES
-  public PImage impostor;
+  public PImage impoassets;
   public PImage player;
 
   // * BUTTONS
@@ -40,7 +40,7 @@ public class Stor {
 
   public void _setup(PApplet p) {
     // * LOAD IMAGES
-    impostor = loadImage("chad.png");
+    impoassets = loadImage("chad.png");
     player = loadImage("susy.png");
 
     // * LOAD BUTTONS
