@@ -19,12 +19,16 @@ final int STARTBTN_HEIGHT = 700;
 
 
 // * CLASSES
-Deck deck = new Deck();
-
 // Util
 Assets assets = new Assets();
+Variables variables = new Variables();
 TransitionIn transitionIn;
 TransitionOut transitionOut;
+
+// Game classes
+Deck deck = new Deck();
+Player player = new Player(assets, variables);
+Enemy enemy = new Enemy(assets, variables);
 
 // * GLOABAL VARIABLES
 boolean replayTrans = false;
@@ -49,10 +53,15 @@ void setup() {
   transitionOut = new TransitionOut();
 
   assets._setup(this);
+  variables._setup();
   textFont(assets.nunito);
 
   // Debugging
   println(deck.toString());
+  deck.deal(player, enemy);
+
+  println(player);
+  println(enemy);
 }
 
 void draw() {
