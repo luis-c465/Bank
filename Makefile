@@ -1,5 +1,5 @@
 ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-all: proc class jar done
+all: procLocal class jar done
 
 # First compile with processing
 class:
