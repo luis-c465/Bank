@@ -1,3 +1,4 @@
+import java.util.*;
 import gifAnimation.*;
 import processing.sound.*;
 
@@ -18,9 +19,10 @@ final int STARTBTN_HEIGHT = 700;
 
 
 // * CLASSES
+Deck deck = new Deck();
 
+// Util
 Assets assets = new Assets();
-
 TransitionIn transitionIn;
 TransitionOut transitionOut;
 
@@ -48,6 +50,9 @@ void setup() {
 
   assets._setup(this);
   textFont(assets.nunito);
+
+  // Debugging
+  println(deck.toString());
 }
 
 void draw() {
