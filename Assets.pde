@@ -20,14 +20,6 @@ public class Assets {
   public PImage playAgain;
 
   public PImage intro;
-
-  // * SHAPES
-  public PShape plus;
-  public PShape minus;
-
-  public PShape check;
-  public PShape wrong;
-
   // * SOUNDS
 
   // * FONTS
@@ -49,13 +41,6 @@ public class Assets {
     playAgain = loadImage("play-again.png");
 
     intro = loadImage("intro.png");
-
-    // * LOAD SHAPES
-    plus = loadShape("plus.svg");
-    minus = loadShape("minus.svg");
-
-    check = loadShape("check.svg");
-    wrong = loadShape("close.svg");
 
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);
