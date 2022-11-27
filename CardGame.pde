@@ -1,7 +1,8 @@
 import java.util.*;
-import com.jogamp.opengl.GLProfile;
 
 // * CONSTANTS
+final color table = #3c7496;
+final int table_start = 350;
 
 // * CLASSES
 // Util
@@ -36,6 +37,7 @@ void setup() {
 
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
+  v._setup();
 
   println(player);
   println(enemy);
@@ -43,4 +45,12 @@ void setup() {
 
 void draw() {
   background(255);
+  drawTable();
+}
+
+void drawTable() {
+  shapeMode(CORNERS);
+  fill(table);
+  noStroke();
+  rect(0, table_start, v.w, v.h);
 }
