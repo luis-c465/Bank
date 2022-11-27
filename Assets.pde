@@ -34,10 +34,6 @@ public class Assets {
   public PFont mono;
   public PFont nunito;
 
-  // * MOVIES
-  // public Gif Mwinner;
-  // public Gif Mdefeat;
-
   public void _setup(PApplet p) {
     // * LOAD IMAGES
     impoassets = loadImage("chad.png");
@@ -61,14 +57,10 @@ public class Assets {
     check = loadShape("check.svg");
     wrong = loadShape("close.svg");
 
-    // * LOAD SOUNDS
-
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);
     nunito = createFont("fonts/Nunito.ttf", 64);
 
-    // * LOAD MOVIES
-    // Mwinner = new Gif(p, "victory.gif");
-    // Mdefeat = new Gif(p, "defeat.gif");
+    // textFont(nunito);
   }
 }

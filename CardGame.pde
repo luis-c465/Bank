@@ -1,34 +1,19 @@
 import java.util.*;
-import gifAnimation.*;
-import processing.sound.*;
+import com.jogamp.opengl.GLProfile;
 
 // * CONSTANTS
-final int NUM_QUESTIONS = 10;
-
-final int BTN_SIZE = 70;
-final int BTN_SPACE = 7;
-
-// Shows the looser screen if the percent correct is less than this number
-final double LOOSER_BELLOW = 0.70;
-
-final int REPLAY_SAFE = 150;
-final int REPLAY_SIZE = 500;
-
-final int STARTBTN_SIZE = 200;
-final int STARTBTN_HEIGHT = 700;
-
 
 // * CLASSES
 // Util
-Assets assets = new Assets();
-Variables variables = new Variables();
+Assets a = new Assets();
+Variables v = new Variables();
 TransitionIn transitionIn;
 TransitionOut transitionOut;
 
 // Game classes
 Deck deck = new Deck();
-Player player = new Player(assets, variables);
-Enemy enemy = new Enemy(assets, variables);
+Player player = new Player(a, v);
+Enemy enemy = new Enemy(a, v);
 
 // * GLOABAL VARIABLES
 boolean replayTrans = false;
@@ -51,14 +36,6 @@ void setup() {
 
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
-
-  assets._setup(this);
-  variables._setup();
-  textFont(assets.nunito);
-
-  // Debugging
-  println(deck.toString());
-  deck.deal(player, enemy);
 
   println(player);
   println(enemy);
