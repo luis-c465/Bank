@@ -61,6 +61,6 @@ public class Assets {
     mono = createFont("fonts/ThaleahFat.ttf", 64);
     nunito = createFont("fonts/Nunito.ttf", 64);
 
-    // textFont(nunito);
+    textFont(nunito);
   }
 }
