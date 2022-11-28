@@ -33,5 +33,8 @@ public class Deck {
         e.cards.add(c);
       }
     }
+
+    p.remove();
+    e.remove();
   }
 }

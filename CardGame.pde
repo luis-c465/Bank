@@ -96,7 +96,9 @@ void setup() {
   transitionOut = new TransitionOut();
 
   // * DEBUGGING INFO
+  deck.deal(player, enemy);
   println(player);
+  println("\n ---- \n ");
   println(enemy);
 }
 
@@ -145,4 +147,21 @@ void drawEnemy() {
   noStroke();
   fill(c_shine);
   rect(sw_shine, sh_shine, w_shine, h_shine, r_shine);
+}
+
+/**
+ * Checks the cards of the player and enemy
+ * Returns -1 if the players has a higher card number
+ *
+ * For the player that has won they are given both of the cards
+ */
+int check() {
+  int order = player.cur.compareTo(enemy.cur);
+  if (order < -1) { // Player wins
+    println("Player wins");
+  } else if (order > 1) { // Enemy wins
+  } else { // Tie
+  }
+
+  return order;
 }

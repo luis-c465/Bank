@@ -1,7 +1,7 @@
 /**
  * Class for a card
  */
-public class Card {
+public class Card implements Comparable<Card> {
   public int num;
   public Suit suit;
   public String s;
@@ -28,6 +28,11 @@ public class Card {
     }
 
     this.s = "" + c + " of " + s.name();
+  }
+
+  @Override
+  public int compareTo(Card o) {
+      return Integer.compare(num, o.num);
   }
 
   public String toString() {

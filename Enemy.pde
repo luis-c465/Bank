@@ -1,12 +1,10 @@
-public class Enemy extends Obj {
-  public Queue<Card> cards = new LinkedList();
-
+public class Enemy extends CardHolder {
   public Enemy(Assets a, Variables v) {
     super(a, v);
   }
 
   public String toString() {
-    return "Enemy: " +  cards.toString();
+    return "Enemy: \n" +  super.toString();
   }
 
   public void _update() {
