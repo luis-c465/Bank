@@ -4,11 +4,12 @@ Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Dependencies
 
-- Java 1.6 or higher
+- Java 1.8 or higher
 
 ## Building
 
-- **Requires [Processing v2.2.1](https://processing.org/download)**
+- **Requires [Processing v3.5.1](https://processing.org/download)**
+- Then in the processing app go to in the top bar: `Tools` -> `Install processing-java`
 - ```bash
   make
   ```
