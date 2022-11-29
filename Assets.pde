@@ -12,6 +12,10 @@ public class Assets {
   // Cards
   public PImage back;
 
+  // * SHAPES
+  public PShape down;
+  public PShape up;
+
   // * BUTTONS
   public PImage enter;
 
@@ -37,6 +41,10 @@ public class Assets {
     // Cards
     back = loadImage("card/back.jpeg");
 
+    // * LOAD SHAPES
+    down = loadShape("down.svg");
+    up = loadShape("up.svg");
+
     // * LOAD BUTTONS
     enter = loadImage("btn/enter.png");
     space = loadImage("btn/space.png");
@@ -54,4 +62,8 @@ public class Assets {
 
     textFont(nunito);
   }
+
+  // public PImage getCard(int num) {
+
+  // }
 }

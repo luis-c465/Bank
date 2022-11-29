@@ -8,16 +8,39 @@ import java.util.*;
 final color c_table = #3c7496;
 final int table_start = 350;
 
-// Flip card
-final color c_flip = #fac83c;
-final int s_flip = 20;
-final int w_flip = 200;
-final int h_flip = 75;
-final int ts_flip = 30;
-final int r_flip = 25;
+// Guess card
+final color c_down = #fac83c;
+final int s_down = 20;
+final int w_down = 150;
+final int h_down = 75;
+final int ts_down = 30;
+final int r_down = 25;
 
-int wc_flip = (int) ((s_flip + w_flip) / 1.80);
-int hc_flip;
+int wc_down = (int) ((s_down + w_down) / 1.80);
+int hc_down;
+
+int wc_text_down = wc_down + 30;
+int wc_icon_down = wc_down - 30;
+
+final color c_up = #fac83c;
+final int s_up = 20;
+final int w_up = 150;
+final int h_up = 75;
+final int ts_up = 30;
+final int r_up = 25;
+
+final int sw_up = s_down + w_down + s_up;
+
+int wc_up = (int) ((s_up + w_up) / 1.80) + sw_up - s_up;
+int hc_up;
+
+int wc_text_up = wc_up + 30;
+int wc_icon_up = wc_up - 30;
+
+// int wc_down = wc_down - 60;
+
+final int down_size = 100;
+final int up_size = 100;
 
 // Enemy
 // * TO BE CENTERED
@@ -50,13 +73,21 @@ int h_card = (int) Math.round(w_card * ratio_card);
 
 // player
 final int safe_cards_x = 200;
+int pdx;
+int pdy;
+
 int pcx;
-int pcy;
 
 // enemy
-int ecx;
-int ecy;
+int edx;
+int edy;
 
+int ecx;
+
+boolean cardMove = false;
+boolean cardFlip = false;
+int e_flip_cycles = 20;
+int flip_cycles;
 
 // * CLASSES
 // Util
@@ -81,7 +112,8 @@ boolean introTrans = false;
  * Updates calculated variables
  */
 void calc() {
-  hc_flip = (int) (v.h - s_flip * 2.5);
+  hc_down = (int) (v.h - s_down * 2.5);
+  hc_up = (int) (v.h - s_up * 2.5);
 
   sw_enemy = (int) v.cw - (w_enemy / 2);
 
@@ -90,11 +122,15 @@ void calc() {
   sw_shine = v.cw + 10;
 
   // Cards
-  pcx = v.cw + safe_cards_x;
-  pcy = v.h - safe_cards_x;
+  pdx = v.cw + safe_cards_x;
+  pdy = v.h - safe_cards_x;
 
-  ecx = v.cw - safe_cards_x;
-  ecy = table_start + safe_cards_x;
+  pcx = pdx;
+
+  edx = v.cw - safe_cards_x;
+  edy = table_start + safe_cards_x;
+
+  ecx = edx;
 }
 
 void setup() {
@@ -126,7 +162,8 @@ void setup() {
 void draw() {
   background(255);
   drawTable();
-  drawFlipCard();
+  drawLowBtn();
+  drawHighBtn();
 
   drawEnemy();
 
@@ -141,17 +178,34 @@ void drawTable() {
   rect(0, table_start, v.w, v.h);
 }
 
-void drawFlipCard() {
+void drawLowBtn() {
   shapeMode(CORNERS);
 
-  fill(c_flip);
+  fill(c_down);
   noStroke();
-  rect(s_flip, v.h - s_flip * 5, w_flip, h_flip, r_flip);
+  rect(s_down, v.h - s_down * 5, w_down, h_down, r_down);
 
   // Draw text
   fill(0);
-  textSize(ts_flip);
-  text("Flip Cards", wc_flip, hc_flip);
+  textSize(ts_down);
+  text("Low", wc_text_down, hc_down);
+  shapeMode(CENTER);
+  shape(a.down, wc_icon_down, hc_down, down_size, down_size);
+}
+
+void drawHighBtn() {
+  shapeMode(CORNERS);
+
+  fill(c_up);
+  noStroke();
+  rect(sw_up, v.h - s_up * 5, w_up, h_up, r_up);
+
+  // Draw text
+  fill(0);
+  textSize(ts_up);
+  text("High", wc_text_up, hc_up);
+  shapeMode(CENTER);
+  shape(a.up, wc_icon_up, hc_up, up_size, up_size);
 }
 
 void drawEnemy() {
@@ -183,23 +237,34 @@ int check() {
   if (order < -1) { // Player wins
     println("Player wins");
   } else if (order > 1) { // Enemy wins
+    // guh
   } else { // Tie
+    // guh
   }
 
   return order;
 }
 
 void drawCards() {
+  // Draw the cards
+  // image();
+
+  // Then move them
+
+  // If flip then flip the cards
+}
+
+void drawDeck() {
   push();
 
   // Draw the players cards
   if (player.cards.size() > 0) {
-    image(a.back, pcx, pcy, w_card, h_card);
+    image(a.back, pdx, pdy, w_card, h_card);
   }
 
   // Draw the enemys cards
   if (enemy.cards.size() > 0) {
-    image(a.back, ecx, ecy, w_card, h_card);
+    image(a.back, edx, edy, w_card, h_card);
   }
 
   pop();
