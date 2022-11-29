@@ -43,6 +43,20 @@ int w_shine = 75;
 int h_shine = 25;
 int r_shine = r_glass;
 
+// Cards
+double ratio_card = 320.0 / 214;
+final int w_card = 125;
+int h_card = (int) Math.round(w_card * ratio_card);
+
+// player
+final int safe_cards_x = 200;
+int pcx;
+int pcy;
+
+// enemy
+int ecx;
+int ecy;
+
 
 // * CLASSES
 // Util
@@ -74,6 +88,13 @@ void calc() {
   sw_glass = (int) v.cw - (w_glass / 2);
 
   sw_shine = v.cw + 10;
+
+  // Cards
+  pcx = v.cw + safe_cards_x;
+  pcy = v.h - safe_cards_x;
+
+  ecx = v.cw - safe_cards_x;
+  ecy = table_start + safe_cards_x;
 }
 
 void setup() {
@@ -108,6 +129,8 @@ void draw() {
   drawFlipCard();
 
   drawEnemy();
+
+  drawCards();
 }
 
 void drawTable() {
@@ -164,4 +187,20 @@ int check() {
   }
 
   return order;
+}
+
+void drawCards() {
+  push();
+
+  // Draw the players cards
+  if (player.cards.size() > 0) {
+    image(a.back, pcx, pcy, w_card, h_card);
+  }
+
+  // Draw the enemys cards
+  if (enemy.cards.size() > 0) {
+    image(a.back, ecx, ecy, w_card, h_card);
+  }
+
+  pop();
 }

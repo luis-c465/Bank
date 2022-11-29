@@ -9,6 +9,9 @@ public class Assets {
   public PImage impoassets;
   public PImage player;
 
+  // Cards
+  public PImage back;
+
   // * BUTTONS
   public PImage enter;
 
@@ -30,6 +33,9 @@ public class Assets {
     // * LOAD IMAGES
     impoassets = loadImage("chad.png");
     player = loadImage("susy.png");
+
+    // Cards
+    back = loadImage("card/back.jpeg");
 
     // * LOAD BUTTONS
     enter = loadImage("btn/enter.png");
