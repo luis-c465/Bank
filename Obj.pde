@@ -30,10 +30,10 @@ public abstract class Obj {
   abstract protected void _update();
 
   protected void preUpdate() {
-    pushMatrix();
+    push();
   }
 
   protected void postUpdate() {
-    popMatrix();
+    pop();
   }
 }
