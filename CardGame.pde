@@ -154,6 +154,7 @@ void setup() {
 
   // * SETUP CLASSES
   player.setup();
+  deck.setup();
 
   // * DEBUGGING INFO
   deck.hardDeal(player);

@@ -3,6 +3,9 @@ public class Deck extends Obj {
   final int x_deck = 200;
   final int y_deck = 500;
 
+  int x_hand;
+  int y_hand = 500;
+
   public LinkedList<Card> cards = new LinkedList();
   public Card hand;
   public boolean isFlipingHand = false;
@@ -24,6 +27,7 @@ public class Deck extends Obj {
 
     // Shuffle the cards
     Collections.shuffle(cards);
+    hand = cards.remove();
   }
 
   public String toString() {
@@ -37,8 +41,13 @@ public class Deck extends Obj {
     p.hand = cards.remove();
   }
 
+  public void setup() {
+    x_hand = v.cw;
+  }
+
   public void _update() {
     drawDeck();
+    drawHand();
   }
 
   protected void drawDeck() {
@@ -50,5 +59,14 @@ public class Deck extends Obj {
     }
 
     pop();
+  }
+
+  protected void drawHand() {
+    if (!isFlipingHand) {
+      image(a.back, x_hand, y_hand, Card.w, Card.h);
+    } else {
+      // guh flip the thing
+    }
+
   }
 }
