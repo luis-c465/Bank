@@ -15,7 +15,7 @@ public class Deck extends Obj {
   public Deck(Assets a, Variables v) {
     super(a, v);
 
-    for (int n = 1; n <= 13; n++) {
+    for (int n = 2; n <= 14; n++) {
       for (Suit s : Suit.values()) {
         Card c = new Card(n, s);
         cards.add(c);

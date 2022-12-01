@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.reflect.Field;
 
 // * CONSTANTS
 // ! Variables not initialized with a value are calculated based of processing variables
@@ -151,6 +152,9 @@ void setup() {
   transitionIn = new TransitionIn();
   transitionOut = new TransitionOut();
 
+  // * SETUP CLASSES
+  player.setup();
+
   // * DEBUGGING INFO
   deck.hardDeal(player);
   println(player);
@@ -165,6 +169,8 @@ void draw() {
   drawEnemy();
 
   drawCards();
+
+  player.update();
 }
 
 void drawTable() {
