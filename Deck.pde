@@ -1,7 +1,7 @@
 public class Deck extends Obj {
   // * DRAWING CONSTANTS
-  final int x_deck = 300;
-  final int y_deck = 300;
+  final int x_deck = 200;
+  final int y_deck = 500;
 
   public LinkedList<Card> cards = new LinkedList();
   public Card hand;
@@ -38,7 +38,7 @@ public class Deck extends Obj {
   }
 
   public void _update() {
-    // render
+    drawDeck();
   }
 
   protected void drawDeck() {

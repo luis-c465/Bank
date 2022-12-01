@@ -171,6 +171,7 @@ void draw() {
   drawCards();
 
   player.update();
+  deck.update();
 }
 
 void drawTable() {
