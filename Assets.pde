@@ -143,9 +143,7 @@ public class Assets {
 
   public PImage getCard(Card c) {
     try {
-      Object img = get(c.col + c.c);
-      println(img);
-      return (PImage) img;
+      return (PImage) get(c.col + c.c);
     } catch(Exception e) {
       println(e);
       return null;
