@@ -101,6 +101,7 @@ TransitionOut transitionOut;
 Deck deck = new Deck(a, v);
 Player player = new Player(a, v);
 LowBtn lowBtn = new LowBtn(a, v);
+HighBtn highBtn = new HighBtn(a, v);
 
 // * GLOABAL VARIABLES
 boolean replayTrans = false;
@@ -157,6 +158,7 @@ void setup() {
   player.setup();
   deck.setup();
   lowBtn.setup();
+  highBtn.setup();
 
   // * DEBUGGING INFO
   deck.hardDeal(player);
@@ -167,7 +169,7 @@ void draw() {
   background(255);
   drawTable();
   // drawLowBtn();
-  drawHighBtn();
+  // drawHighBtn();
 
   drawEnemy();
 
@@ -176,6 +178,7 @@ void draw() {
   player.update();
   deck.update();
   lowBtn.update();
+  highBtn.update();
 }
 
 void mouseMoved() {
