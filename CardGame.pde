@@ -97,9 +97,8 @@ TransitionIn transitionIn;
 TransitionOut transitionOut;
 
 // Game classes
-Deck deck = new Deck();
+Deck deck = new Deck(a, v);
 Player player = new Player(a, v);
-Enemy enemy = new Enemy(a, v);
 
 // * GLOABAL VARIABLES
 boolean replayTrans = false;
@@ -153,10 +152,8 @@ void setup() {
   transitionOut = new TransitionOut();
 
   // * DEBUGGING INFO
-  deck.deal(player, enemy);
+  deck.hardDeal(player);
   println(player);
-  println("\n ---- \n ");
-  println(enemy);
 }
 
 void draw() {
@@ -233,7 +230,7 @@ void drawEnemy() {
  * For the player that has won they are given both of the cards
  */
 int check() {
-  int order = player.cur.compareTo(enemy.cur);
+  int order = player.hand.compareTo(deck.hand);
   if (order < -1) { // Player wins
     println("Player wins");
   } else if (order > 1) { // Enemy wins
@@ -258,12 +255,10 @@ void drawDeck() {
   push();
 
   // Draw the players cards
-  if (player.cards.size() > 0) {
-    image(a.back, pdx, pdy, w_card, h_card);
-  }
+  image(a.back, pdx, pdy, w_card, h_card);
 
   // Draw the enemys cards
-  if (enemy.cards.size() > 0) {
+  if (deck.cards.size() > 0) {
     image(a.back, edx, edy, w_card, h_card);
   }
 

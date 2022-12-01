@@ -1,9 +1,11 @@
-public class Player extends CardHolder {
+public class Player extends Obj {
   public String name;
   public int totalCorrect = 0;
   public int currStreak = 0;
   public int highestStreak = 0;
   public int score = 0;
+
+  public Card hand;
 
   public Player(Assets a, Variables v) {
     super(a, v);

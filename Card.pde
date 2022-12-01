@@ -2,6 +2,10 @@
  * Class for a card
  */
 public class Card implements Comparable<Card> {
+  public static final double _ratio = 1.4953271028037383;  // 320.0 / 214
+  public static final int w = 125;
+  public static final int h = 187; // (int) Math.round(w * _ratio)
+
   public int num;
   public Suit suit;
   public String s;
