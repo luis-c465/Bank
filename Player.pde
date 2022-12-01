@@ -14,7 +14,7 @@ public class Player extends Obj {
   // TODO: Add methods to get new card and to check cards
 
   public String toString() {
-    return "Player: " + name + "\n " + super.toString();
+    return "Player: " + name + "\n " + hand.toString();
   }
 
   public void _update() {
