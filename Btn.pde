@@ -30,7 +30,6 @@ public abstract class Btn extends Obj {
   protected int txt_space = 10;
 
   public boolean clicked = false;
-  public boolean hovered = false;
 
   public Btn(Assets a, Variables v) {
     super(a, v);
@@ -71,15 +70,15 @@ public abstract class Btn extends Obj {
       shapeMode(CENTER);
       shape(icon, icon_x, icon_y, icon_size, icon_size);
     }
+
+    clicked = false;
   }
 
-  public void mouseMoved() {
-    if (mouseX >= left && mouseX <= right && mouseY <= bottom && mouseY >= top) {
-      hovered = true;
-
-      clicked = mousePressed;
+  public void mousePressed() {
+    if (mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top) {
+      clicked = true;
     } else {
-      hovered = false;
+      clicked = false;
     }
   }
 

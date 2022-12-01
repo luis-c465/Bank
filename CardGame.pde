@@ -9,37 +9,6 @@ import java.lang.reflect.Field;
 final color c_table = #3c7496;
 final int table_start = 350;
 
-// Guess card
-final color c_down = #fac83c;
-final int s_down = 20;
-final int w_down = 150;
-final int h_down = 75;
-final int ts_down = 30;
-final int r_down = 25;
-
-int wc_down = (int) ((s_down + w_down) / 1.80);
-int hc_down;
-
-int wc_text_down = wc_down + 30;
-int wc_icon_down = wc_down - 30;
-
-final color c_up = #fac83c;
-final int s_up = 20;
-final int w_up = 150;
-final int h_up = 75;
-final int ts_up = 30;
-final int r_up = 25;
-
-final int sw_up = s_down + w_down + s_up;
-
-int wc_up = (int) ((s_up + w_up) / 1.80) + sw_up - s_up;
-int hc_up;
-
-int wc_text_up = wc_up + 30;
-int wc_icon_up = wc_up - 30;
-
-// int wc_down = wc_down - 60;
-
 final int down_size = 100;
 final int up_size = 100;
 
@@ -66,24 +35,6 @@ int sh_shine = sh_glass + str_enemy / 2;
 int w_shine = 75;
 int h_shine = 25;
 int r_shine = r_glass;
-
-// Cards
-double ratio_card = 320.0 / 214;
-final int w_card = 125;
-int h_card = (int) Math.round(w_card * ratio_card);
-
-// player
-final int safe_cards_x = 200;
-int pdx;
-int pdy;
-
-int pcx;
-
-// enemy
-int edx;
-int edy;
-
-int ecx;
 
 boolean cardMove = false;
 boolean cardFlip = false;
@@ -114,25 +65,11 @@ boolean introTrans = false;
  * Updates calculated variables
  */
 void calc() {
-  hc_down = (int) (v.h - s_down * 2.5);
-  hc_up = (int) (v.h - s_up * 2.5);
-
   sw_enemy = (int) v.cw - (w_enemy / 2);
 
   sw_glass = (int) v.cw - (w_glass / 2);
 
   sw_shine = v.cw + 10;
-
-  // Cards
-  pdx = v.cw + safe_cards_x;
-  pdy = v.h - safe_cards_x;
-
-  pcx = pdx;
-
-  edx = v.cw - safe_cards_x;
-  edy = table_start + safe_cards_x;
-
-  ecx = edx;
 }
 
 void setup() {
@@ -167,13 +104,10 @@ void setup() {
 
 void draw() {
   background(255);
+  checkBtns();
+
   drawTable();
-  // drawLowBtn();
-  // drawHighBtn();
-
   drawEnemy();
-
-  drawCards();
 
   player.update();
   deck.update();
@@ -181,8 +115,15 @@ void draw() {
   highBtn.update();
 }
 
-void mouseMoved() {
-  lowBtn.mouseMoved();
+void mousePressed() {
+  lowBtn.mousePressed();
+  highBtn.mousePressed();
+}
+
+void checkBtns() {
+  if (lowBtn.clicked) {
+    println("low btn clicked");
+  }
 }
 
 void drawTable() {
@@ -191,36 +132,6 @@ void drawTable() {
   fill(c_table);
   noStroke();
   rect(0, table_start, v.w, v.h);
-}
-
-void drawLowBtn() {
-  shapeMode(CORNERS);
-
-  fill(c_down);
-  noStroke();
-  rect(s_down, v.h - s_down * 5, w_down, h_down, r_down);
-
-  // Draw text
-  fill(0);
-  textSize(ts_down);
-  text("Low", wc_text_down, hc_down);
-  shapeMode(CENTER);
-  shape(a.down, wc_icon_down, hc_down, down_size, down_size);
-}
-
-void drawHighBtn() {
-  shapeMode(CORNERS);
-
-  fill(c_up);
-  noStroke();
-  rect(sw_up, v.h - s_up * 5, w_up, h_up, r_up);
-
-  // Draw text
-  fill(0);
-  textSize(ts_up);
-  text("High", wc_text_up, hc_up);
-  shapeMode(CENTER);
-  shape(a.up, wc_icon_up, hc_up, up_size, up_size);
 }
 
 void drawEnemy() {
@@ -258,27 +169,4 @@ int check() {
   }
 
   return order;
-}
-
-void drawCards() {
-  // Draw the cards
-  // image();
-
-  // Then move them
-
-  // If flip then flip the cards
-}
-
-void drawDeck() {
-  push();
-
-  // Draw the players cards
-  image(a.back, pdx, pdy, w_card, h_card);
-
-  // Draw the enemys cards
-  if (deck.cards.size() > 0) {
-    image(a.back, edx, edy, w_card, h_card);
-  }
-
-  pop();
 }
