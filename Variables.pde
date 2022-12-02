@@ -17,11 +17,16 @@ public class Variables {
 
   public boolean flip = false;
   public boolean isFlippingHand = false;
+  public boolean isFlippingHandBack = false;
+
+  public boolean nextRound = false;
 
   public int totalCorrect = 0;
   public int currStreak = 0;
   public int highestStreak = 0;
   public int score = 0;
+
+  public Player player;
 
 
   public void _setup() {

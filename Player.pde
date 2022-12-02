@@ -8,6 +8,7 @@ public class Player extends Obj {
 
   public Player(Assets a, Variables v) {
     super(a, v);
+    v.player = this;
   }
 
   public void setup() {
