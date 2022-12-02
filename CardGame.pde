@@ -105,6 +105,11 @@ void check() {
     v.totalCorrect++;
     v.currStreak++;
 
+    // Update the highest streak
+    if (v.currStreak > v.highestStreak) {
+      v.highestStreak = v.currStreak;
+    }
+
     // Increase the score
     v.score += Math.pow((v.currStreak + 1), 2) * 100;
   } else { // Enemy wins
