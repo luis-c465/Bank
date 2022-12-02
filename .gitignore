@@ -8,3 +8,4 @@ build/Main.jar
 build/pain/
 build/processing/
 .vscode/settings.json
+*.autosave
