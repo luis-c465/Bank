@@ -1,8 +1,5 @@
 ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
-no:
-	@echo ""
-
 all: procLocal preFix class jar done
 
 # Hard compile with th existing java file
