@@ -13,9 +13,9 @@ public class ScoreBar extends Obj {
     textSize(txt_size);
     textAlign(LEFT, TOP);
     String s = "Correct: " + v.totalCorrect +
-     "            Score: " +  v.score +
-     "           Cur Streak: " + v.currStreak +
-     "            Highest Streak: " + v.highestStreak ;
+     "        Score: " +  v.score +
+     "        Cur Streak: " + v.currStreak +
+     "        Highest Streak: " + v.highestStreak ;
     text(s, 0, 0);
   }
 
