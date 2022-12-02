@@ -13,6 +13,7 @@ Player player = new Player(a, v);
 Enemy enemy = new Enemy(a, v);
 
 Table table = new Table(a, v);
+ScoreBar scoreBar = new ScoreBar(a, v);
 
 LowBtn lowBtn = new LowBtn(a, v);
 HighBtn highBtn = new HighBtn(a, v);
@@ -53,6 +54,7 @@ void draw() {
   checkBtns();
 
   table.update();
+  scoreBar.update();
 
   player.update();
   deck.update();
@@ -88,11 +90,22 @@ void checkBtns() {
  */
 void check() {
   int order = player.hand.compareTo(deck.hand);
-  if (order < -1) { // Player wins
-    v.check = Round.WIN;
-  } else if (order > 1) { // Enemy wins
-    v.check = Round.LOSS;
-  } else { // Tie
+  println(order);
+
+  if (order == 0) {
     v.check = Round.TIE;
+    return;
+  }
+
+  if ((v.vote && order == -1) || (!v.vote && order == 1)) { // Player wins
+    v.check = Round.WIN;
+    v.totalCorrect++;
+    v.currStreak++;
+
+    // Increase the score
+    v.score += Math.pow((v.currStreak + 1), 2) * 100;
+  } else { // Enemy wins
+    v.check = Round.LOSS;
+    v.currStreak = 0;
   }
 }

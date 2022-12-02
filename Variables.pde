@@ -18,6 +18,11 @@ public class Variables {
   public boolean flip = false;
   public boolean isFlippingHand = false;
 
+  public int totalCorrect = 0;
+  public int currStreak = 0;
+  public int highestStreak = 0;
+  public int score = 0;
+
 
   public void _setup() {
     h = height;
