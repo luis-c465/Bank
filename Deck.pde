@@ -11,7 +11,9 @@ public class Deck extends Obj {
   public PImage hand_img;
 
   public final int flip_cycles_end = 5;
-  public int flipCycles = flip_cycles_end;
+  public int flipCycles = 0;
+
+  public int hand_x_step;
 
   /**
    * Generates a deck then shuffles it
@@ -44,12 +46,15 @@ public class Deck extends Obj {
   }
 
   public void setup() {
-    x_hand = v.cw;
+    x_hand = x_deck;
+
+    int d = v.cw - x_deck ;
+    hand_x_step = d / flip_cycles_end;
   }
 
   public void _update() {
-    drawDeck();
     drawHand();
+    drawDeck();
 
     if (v.hasVoted && !v.isFlippingHand) {
       v.flip = true;
@@ -74,6 +79,12 @@ public class Deck extends Obj {
     } else {
       // guh flip the thing
       image(hand_img, x_hand, y_hand, Card.w, Card.h);
+
+      // Move the card
+      if (flipCycles != flip_cycles_end) {
+        x_hand += hand_x_step;
+        flipCycles++;
+      }
     }
 
   }
