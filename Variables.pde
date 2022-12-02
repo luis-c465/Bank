@@ -27,12 +27,15 @@ public class Variables {
   public int score = 0;
 
   public int roundNum = 1;
-  // TODO: Set to 8
   public int roundMax = 8;
 
   public int game = 1;
+  // TODO: Set to 8
+  // 7 Rounds of the game
   public int games_max = 7;
-  public Game[] games = new Game[7];
+  public Game[] games = new Game[games_max];
+
+  public boolean transitioning = false;
 
   public Player player;
   public TransitionIn transIn;

@@ -9,9 +9,10 @@ public class GameTrans extends Obj {
   public boolean alreadyTransitioned = false;
 
   public final int space_btn_y = 850;
+  public final int game_over_y = 700;
 
   public void _update() {
-    if (v.roundNum != v.roundMax) { alreadyTransitioned = false; return; }
+    if (v.roundNum != v.roundMax) { alreadyTransitioned = false; v.transitioning = false; return; }
     if (alreadyTransitioned) { return; }
 
     if (v.games[v.game-1] == null) {
@@ -28,6 +29,7 @@ public class GameTrans extends Obj {
     // Show the rounds
 
     // Transition in
+    v.transitioning = true;
     if (!transOut) {
       transitionIn.update();
     } else {
@@ -51,12 +53,19 @@ public class GameTrans extends Obj {
     if (transitionIn.done && !transOut) {
       fill(255);
       drawGames();
-      drawSpaceBtn();
+
+      if (v.game >= v.games_max) {
+        drawGameOver();
+      } else {
+        drawSpaceBtn();
+      }
 
       v.totalCorrect = 0;
       v.currStreak = 0;
       v.highestStreak = 0;
       v.score = 0;
+
+      v.transitioning = false;
     }
   }
 
@@ -76,7 +85,7 @@ public class GameTrans extends Obj {
         space + "Highest Streak: " + g.highestStreak;
 
       textAlign(CENTER);
-      int y = start_games_y + i * 100;
+      int y = start_games_y + i * 50;
       text(s, v.cw, y);
     }
   }
@@ -88,9 +97,15 @@ public class GameTrans extends Obj {
     text("Press space to continue!", v.cw, space_btn_y + 100);
   }
 
+  private void drawGameOver() {
+    textSize(50);
+    text("Thanks for playing!", v.cw, game_over_y);
+  }
+
   public void keyPressed() {
     // If the spacebar is pressed when the transitionIn is done begin to transiton out
-    if (v.roundNum == v.roundMax && transitionIn.done && key == ' ') {
+    // and the game is not over
+    if (!(v.game >= v.games_max )&& v.roundNum == v.roundMax && transitionIn.done && key == ' ') {
       transOut = true;
     }
   }

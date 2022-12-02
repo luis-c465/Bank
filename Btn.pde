@@ -75,6 +75,9 @@ public abstract class Btn extends Obj {
   }
 
   public void mousePressed() {
+    // Ignore mouse clickes when the game is transitioning!
+    if (v.transitioning) return;
+
     if (mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top) {
       clicked = true;
     } else {
