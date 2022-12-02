@@ -46,7 +46,6 @@ void setup() {
 
   // * DEBUGGING INFO
   deck.hardDeal(player);
-  println(player);
 }
 
 void draw() {
@@ -90,7 +89,6 @@ void checkBtns() {
  */
 void check() {
   int order = player.hand.compareTo(deck.hand);
-  println(order);
 
   if (order == 0) {
     v.check = Round.TIE;

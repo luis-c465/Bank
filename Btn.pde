@@ -95,11 +95,8 @@ public abstract class Btn extends Obj {
    * their corresponding center values
   */
   protected void cornerToCenter() {
-    println(x, y);
     x += w / 2;
     y -= h / 2;
-
-    println(x, y);
   }
 
   protected void setupIcon() {
