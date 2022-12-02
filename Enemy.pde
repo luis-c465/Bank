@@ -4,7 +4,7 @@ public class Enemy extends Obj {
   final int w_enemy = 450;
   int sw_enemy;
   final int sh_enemy = 50;
-  int h_enemy = table_start - sh_enemy;
+  int h_enemy = Table.start - sh_enemy;
   int r_enemy = w_enemy / 2;
 
   final color c_glass = #95cadd;

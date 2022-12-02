@@ -1,13 +1,6 @@
 import java.util.*;
 import java.lang.reflect.Field;
 
-// * CONSTANTS
-final color c_table = #3c7496;
-final int table_start = 350;
-
-final int down_size = 100;
-final int up_size = 100;
-
 // * Util classes
 Assets a = new Assets();
 Variables v = new Variables();
@@ -18,6 +11,8 @@ TransitionOut transitionOut;
 Deck deck = new Deck(a, v);
 Player player = new Player(a, v);
 Enemy enemy = new Enemy(a, v);
+
+Table table = new Table(a, v);
 
 LowBtn lowBtn = new LowBtn(a, v);
 HighBtn highBtn = new HighBtn(a, v);
@@ -57,7 +52,7 @@ void draw() {
   background(255);
   checkBtns();
 
-  drawTable();
+  table.update();
 
   player.update();
   deck.update();
@@ -86,14 +81,6 @@ void checkBtns() {
       check();
     }
   }
-}
-
-void drawTable() {
-  shapeMode(CORNERS);
-
-  fill(c_table);
-  noStroke();
-  rect(0, table_start, v.w, v.h);
 }
 
 /**
