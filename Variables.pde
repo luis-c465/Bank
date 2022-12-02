@@ -26,7 +26,17 @@ public class Variables {
   public int highestStreak = 0;
   public int score = 0;
 
+  public int roundNum = 1;
+  // TODO: Set to 8
+  public int roundMax = 2;
+
+  public int game = 1;
+  public int games_max = 7;
+  public Game[] games = new Game[7];
+
   public Player player;
+  public TransitionIn transIn;
+  public TransitionOut transOut;
 
 
   public void _setup() {

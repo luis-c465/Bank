@@ -1,8 +1,8 @@
-public class TransitionOut {
+public class TransitionOut extends Obj {
   public int opacity = 255;
   public boolean done = false;
 
-  public void update() {
+  public void _update() {
     pushMatrix();
 
     fill(0, opacity);
@@ -21,4 +21,6 @@ public class TransitionOut {
     opacity = 255;
     done = false;
   }
+
+  public TransitionOut(Assets a, Variables v) { super(a, v); v.transOut = this; }
 }

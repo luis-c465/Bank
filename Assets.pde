@@ -110,6 +110,7 @@ public class Assets {
     // * LOAD BUTTONS
     enter = loadImage("btn/enter.png");
     space = loadImage("btn/space.png");
+    space.resize(200,100);
 
     buttons = loadImage("buttons-sml.png");
     skeld = loadImage("skeld.png");

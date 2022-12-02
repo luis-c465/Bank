@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 // * Util classes
 Assets a = new Assets();
 Variables v = new Variables();
-TransitionIn transitionIn;
-TransitionOut transitionOut;
+TransitionIn transitionIn = new TransitionIn(a, v);
+TransitionOut transitionOut = new TransitionOut(a, v);
 
 // * Game classes
 Deck deck = new Deck(a, v);
@@ -14,6 +14,7 @@ Enemy enemy = new Enemy(a, v);
 
 Table table = new Table(a, v);
 ScoreBar scoreBar = new ScoreBar(a, v);
+GameTrans gameTrans = new GameTrans(a, v);
 
 LowBtn lowBtn = new LowBtn(a, v);
 HighBtn highBtn = new HighBtn(a, v);
@@ -32,9 +33,6 @@ void setup() {
 
   a._setup(this);
   v._setup();
-
-  transitionIn = new TransitionIn();
-  transitionOut = new TransitionOut();
 
   // * SETUP CLASSES
   player.setup();
@@ -61,11 +59,17 @@ void draw() {
 
   lowBtn.update();
   highBtn.update();
+
+  gameTrans.update();
 }
 
 void mousePressed() {
   lowBtn.mousePressed();
   highBtn.mousePressed();
+}
+
+void keyPressed() {
+  gameTrans.keyPressed();
 }
 
 void checkBtns() {
@@ -88,6 +92,7 @@ void checkBtns() {
  * Checks the cards of the player and enemy
  */
 void check() {
+  v.roundNum++;
   int order = player.hand.compareTo(deck.hand);
 
   if (order == 0) {
