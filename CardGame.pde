@@ -70,7 +70,7 @@ void mousePressed() {
 }
 
 void checkBtns() {
-  if (!v.hasVoted && lowBtn.clicked || highBtn.clicked) {
+  if (!v.hasVoted && (lowBtn.clicked || highBtn.clicked)) {
     if (lowBtn.clicked) {
       v.vote = false;
       v.hasVoted = true;
