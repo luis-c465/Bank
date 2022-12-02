@@ -8,7 +8,8 @@ public class Deck extends Obj {
 
   public LinkedList<Card> cards = new LinkedList();
   public Card hand;
-  public boolean isFlipingHand = false;
+  public PImage hand_img;
+
   public final int flip_cycles_end = 5;
   public int flipCycles = flip_cycles_end;
 
@@ -39,6 +40,7 @@ public class Deck extends Obj {
    */
   public void hardDeal(Player p) {
     p.hand = cards.remove();
+    updateHandImg();
   }
 
   public void setup() {
@@ -48,6 +50,11 @@ public class Deck extends Obj {
   public void _update() {
     drawDeck();
     drawHand();
+
+    if (v.hasVoted && !v.isFlippingHand) {
+      v.flip = true;
+      v.isFlippingHand = true;
+    }
   }
 
   protected void drawDeck() {
@@ -62,11 +69,16 @@ public class Deck extends Obj {
   }
 
   protected void drawHand() {
-    if (!isFlipingHand) {
+    if (!v.flip) {
       image(a.back, x_hand, y_hand, Card.w, Card.h);
     } else {
       // guh flip the thing
+      image(hand_img, x_hand, y_hand, Card.w, Card.h);
     }
 
+  }
+
+  private void updateHandImg() {
+    hand_img = a.getCard(hand);
   }
 }

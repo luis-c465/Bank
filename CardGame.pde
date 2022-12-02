@@ -54,13 +54,6 @@ Player player = new Player(a, v);
 LowBtn lowBtn = new LowBtn(a, v);
 HighBtn highBtn = new HighBtn(a, v);
 
-// * GLOABAL VARIABLES
-boolean replayTrans = false;
-boolean shouldDrawTest = true;
-
-boolean intro = true;
-boolean introTrans = false;
-
 /**
  * Updates calculated variables
  */
@@ -121,8 +114,18 @@ void mousePressed() {
 }
 
 void checkBtns() {
-  if (lowBtn.clicked) {
-    println("low btn clicked");
+  if (!v.hasVoted && lowBtn.clicked || highBtn.clicked) {
+    if (lowBtn.clicked) {
+      v.vote = false;
+      v.hasVoted = true;
+    } else if (highBtn.clicked) {
+      v.vote = true;
+      v.hasVoted = true;
+    }
+
+    if (v.hasVoted) {
+      check();
+    }
   }
 }
 
@@ -154,19 +157,14 @@ void drawEnemy() {
 
 /**
  * Checks the cards of the player and enemy
- * Returns -1 if the players has a higher card number
- *
- * For the player that has won they are given both of the cards
  */
-int check() {
+void check() {
   int order = player.hand.compareTo(deck.hand);
   if (order < -1) { // Player wins
-    println("Player wins");
+    v.check = Round.WIN;
   } else if (order > 1) { // Enemy wins
-    // guh
+    v.check = Round.LOSS;
   } else { // Tie
-    // guh
+    v.check = Round.TIE;
   }
-
-  return order;
 }

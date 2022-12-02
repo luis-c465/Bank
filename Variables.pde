@@ -11,6 +11,14 @@ public class Variables {
   public int ch;
   public int cw;
 
+  public boolean vote = false;
+  public boolean hasVoted = false;
+  public Round check = Round.TIE;
+
+  public boolean flip = false;
+  public boolean isFlippingHand = false;
+
+
   public void _setup() {
     h = height;
     w = width;
