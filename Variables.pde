@@ -28,7 +28,7 @@ public class Variables {
 
   public int roundNum = 1;
   // TODO: Set to 8
-  public int roundMax = 2;
+  public int roundMax = 8;
 
   public int game = 1;
   public int games_max = 7;

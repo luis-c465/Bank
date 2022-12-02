@@ -67,7 +67,10 @@ public class GameTrans extends Obj {
       Game g = v.games[i];
 
       String space = "    ";
-      String s = "Game : " + (i+1) +
+      // ! Rico asks that they are called rounds
+      // Though interally the rounds are called games
+      // because the variable name round is allready used
+      String s = "Round : " + (i+1) +
         space + "Score: " + g.score +
         space + "Correct: " + g.totalCorrect +
         space + "Highest Streak: " + g.highestStreak;
