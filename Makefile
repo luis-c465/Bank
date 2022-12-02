@@ -1,5 +1,12 @@
 ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-all: procLocal class jar done
+
+no:
+	@echo ""
+
+all: procLocal preFix class jar done
+
+# Hard compile with th existing java file
+hard: class jar done
 
 # First compile with processing
 class:
@@ -14,8 +21,12 @@ done:
 	@echo "Main.jar located in build directory"
 
 # Builds with processing
-proc:
-	cd /opt/hostedtoolcache/processing/3.5.4/x64; ./processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
+# proc:
+# 	cd /opt/hostedtoolcache/processing/3.5.4/x64; ./processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
 
 procLocal:
 	processing-java --sketch="$(ROOT_DIR)" --output="$(ROOT_DIR)/build/processing" --force --build
+
+# Processing java preprocesor fix
+preFix:
+	cd build; sed -i -e "s/.* size commented out by preprocessor .*;/size(1000, 1000);/" processing/source/CardGame.java

@@ -109,3 +109,13 @@ void check() {
     v.currStreak = 0;
   }
 }
+
+public void push() {
+  pushMatrix();
+  pushStyle();
+}
+
+public void pop() {
+  popMatrix();
+  popStyle();
+}
