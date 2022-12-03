@@ -1,5 +1,5 @@
 public abstract class Btn extends Obj {
-  protected final int btn_safe = 20;
+  protected final int btn_safe = 40;
 
   protected int x = 500;
   protected int y = 500;
