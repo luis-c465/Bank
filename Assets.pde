@@ -6,10 +6,6 @@
  */
 public class Assets {
   public PApplet p;
-  // * IMAGES
-  public PImage impoassets;
-  public PImage player;
-
   // * Cards
   public PImage back;
 
@@ -78,13 +74,7 @@ public class Assets {
 
   // * BUTTONS
   public PImage enter;
-
   public PImage space;
-
-  public PImage buttons;
-  public PImage skeld;
-
-  public PImage playAgain;
 
   public PImage intro;
   // * SOUNDS
@@ -95,10 +85,6 @@ public class Assets {
 
   public void _setup(PApplet p) {
     this.p = p;
-
-    // * LOAD IMAGES
-    impoassets = loadImage("chad.png");
-    player = loadImage("susy.png");
 
     // Cards
     back = loadImage("card/back.jpeg");
@@ -111,11 +97,6 @@ public class Assets {
     enter = loadImage("btn/enter.png");
     space = loadImage("btn/space.png");
     space.resize(200,100);
-
-    buttons = loadImage("buttons-sml.png");
-    skeld = loadImage("skeld.png");
-
-    playAgain = loadImage("play-again.png");
 
     intro = loadImage("intro.png");
 
