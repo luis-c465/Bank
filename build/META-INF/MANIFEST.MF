@@ -1,2 +1,2 @@
 Main-Class: CardGame
-Class-path: lib/gifAnimation.jar lib/sound.jar lib/javamp3-1.0.4.jar lib/1.7/core.jar lib/jogl-all.jar
+Class-path: ./lib/gifAnimation.jar ./lib/sound.jar ./lib/javamp3-1.0.4.jar ./lib/1.7/core.jar ./lib/jogl-all.jar
