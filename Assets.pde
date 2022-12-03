@@ -146,7 +146,6 @@ public class Assets {
     try {
       return (PImage) get(c.col + c.c);
     } catch(Exception e) {
-      println(e);
       return null;
     }
   }

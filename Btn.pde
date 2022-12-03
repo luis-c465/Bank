@@ -58,7 +58,7 @@ public abstract class Btn extends Obj {
     fill(c);
 
     noStroke();
-    rect(x, y, w, h, radius);
+    rect(x, y, w, h, radius, radius, radius, radius);
 
     // Draw text
     textAlign(CENTER, CENTER);
