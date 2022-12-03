@@ -1,5 +1,6 @@
 import java.util.*;
 import java.lang.reflect.Field;
+import processing.sound.*;
 
 // * Util classes
 Assets a = new Assets();
@@ -15,6 +16,7 @@ Enemy enemy = new Enemy(a, v);
 Table table = new Table(a, v);
 ScoreBar scoreBar = new ScoreBar(a, v);
 GameTrans gameTrans = new GameTrans(a, v);
+Intro intro = new Intro(a, v);
 
 LowBtn lowBtn = new LowBtn(a, v);
 HighBtn highBtn = new HighBtn(a, v);
@@ -48,6 +50,12 @@ void setup() {
 
 void draw() {
   background(255);
+
+  if (intro.show) {
+    intro.update();
+    return;
+  }
+
   checkBtns();
 
   table.update();
@@ -61,6 +69,10 @@ void draw() {
   highBtn.update();
 
   gameTrans.update();
+
+  if (intro.trans) {
+    intro.update();
+  }
 }
 
 void mousePressed() {
@@ -70,10 +82,11 @@ void mousePressed() {
 
 void keyPressed() {
   gameTrans.keyPressed();
+  intro.keyPressed();
 }
 
 void checkBtns() {
-  if (!v.hasVoted && (lowBtn.clicked || highBtn.clicked)) {
+  if (!v.hasVoted && intro.done && (lowBtn.clicked || highBtn.clicked)) {
     if (lowBtn.clicked) {
       v.vote = false;
       v.hasVoted = true;

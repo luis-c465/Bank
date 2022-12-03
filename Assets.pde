@@ -76,7 +76,10 @@ public class Assets {
   public PImage enter;
   public PImage space;
 
+  // * MISC
   public PImage intro;
+  public PImage bg;
+
   // * SOUNDS
 
   // * FONTS
@@ -98,7 +101,9 @@ public class Assets {
     space = loadImage("btn/space.png");
     space.resize(200,100);
 
+    // * LOAD MISC
     intro = loadImage("intro.png");
+    bg = loadImage("bg.jpg");
 
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);
