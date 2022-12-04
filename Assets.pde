@@ -82,7 +82,6 @@ public class Assets {
 
   // * SOUNDS
   public SoundFile music;
-  public SoundFile win;
 
   public SoundFile correct;
   public SoundFile wrong;
@@ -112,16 +111,15 @@ public class Assets {
 
     // * LOAD SOUNDS
     // TODO: Uncomment!
-    // music = new SoundFile(p, "music.mp3");
-    win = new SoundFile(p, "win.wav");
+    music = new SoundFile(p, "music.mp3");
 
     correct = new SoundFile(p, "correct.wav");
     wrong = new SoundFile(p, "wrong.wav");
 
     correct.amp(0.5);
 
-    // music.amp(0.2);
-    // music.loop();
+    music.amp(0.2);
+    music.loop();
 
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);
