@@ -117,6 +117,7 @@ void check() {
     v.check = Round.WIN;
     v.totalCorrect++;
     v.currStreak++;
+    a.correct.jump(0);
 
     // Update the highest streak
     if (v.currStreak > v.highestStreak) {
@@ -128,6 +129,7 @@ void check() {
   } else { // Enemy wins
     v.check = Round.LOSS;
     v.currStreak = 0;
+    a.wrong.jump(0);
   }
 }
 

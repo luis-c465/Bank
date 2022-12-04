@@ -81,6 +81,11 @@ public class Assets {
   public PImage bg;
 
   // * SOUNDS
+  public SoundFile music;
+  public SoundFile win;
+
+  public SoundFile correct;
+  public SoundFile wrong;
 
   // * FONTS
   public PFont mono;
@@ -104,6 +109,19 @@ public class Assets {
     // * LOAD MISC
     intro = loadImage("intro.png");
     bg = loadImage("bg.jpg");
+
+    // * LOAD SOUNDS
+    // TODO: Uncomment!
+    // music = new SoundFile(p, "music.mp3");
+    win = new SoundFile(p, "win.wav");
+
+    correct = new SoundFile(p, "correct.wav");
+    wrong = new SoundFile(p, "wrong.wav");
+
+    correct.amp(0.5);
+
+    // music.amp(0.2);
+    // music.loop();
 
     // * LOAD FONTS
     mono = createFont("fonts/ThaleahFat.ttf", 64);

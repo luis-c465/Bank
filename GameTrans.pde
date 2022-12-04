@@ -7,13 +7,21 @@ public class GameTrans extends Obj {
   public int start_games_y = 200;
   public boolean transOut = false;
   public boolean alreadyTransitioned = false;
+  public boolean first_time = true;
 
   public final int space_btn_y = 850;
   public final int game_over_y = 700;
 
   public void _update() {
     if (v.roundNum != v.roundMax) { alreadyTransitioned = false; v.transitioning = false; return; }
+
+    if (first_time) {
+      a.win.jump(0);
+      first_time = false;
+    }
+
     if (alreadyTransitioned) { return; }
+
 
     if (v.games[v.game-1] == null) {
       Game g = new Game();
@@ -42,11 +50,14 @@ public class GameTrans extends Obj {
         // and reset the transition classes
         alreadyTransitioned = true;
         transOut = false;
+        first_time = true;
+
         v.roundNum = 1;
         v.game++;
 
         transitionIn.reset();
         transitionOut.reset();
+
       }
     }
 

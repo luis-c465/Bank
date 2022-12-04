@@ -3,6 +3,10 @@ public class Table extends Obj {
   public static final int start = 350;
 
   public void _update() {
+    // Draw the background
+    imageMode(CORNERS);
+    image(a.bg, -750, -500);
+
     shapeMode(CORNERS);
 
     fill(colur);
