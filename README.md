@@ -2,6 +2,10 @@
 
 Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
+![logo](assets/intro.png?raw=true "Title")
+![game](assets/game.png?raw=true "Title")
+![game](assets/continue.png?raw=true "Title")
+
 ## Dependencies
 
 - Java 1.8 or higher
