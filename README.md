@@ -18,7 +18,7 @@ Banking Application for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Downloading
 
-- Download the most recent release from the **[Releases Tab](https://github.com/luis-c465/BankApp/releases)**
+**[Latest release](https://github.com/luis-c465/BankApp/releases/latest)**
 
 ## Running
 
