@@ -1,26 +1,12 @@
-public class TransitionOut extends Obj {
-  public int opacity = 255;
-  public boolean done = false;
+public class TransitionOut extends Transition {
+  public TransitionOut(Assets a, Variables v) {
+    super(a, v);
+    v.transOut = this;
 
-  public void _update() {
-    pushMatrix();
-
-    fill(0, opacity);
-    rect(0, 0, width, height);
-
-    popMatrix();
-
-    if (opacity >= 0) {
-      opacity-=4;
-    } else {
-      done = true;
-    }
+    starting_opacity = 255;
+    opacity = starting_opacity;
+    end_opacity = 0;
+    up = false;
+    step = 4;
   }
-
-  public void reset() {
-    opacity = 255;
-    done = false;
-  }
-
-  public TransitionOut(Assets a, Variables v) { super(a, v); v.transOut = this; }
 }

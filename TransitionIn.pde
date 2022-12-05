@@ -3,25 +3,15 @@
  *
  * The update method should be called durring each draw for this to work
  */
-public class TransitionIn extends Obj {
-  public int opacity = 0;
-  public boolean done = false;
+public class TransitionIn extends Transition {
+  public TransitionIn(Assets a, Variables v) {
+    super(a, v);
+    v.transIn = this;
 
-  public void _update() {
-    fill(0, opacity);
-    rect(0, 0, width, height);
-
-    if (opacity <= 255) {
-      opacity+=8;
-    } else {
-      done = true;
-    }
+    starting_opacity = 0;
+    opacity = starting_opacity;
+    end_opacity = 255;
+    up = true;
+    step = 8;
   }
-
-  public void reset() {
-    opacity = 0;
-    done = false;
-  }
-
-  public TransitionIn(Assets a, Variables v) { super(a, v); v.transIn = this; }
 }
