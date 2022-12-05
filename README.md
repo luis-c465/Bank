@@ -1,10 +1,6 @@
-# High Low Card Game
+# Banking Application
 
-Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
-
-![logo](assets/intro.png?raw=true "Title")
-![game](assets/game.png?raw=true "Title")
-![game](assets/continue.png?raw=true "Title")
+Banking Application for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Dependencies
 
@@ -19,24 +15,28 @@ Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
   ```
 
 - Then compile to a jar file in eclipse (**Instructions missing**)
-<!-- - Then `Main.jar` will be in the `build` folder -->
+
+## Downloading
+
+- Download the most recent release from the **[Releases Tab](https://github.com/luis-c465/BankApp/releases)**
 
 ## Running
 
-- Download (or build as seen above) `Main.jar` then run
 - ```bash
   java -jar Main.jar
   ```
 
 ## Project Requirements
 
-- Random positions of cards
-- 52 cards, but 7 rounds
-- 4 Suits (clubs, spades, hearts, diamonds)
-- A-10, J, Q, K
-- Tracks total correct
-- Tracks current streak
-- Tracks highest streak
-- Calculated score with bonus based on streak (ex: +50% bonus score each time streak increases)
-- Can view score, total correct and highest streak for each player (this does not have to carry over when you close the app)
-- Can exit game at any point
+Due: **Sun Dec 11 2022**
+
+- Has a login screen with user: admin and password: password
+- Can select from at least 5 different customers
+- Each customer shows a different name, amount, bank id and frozen status
+- First user’s balance is negative
+- Can deposit money
+- Can withdraw money only if balance is positive
+- Can add a user given the name, amount, bank id and balance
+- Can freeze any account
+- Can remove a user
+- Can exit at any time
