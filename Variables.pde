@@ -11,7 +11,10 @@ public class Variables {
   public int ch;
   public int cw;
 
+  ControlP5 cp5;
+
   public boolean transitioning = false;
+  public boolean signedIn = false;
 
   public TransitionIn transIn;
   public TransitionOut transOut;

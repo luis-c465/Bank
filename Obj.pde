@@ -10,6 +10,11 @@ public abstract class Obj {
     this.v = v;
   }
 
+  public void setup() {
+    // Do sone setup
+    _setup();
+  }
+
   public void _setup() {
     // Does nothing
     // Should be overiden by a super class and called in the setup method if needed

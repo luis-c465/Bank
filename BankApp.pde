@@ -4,6 +4,10 @@ import processing.sound.*;
 
 import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.security.*;
+import controlP5.*;
+
+String username;
+String password;
 
 // * DB
 XStream x = new XStream(new StaxDriver());
@@ -17,8 +21,9 @@ TransitionIn transitionIn = new TransitionIn(a, v);
 TransitionOut transitionOut = new TransitionOut(a, v);
 
 // * Game classes
-Table table = new Table(a, v);
+// Table table = new Table(a, v);
 Intro intro = new Intro(a, v);
+SignIn signIn = new SignIn(a, v);
 
 void setup() {
   size(1000, 1000);
@@ -48,11 +53,18 @@ void setup() {
     setupAccounts();
   }
 
+  // Setup inputs
+  v.cp5 = new ControlP5(this);
+  signIn.setup();
+
+
   // * SETUP CLASSES
 }
 
 void draw() {
   background(255);
+
+  signIn.update();
 
   if (intro.show) {
     intro.update();
@@ -61,7 +73,7 @@ void draw() {
 
   checkBtns();
 
-  table.update();
+  // table.update();
 
   // Update the other stuff here
 

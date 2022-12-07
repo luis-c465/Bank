@@ -12,11 +12,13 @@ public class Assets {
   public PImage space;
 
   // * MISC
+  public PImage signIn;
   public PImage intro;
   public PImage bg;
 
   // * FONTS
   public PFont nunito;
+  public PFont nunito_small;
 
   public void _setup(PApplet p) {
     this.p = p;
@@ -27,6 +29,7 @@ public class Assets {
     space.resize(200,100);
 
     // * LOAD MISC
+    signIn = loadImage("sign-in.png");
     intro = loadImage("intro.png");
     bg = loadImage("bg.jpg");
 
@@ -34,6 +37,8 @@ public class Assets {
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
+
+    nunito_small = createFont("fonts/Nunito.ttf", 32);
 
     textFont(nunito);
   }
