@@ -74,5 +74,5 @@ public abstract class Transition extends Obj {
     beforeDone = false;
   }
 
-  public Transition(Assets a, Variables v) { super(a, v); }
+  public Transition(BankApp app) { super(app); }
 }

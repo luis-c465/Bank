@@ -31,9 +31,7 @@ public abstract class Btn extends Obj {
 
   public boolean clicked = false;
 
-  public Btn(Assets a, Variables v) {
-    super(a, v);
-  }
+  public Btn(BankApp app) { super(app); }
 
   public void setup(){
     _setup();

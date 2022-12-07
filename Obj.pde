@@ -4,10 +4,12 @@
 public abstract class Obj {
   private Assets a;
   private Variables v;
+  private BankApp app;
 
-  public Obj(Assets a, Variables v) {
-    this.a = a;
-    this.v = v;
+  public Obj(BankApp app) {
+    this.a = app.a;
+    this.v = app.v;
+    this.app = app;
   }
 
   public void setup() {

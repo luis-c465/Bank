@@ -1,6 +1,6 @@
 public class TransitionOut extends Transition {
-  public TransitionOut(Assets a, Variables v) {
-    super(a, v);
+  public TransitionOut(BankApp app) {
+    super(app);
     v.transOut = this;
 
     starting_opacity = 255;

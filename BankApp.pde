@@ -2,28 +2,24 @@ import java.util.*;
 import java.lang.reflect.Field;
 import processing.sound.*;
 
-import com.thoughtworks.xstream.*;
-import com.thoughtworks.xstream.security.*;
 import controlP5.*;
 
 String username;
 String password;
 
-// * DB
-XStream x = new XStream(new StaxDriver());
-PersistenceStrategy strategy;
-XmlArrayList l;
+ArrayList<Account> accounts = new ArrayList<Account>();
 
 // * Util classes
 Assets a = new Assets();
 Variables v = new Variables();
-TransitionIn transitionIn = new TransitionIn(a, v);
-TransitionOut transitionOut = new TransitionOut(a, v);
+
+TransitionIn transitionIn = new TransitionIn(this);
+TransitionOut transitionOut = new TransitionOut(this);
 
 // * Game classes
 // Table table = new Table(a, v);
-Intro intro = new Intro(a, v);
-SignIn signIn = new SignIn(a, v);
+Intro intro = new Intro(this);
+SignIn signIn = new SignIn(this);
 
 void setup() {
   size(1000, 1000);
@@ -40,23 +36,10 @@ void setup() {
   a._setup(this);
   v._setup();
 
-  // * SETUP DB
-  x.addPermission(AnyTypePermission.ANY);
-  strategy = new FilePersistenceStrategy(new File("/tmp"), x);
-
-  l = new XmlArrayList(strategy);
-  x.alias("account", Account.class);
-
-  x.registerConverter(new AccountConverter());
-  println("Amount of accounts" + l.size());
-  if (l.size() == 0) {
-    setupAccounts();
-  }
-
   // Setup inputs
   v.cp5 = new ControlP5(this);
   signIn.setup();
-
+  setupAccounts();
 
   // * SETUP CLASSES
 }
@@ -114,10 +97,10 @@ void setupAccounts() {
   Account y = new Account("y", 500, "Yellow");
   Account black = new Account("b", 8000, "Black");
 
-  l.add(sam);
-  l.add(r);
-  l.add(b);
-  l.add(g);
-  l.add(y);
-  l.add(black);
+  accounts.add(sam);
+  accounts.add(r);
+  accounts.add(b);
+  accounts.add(g);
+  accounts.add(y);
+  accounts.add(black);
 }

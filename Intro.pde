@@ -45,5 +45,5 @@ public class Intro extends Obj {
     }
   }
 
-  public Intro(Assets a, Variables v) { super(a, v); }
+  public Intro(BankApp app) { super(app); }
 }

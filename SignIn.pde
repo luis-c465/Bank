@@ -35,5 +35,5 @@ public class SignIn extends Obj {
     image(a.signIn, 0, 0);
   }
 
-  public SignIn(Assets a, Variables v) { super(a, v); }
+  public SignIn(BankApp app) { super(app); }
 }

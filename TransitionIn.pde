@@ -4,8 +4,8 @@
  * The update method should be called durring each draw for this to work
  */
 public class TransitionIn extends Transition {
-  public TransitionIn(Assets a, Variables v) {
-    super(a, v);
+  public TransitionIn(BankApp app) {
+    super(app);
     v.transIn = this;
 
     starting_opacity = 0;
@@ -14,4 +14,5 @@ public class TransitionIn extends Transition {
     up = true;
     step = 8;
   }
+
 }
