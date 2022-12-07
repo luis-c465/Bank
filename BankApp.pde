@@ -2,6 +2,14 @@ import java.util.*;
 import java.lang.reflect.Field;
 import processing.sound.*;
 
+import com.thoughtworks.xstream.*;
+import com.thoughtworks.xstream.security.*;
+
+// * DB
+XStream x = new XStream(new StaxDriver());
+PersistenceStrategy strategy;
+XmlArrayList l;
+
 // * Util classes
 Assets a = new Assets();
 Variables v = new Variables();
@@ -26,6 +34,19 @@ void setup() {
 
   a._setup(this);
   v._setup();
+
+  // * SETUP DB
+  x.addPermission(AnyTypePermission.ANY);
+  strategy = new FilePersistenceStrategy(new File("/tmp"), x);
+
+  l = new XmlArrayList(strategy);
+  x.alias("account", Account.class);
+
+  x.registerConverter(new AccountConverter());
+  println("Amount of accounts" + l.size());
+  if (l.size() == 0) {
+    setupAccounts();
+  }
 
   // * SETUP CLASSES
 }
@@ -70,4 +91,21 @@ void checkBtns() {
   //     check();
   //   }
   // }
+}
+
+// Should be called onlly when the number of accounts is equal to 0
+void setupAccounts() {
+  Account sam = new Account("FTX", -99999, "Sam", true);
+  Account r = new Account("r", 500, "Red");
+  Account b = new Account("b", 5, "Blue");
+  Account g = new Account("g", 5000, "Green");
+  Account y = new Account("y", 500, "Yellow");
+  Account black = new Account("b", 8000, "Black");
+
+  l.add(sam);
+  l.add(r);
+  l.add(b);
+  l.add(g);
+  l.add(y);
+  l.add(black);
 }

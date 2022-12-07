@@ -1,5 +1,5 @@
 public class Intro extends Obj {
-  public boolean show = true;
+  public boolean show = false;
   public boolean trans = false;
   public boolean done = false;
 
