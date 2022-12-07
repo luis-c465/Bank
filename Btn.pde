@@ -15,6 +15,7 @@ public abstract class Btn extends Obj {
   protected String txt = "Click me!";
   protected int txt_size = 30;
   protected color c = #fac83c;
+  protected color txt_c = 0;
   protected int radius = 25;
 
   protected boolean hasIcon = true;
@@ -60,9 +61,9 @@ public abstract class Btn extends Obj {
 
     // Draw text
     textAlign(CENTER, CENTER);
-    fill(0);
+    fill(txt_c);
     textSize(txt_size);
-    text(txt, x + txt_space, y);
+    text(txt, x + txt_space, y - 3);
 
     if (hasIcon) {
       shapeMode(CENTER);

@@ -66,6 +66,7 @@ void draw() {
 }
 
 void mousePressed() {
+  signIn.mousePressed();
 }
 
 void keyPressed() {

@@ -2,9 +2,9 @@
  * Abstract class for objects that will be drawn to the screen
  */
 public abstract class Obj {
-  private Assets a;
-  private Variables v;
-  private BankApp app;
+  protected Assets a;
+  protected Variables v;
+  protected BankApp app;
 
   public Obj(BankApp app) {
     this.a = app.a;
