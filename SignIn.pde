@@ -1,6 +1,10 @@
 public class SignIn extends Obj {
   public boolean trans = false;
   public boolean done = false;
+  public boolean correct = true;
+
+  private static final int wrong_y = 700;
+  private static final color wrong_color = #dc2626;
 
   public static final String password = "password";
   public static final String username = "admin";
@@ -51,16 +55,29 @@ public class SignIn extends Obj {
     }
 
     if (
-      signInBtn.clicked &&
-      usernameField.getText().equals(username) &&
-      passwordField.getText().equals(password)
+      signInBtn.clicked
     ) {
-      trans = true;
+      if (usernameField.getText().equals(username) && passwordField.getText().equals(password)) {
+        trans = true;
+      } else {
+        correct = false;
+      }
     }
 
     signInBtn.update();
     imageMode(CORNERS);
     image(a.signIn, 0, 0);
+
+    if (!correct) {
+      push();
+
+      textSize(16);
+      textAlign(CENTER);
+      fill(wrong_color);
+      text("Wrong username / password", v.cw, wrong_y);
+
+      pop();
+    }
 
 
     if (trans) { transition(); }
