@@ -17,9 +17,10 @@ TransitionIn transitionIn = new TransitionIn(this);
 TransitionOut transitionOut = new TransitionOut(this);
 
 // * Game classes
-// Table table = new Table(a, v);
 Intro intro = new Intro(this);
+
 SignIn signIn = new SignIn(this);
+Sidebar sidebar = new Sidebar(this);
 
 void setup() {
   size(1000, 1000);
@@ -56,9 +57,10 @@ void draw() {
 
   checkBtns();
 
-  // table.update();
-
   // Update the other stuff here
+  if (v.signedIn) {
+    sidebar.update();
+  }
 
   if (intro.trans) {
     intro.update();
