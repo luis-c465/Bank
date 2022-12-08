@@ -44,5 +44,14 @@ public class AccountDrawer extends Obj {
     // Idk do nothing
   }
 
+  public void mousePressed(int i) {
+    int y = i * h;
+
+    if (mouseX >= 0 && mouseX <= Sidebar.w && mouseY >= (y) && mouseY <= y + h) {
+      println("Clicked " + i);
+      v.curAcc = v.accounts.get(i);
+    }
+  }
+
   public AccountDrawer(BankApp app) { super(app); }
 }

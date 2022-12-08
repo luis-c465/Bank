@@ -15,10 +15,11 @@ public class Variables {
 
   public boolean transitioning = false;
   public boolean signedIn = false;
+  ArrayList<Account> accounts = new ArrayList<Account>();
+  Account curAcc = null;
 
   public TransitionIn transIn;
   public TransitionOut transOut;
-  ArrayList<Account> accounts = new ArrayList<Account>();
 
 
   public void _setup() {

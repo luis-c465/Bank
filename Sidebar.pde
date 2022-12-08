@@ -28,5 +28,11 @@ public class Sidebar extends Obj {
     accDrawer = new AccountDrawer(app);
   }
 
+  public void mousePressed() {
+    for (int i=0; i < v.accounts.size(); i++) {
+      accDrawer.mousePressed(i);
+    }
+  }
+
   public Sidebar(BankApp app) { super(app); }
 }

@@ -68,6 +68,7 @@ void draw() {
 
 void mousePressed() {
   signIn.mousePressed();
+  sidebar.mousePressed();
 }
 
 void keyPressed() {
