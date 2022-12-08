@@ -4,16 +4,28 @@
 */
 public class Sidebar extends Obj {
   public static final int w = 350;
-  public static final color c = #f1f5f9;
+  public static final color c = #d4d4d4;
+  AccountDrawer accDrawer;
 
   protected void _update() {
     drawBg();
+    drawAccounts();
   }
 
   private void drawBg() {
     fill(c);
     shapeMode(CORNERS);
     rect(0, 0, w, v.h);
+  }
+
+  private void drawAccounts() {
+    for (int i=0; i < v.accounts.size(); i++) {
+      accDrawer.draw(i);
+    }
+  }
+
+  public void _setup() {
+    accDrawer = new AccountDrawer(app);
   }
 
   public Sidebar(BankApp app) { super(app); }

@@ -7,8 +7,6 @@ import controlP5.*;
 String username;
 String password;
 
-ArrayList<Account> accounts = new ArrayList<Account>();
-
 // * Util classes
 Assets a = new Assets();
 Variables v = new Variables();
@@ -40,6 +38,7 @@ void setup() {
   // Setup inputs
   v.cp5 = new ControlP5(this);
   signIn.setup();
+  sidebar.setup();
   setupAccounts();
 
   // * SETUP CLASSES
@@ -92,6 +91,7 @@ void checkBtns() {
 }
 
 // Should be called onlly when the number of accounts is equal to 0
+// Or at the start of the program
 void setupAccounts() {
   Account sam = new Account("FTX", -99999, "Sam", true);
   Account r = new Account("r", 500, "Red");
@@ -100,10 +100,10 @@ void setupAccounts() {
   Account y = new Account("y", 500, "Yellow");
   Account black = new Account("b", 8000, "Black");
 
-  accounts.add(sam);
-  accounts.add(r);
-  accounts.add(b);
-  accounts.add(g);
-  accounts.add(y);
-  accounts.add(black);
+  v.accounts.add(sam);
+  v.accounts.add(r);
+  v.accounts.add(b);
+  v.accounts.add(g);
+  v.accounts.add(y);
+  v.accounts.add(black);
 }

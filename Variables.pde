@@ -18,6 +18,7 @@ public class Variables {
 
   public TransitionIn transIn;
   public TransitionOut transOut;
+  ArrayList<Account> accounts = new ArrayList<Account>();
 
 
   public void _setup() {
