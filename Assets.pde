@@ -19,6 +19,7 @@ public class Assets {
   // * FONTS
   public PFont nunito;
   public PFont nunito_small;
+  public PFont nunito_large;
 
   public void _setup(PApplet p) {
     this.p = p;
@@ -39,6 +40,8 @@ public class Assets {
     nunito = createFont("fonts/Nunito.ttf", 64);
 
     nunito_small = createFont("fonts/Nunito.ttf", 32);
+
+    nunito_large = createFont("fonts/Nunito.ttf", 96);
 
     textFont(nunito);
   }

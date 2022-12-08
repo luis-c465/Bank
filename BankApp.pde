@@ -19,6 +19,7 @@ Intro intro = new Intro(this);
 
 SignIn signIn = new SignIn(this);
 Sidebar sidebar = new Sidebar(this);
+AccountViewer accViewer = new AccountViewer(this);
 
 void setup() {
   size(1000, 1000);
@@ -39,6 +40,8 @@ void setup() {
   v.cp5 = new ControlP5(this);
   signIn.setup();
   sidebar.setup();
+  accViewer.setup();
+
   setupAccounts();
 
   // * SETUP CLASSES
@@ -59,6 +62,7 @@ void draw() {
   // Update the other stuff here
   if (v.signedIn) {
     sidebar.update();
+    accViewer.update();
   }
 
   if (intro.trans) {
