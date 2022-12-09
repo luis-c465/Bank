@@ -35,6 +35,7 @@ public class AccountViewer extends Obj {
     if (v.curAcc == null) return;
 
     // Shoe the buttons for withdraw and deposit
+    checkBtns();
 
     // Show information about the account
 
@@ -59,7 +60,7 @@ public class AccountViewer extends Obj {
 
     textFont(a.nunito_large);
     text(
-      "$" + String.format("%.2f", v.curAcc.amount),
+      "$" + String.format("%,.2f", v.curAcc.amount),
       misc_start_x,
       amount_start
     );
@@ -107,6 +108,28 @@ public class AccountViewer extends Obj {
 
     depositBtn = new DepositBtn(app);
     depositBtn.setup();
+  }
+
+  // Should be called before updaign the buttons
+  private void checkBtns() {
+    if (depositBtn.clicked) {
+      double amo = Double.parseDouble(amount.getText());
+      v.curAcc.amount += amo;
+      amount.setText("");
+    } else if (withdrawBtn.clicked) {
+      double amo = Double.parseDouble(amount.getText());
+      if (amo > v.curAcc.amount) {
+        // Show an error msg
+      } else {
+        v.curAcc.amount -= amo;
+        amount.setText("");
+      }
+    }
+  }
+
+  public void mousePressed() {
+    depositBtn.mousePressed();
+    withdrawBtn.mousePressed();
   }
 
   public AccountViewer(BankApp app) { super(app); }

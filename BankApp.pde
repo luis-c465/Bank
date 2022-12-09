@@ -74,6 +74,7 @@ void draw() {
 void mousePressed() {
   signIn.mousePressed();
   sidebar.mousePressed();
+  accViewer.mousePressed();
 }
 
 void keyPressed() {
