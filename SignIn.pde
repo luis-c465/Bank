@@ -32,7 +32,6 @@ public class SignIn extends Obj {
     passwordField
       .setPosition(500 - 100 ,600)
       .setSize(200,40)
-      .setFocus(true)
       .setColor(color(0))
       .setColorForeground(0)
       .setColorBackground(#ffffff)
