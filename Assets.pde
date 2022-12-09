@@ -20,6 +20,15 @@ public class Assets {
   public PImage intro;
   public PImage bg;
 
+  // * ACCOUNTS
+  public PImage sam;
+  public PImage red;
+  public PImage blue;
+  public PImage green;
+  public PImage yellow;
+  public PImage black;
+  public PImage def;
+
   // * FONTS
   public PFont nunito;
   public PFont nunito_small;
@@ -42,7 +51,14 @@ public class Assets {
     intro = loadImage("intro.png");
     bg = loadImage("bg.jpg");
 
-    // * LOAD SOUNDS
+    // * LOAD ACCOUNTS
+    sam = loadImage("accounts/sam.png");
+    red = loadImage("accounts/red.png");
+    blue = loadImage("accounts/blue.png");
+    green = loadImage("accounts/green.png");
+    yellow = loadImage("accounts/yellow.png");
+    black = loadImage("accounts/black.png");
+    def = loadImage("accounts/default.png");
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
@@ -52,5 +68,32 @@ public class Assets {
     nunito_large = createFont("fonts/Nunito.ttf", 96);
 
     textFont(nunito);
+  }
+
+  /**
+   * Saftely dynamically gets an asset with the given name
+  */
+  public PImage getAsset(Account acc) {
+    PImage img = getAsset(acc.id.toLowerCase());
+    if (img != null) {
+      return img;
+    } else {
+      return def;
+    }
+  }
+
+  /**
+   * Saftely dynamically gets an asset with the given name
+  */
+  public PImage getAsset(String name) {
+    try {
+      return (PImage) get(name);
+    } catch(Exception e) {
+      return null;
+    }
+  }
+
+  public Object get(String k) throws IllegalAccessException, NoSuchFieldException {
+    return (this.getClass().getDeclaredField(k).get(this));
   }
 }

@@ -8,7 +8,7 @@ public class AccountDrawer extends Obj {
   public static final int p = 5;
   public static final int txt_size = 20;
 
-  public int name_x = img_w + gap;
+  public int name_x = img_w + p;
   public int bottom = 33;
 
   /**
@@ -22,20 +22,23 @@ public class AccountDrawer extends Obj {
     fill(Sidebar.c);
     rect(0, y, Sidebar.w, y + h, r);
 
+    imageMode(CORNERS);
+    image(a.getAsset(acc), p, y, img_w, img_w + y);
+
     fill(0);
     textSize(25);
     textAlign(LEFT, TOP);
-    text(acc.name, p, y + p);
+    text(acc.name, img_w + p, y + p);
 
     text(
       "$" + acc.amount + (acc.frozen ? "" : " FROZEN"),
-      p,
+       name_x,
       y + p + bottom
      );
 
     text(
       "Id:" + acc.id,
-      p,
+      img_w + p,
       y + p + bottom * 2
      );
   }

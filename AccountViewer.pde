@@ -32,8 +32,12 @@ public class AccountViewer extends Obj {
   public void _update() {
     // If there is no currently selected account show nothing
     // TODO: Show something in this case
-    if (v.curAcc == null) return;
+    if (v.curAcc == null) {
+      amount.hide();
+      return;
+    }
 
+    amount.show();
     // Shoe the buttons for withdraw and deposit
     checkBtns();
 
@@ -45,6 +49,9 @@ public class AccountViewer extends Obj {
     fill(0);
     textAlign(LEFT, TOP);
     textFont(a.nunito);
+
+    imageMode(CORNERS);
+    image(a.getAsset(v.curAcc), all_start, padding);
 
     text(
       v.curAcc.name,
