@@ -35,6 +35,7 @@ void setup() {
 
   a._setup(this);
   v._setup();
+  v.accViewer = accViewer;
 
   // Setup inputs
   v.cp5 = new ControlP5(this);

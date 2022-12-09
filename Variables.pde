@@ -17,6 +17,7 @@ public class Variables {
   public boolean signedIn = false;
   ArrayList<Account> accounts = new ArrayList<Account>();
   Account curAcc = null;
+  AccountViewer accViewer = null;
 
   public TransitionIn transIn;
   public TransitionOut transOut;

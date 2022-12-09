@@ -16,6 +16,7 @@ public class AccountViewer extends Obj {
   public int amount_start = img_size + gap;
   public int misc_start = amount_start + gap * 2;
 
+  public int amount_input_x = all_start;
   public int amount_input_y = misc_start + gap;
   public int amount_input_h = 100;
   public int amount_input_w = 300;
@@ -25,11 +26,15 @@ public class AccountViewer extends Obj {
   public static final color frozen_c = #0284c7;
 
   private Textfield amount;
+  private WithdrawBtn withdrawBtn;
+  private DepositBtn depositBtn;
 
   public void _update() {
     // If there is no currently selected account show nothing
     // TODO: Show something in this case
     if (v.curAcc == null) return;
+
+    // Shoe the buttons for withdraw and deposit
 
     // Show information about the account
 
@@ -76,12 +81,15 @@ public class AccountViewer extends Obj {
       text("FROZEN", v.w - padding, misc_start);
       pop();
     }
+
+    withdrawBtn.update();
+    depositBtn.update();
   }
 
   public void _setup() {
     // Text input
     amount = v.cp5.addTextfield("input")
-      .setPosition(all_start, amount_input_y)
+      .setPosition(amount_input_x, amount_input_y)
       .setSize(amount_input_w, amount_input_h)
       .setFont(a.nunito_small)
       .setFocus(true)
@@ -93,6 +101,12 @@ public class AccountViewer extends Obj {
       .setColorCaptionLabel(#000000)
       .setInputFilter(1)
       ;
+
+    withdrawBtn = new WithdrawBtn(app);
+    withdrawBtn.setup();
+
+    depositBtn = new DepositBtn(app);
+    depositBtn.setup();
   }
 
   public AccountViewer(BankApp app) { super(app); }

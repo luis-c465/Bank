@@ -11,6 +11,10 @@ public class Assets {
   public PImage enter;
   public PImage space;
 
+  // * SHAPES
+  public PShape plus;
+  public PShape minus;
+
   // * MISC
   public PImage signIn;
   public PImage intro;
@@ -28,6 +32,10 @@ public class Assets {
     enter = loadImage("btn/enter.png");
     space = loadImage("btn/space.png");
     space.resize(200,100);
+
+    // * LOAD SHAPES
+    plus = loadShape("plus.svg");
+    minus = loadShape("minus.svg");
 
     // * LOAD MISC
     signIn = loadImage("sign-in.png");
