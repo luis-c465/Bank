@@ -6,10 +6,13 @@ public class Sidebar extends Obj {
   public static final int w = 350;
   public static final color c = #d4d4d4;
   AccountDrawer accDrawer;
+  NewAccBtn newAccBtn;
 
   protected void _update() {
     drawBg();
     drawAccounts();
+
+    newAccBtn.update();
   }
 
   private void drawBg() {
@@ -26,6 +29,9 @@ public class Sidebar extends Obj {
 
   public void _setup() {
     accDrawer = new AccountDrawer(app);
+
+    newAccBtn = new NewAccBtn(app);
+    newAccBtn.setup();
   }
 
   public void mousePressed() {
