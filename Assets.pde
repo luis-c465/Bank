@@ -14,6 +14,7 @@ public class Assets {
   // * SHAPES
   public PShape plus;
   public PShape minus;
+  public PShape snowflake;
 
   // * MISC
   public PImage signIn;
@@ -45,6 +46,7 @@ public class Assets {
     // * LOAD SHAPES
     plus = loadShape("plus.svg");
     minus = loadShape("minus.svg");
+    snowflake = loadShape("snowflake.svg");
 
     // * LOAD MISC
     signIn = loadImage("sign-in.png");

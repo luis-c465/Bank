@@ -25,9 +25,12 @@ public class AccountViewer extends Obj {
   public static final color money_neg = #ef4444;
   public static final color frozen_c = #0284c7;
 
+  public static final int btns_start = 700;
+
   private Textfield amount;
   private WithdrawBtn withdrawBtn;
   private DepositBtn depositBtn;
+  private FreezeBtn freezeBtn;
 
   public void _update() {
     // If there is no currently selected account show nothing
@@ -92,6 +95,7 @@ public class AccountViewer extends Obj {
 
     withdrawBtn.update();
     depositBtn.update();
+    freezeBtn.update();
   }
 
   public void _setup() {
@@ -115,28 +119,34 @@ public class AccountViewer extends Obj {
 
     depositBtn = new DepositBtn(app);
     depositBtn.setup();
+
+    freezeBtn = new FreezeBtn(app);
+    freezeBtn.setup();
   }
 
   // Should be called before updaign the buttons
   private void checkBtns() {
     if (depositBtn.clicked) {
-      double amo = Double.parseDouble(amount.getText());
+      double amo = Double.parseDouble("0" + amount.getText());
       v.curAcc.amount += amo;
       amount.setText("");
     } else if (withdrawBtn.clicked) {
-      double amo = Double.parseDouble(amount.getText());
+      double amo = Double.parseDouble("0" + amount.getText());
       if (amo > v.curAcc.amount) {
         // Show an error msg
       } else {
         v.curAcc.amount -= amo;
         amount.setText("");
       }
+    } else if (freezeBtn.clicked) {
+      v.curAcc.frozen = !v.curAcc.frozen;
     }
   }
 
   public void mousePressed() {
     depositBtn.mousePressed();
     withdrawBtn.mousePressed();
+    freezeBtn.mousePressed();
   }
 
   public AccountViewer(BankApp app) { super(app); }

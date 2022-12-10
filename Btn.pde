@@ -73,6 +73,10 @@ public abstract class Btn extends Obj {
     clicked = false;
   }
 
+  protected void updateVariables() {
+    // Does nothing
+  }
+
   public void mousePressed() {
     // Ignore mouse clickes when the game is transitioning!
     if (v.transitioning) return;
