@@ -54,7 +54,7 @@ public class AccountViewer extends Obj {
     textFont(a.nunito);
 
     imageMode(CORNERS);
-    image(a.getAsset(v.curAcc), all_start, padding);
+    image(a.getAsset(v.curAcc), all_start, padding, all_start + 200, padding + 200);
 
     text(
       v.curAcc.name,
