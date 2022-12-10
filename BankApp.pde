@@ -51,11 +51,8 @@ void setup() {
 void draw() {
   background(255);
 
-  signIn.update();
-
-  if (intro.show) {
-    intro.update();
-    return;
+  if (!signIn.trans) {
+    signIn.update();
   }
 
   checkBtns();
@@ -66,8 +63,8 @@ void draw() {
     accViewer.update();
   }
 
-  if (intro.trans) {
-    intro.update();
+  if (signIn.trans) {
+    signIn.update();
   }
 }
 

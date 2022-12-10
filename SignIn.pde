@@ -112,6 +112,23 @@ public class SignIn extends Obj {
     }
   }
 
+  /**
+   * Should be called by the main class at the end of the update method
+  */
+  public void transLater() {
+    if (transitionIn.done) {
+      transitionOut.update();
+    }
+
+    if (transitionIn.done && transitionOut.done) {
+      trans = false;
+      done = true;
+
+      transitionIn.reset();
+      transitionOut.reset();
+    }
+  }
+
   public void mousePressed() {
     signInBtn.mousePressed();
   }
