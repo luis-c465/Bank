@@ -31,6 +31,7 @@ public class AccountViewer extends Obj {
   private WithdrawBtn withdrawBtn;
   private DepositBtn depositBtn;
   private FreezeBtn freezeBtn;
+  private DeleteBtn deleteBtn;
 
   public void _update() {
     // If there is no currently selected account show nothing
@@ -42,8 +43,6 @@ public class AccountViewer extends Obj {
 
     amount.show();
     // Shoe the buttons for withdraw and deposit
-    checkBtns();
-
     // Show information about the account
 
     // Show the image
@@ -93,9 +92,12 @@ public class AccountViewer extends Obj {
       pop();
     }
 
+    checkBtns();
+
     withdrawBtn.update();
     depositBtn.update();
     freezeBtn.update();
+    deleteBtn.update();
   }
 
   public void _setup() {
@@ -122,6 +124,9 @@ public class AccountViewer extends Obj {
 
     freezeBtn = new FreezeBtn(app);
     freezeBtn.setup();
+
+    deleteBtn = new DeleteBtn(app);
+    deleteBtn.setup();
   }
 
   // Should be called before updaign the buttons
@@ -144,6 +149,10 @@ public class AccountViewer extends Obj {
         v.curAcc.amount -= amo;
         amount.setText("");
       }
+    } else if (deleteBtn.clicked) {
+      // Delete the account
+      v.accounts.remove(v.curAccIndex);
+      v.curAcc = null;
     }
   }
 
@@ -151,6 +160,7 @@ public class AccountViewer extends Obj {
     depositBtn.mousePressed();
     withdrawBtn.mousePressed();
     freezeBtn.mousePressed();
+    deleteBtn.mousePressed();
   }
 
   public AccountViewer(BankApp app) { super(app); }

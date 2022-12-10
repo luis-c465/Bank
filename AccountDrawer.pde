@@ -51,8 +51,8 @@ public class AccountDrawer extends Obj {
     int y = i * h;
 
     if (mouseX >= 0 && mouseX <= Sidebar.w && mouseY >= (y) && mouseY <= y + h) {
-      println("Clicked " + i);
       v.curAcc = v.accounts.get(i);
+      v.curAccIndex = i;
     }
   }
 
