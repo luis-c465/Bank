@@ -53,6 +53,7 @@ public class AccountDrawer extends Obj {
     if (mouseX >= 0 && mouseX <= Sidebar.w && mouseY >= (y) && mouseY <= y + h) {
       v.curAcc = v.accounts.get(i);
       v.curAccIndex = i;
+      v.newAcc = false;
     }
   }
 

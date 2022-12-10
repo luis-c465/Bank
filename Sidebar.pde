@@ -9,6 +9,8 @@ public class Sidebar extends Obj {
   NewAccBtn newAccBtn;
 
   protected void _update() {
+    checkBtns();
+
     drawBg();
     drawAccounts();
 
@@ -37,6 +39,15 @@ public class Sidebar extends Obj {
   public void mousePressed() {
     for (int i=0; i < v.accounts.size(); i++) {
       accDrawer.mousePressed(i);
+    }
+
+    newAccBtn.mousePressed();
+  }
+
+  public void checkBtns() {
+    if (newAccBtn.clicked) {
+      v.newAcc = true;
+      println("clicked");
     }
   }
 

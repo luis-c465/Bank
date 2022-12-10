@@ -20,6 +20,9 @@ public class Variables {
   int curAccIndex = -1;
   AccountViewer accViewer = null;
 
+  // True if currently creating a new account!
+  public boolean newAcc = false;
+
   public TransitionIn transIn;
   public TransitionOut transOut;
 
