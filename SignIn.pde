@@ -46,9 +46,9 @@ public class SignIn extends Obj {
     signInBtn.setup();
 
     // TODO: remove
-    v.signedIn = true;
-              v.cp5.getController("username").remove();
-          v.cp5.getController("password").remove();
+    // v.signedIn = true;
+    //           v.cp5.getController("username").remove();
+    //       v.cp5.getController("password").remove();
   }
 
   public void _update() {

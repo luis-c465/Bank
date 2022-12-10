@@ -105,7 +105,7 @@ void setupAccounts() {
   Account b = new Account("Blue sus", 5, "Blue");
   Account g = new Account("Green sus", 5000, "Green");
   Account y = new Account("Yellow sus", 500, "Yellow");
-  Account black = new Account("Blue sus", 8000, "Black");
+  Account black = new Account("Black sus", 8000, "Black");
 
   v.accounts.add(sam);
   v.accounts.add(r);

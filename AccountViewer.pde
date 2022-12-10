@@ -201,6 +201,7 @@ public class AccountViewer extends Obj {
       .setLabelVisible(true)
       .setColorCaptionLabel(#000000)
       .setInputFilter(1)
+      .hide();
       ;
 
     // * Account creation input variables
@@ -215,6 +216,7 @@ public class AccountViewer extends Obj {
       .setCaptionLabel("Account name")
       .setLabelVisible(true)
       .setColorCaptionLabel(#000000)
+      .hide();
       ;
 
     balance = v.cp5.addTextfield("balance")
@@ -229,6 +231,7 @@ public class AccountViewer extends Obj {
       .setLabelVisible(true)
       .setColorCaptionLabel(#000000)
       .setInputFilter(1)
+      .hide();
       ;
     id = v.cp5.addTextfield("id")
       .setPosition(id_input_x, id_input_y)
@@ -241,6 +244,7 @@ public class AccountViewer extends Obj {
       .setCaptionLabel("Id")
       .setLabelVisible(true)
       .setColorCaptionLabel(#000000)
+      .hide();
       ;
 
     //  * SETUP BUTTONS
