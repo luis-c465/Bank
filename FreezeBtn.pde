@@ -25,7 +25,7 @@ public class FreezeBtn extends Btn {
     if (v.curAcc == null) return;
 
     // Else set the text equal to the opposite of the current status of the frozen account
-    txt = !v.curAcc.frozen ? "Unfreeze" : "Freeze";
+    txt = v.curAcc.frozen ? "Unfreeze" : "Freeze";
   }
 
   public FreezeBtn(BankApp app) { super(app); }

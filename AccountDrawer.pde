@@ -31,7 +31,7 @@ public class AccountDrawer extends Obj {
     text(acc.name, img_w + p, y + p);
 
     text(
-      "$" + acc.amount + (acc.frozen ? "" : " FROZEN"),
+      "$" + acc.amount + (acc.frozen ? " FROZEN" : ""),
        name_x,
       y + p + bottom
      );

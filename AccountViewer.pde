@@ -84,7 +84,7 @@ public class AccountViewer extends Obj {
       misc_start
     );
 
-    if (!v.curAcc.frozen) {
+    if (v.curAcc.frozen) {
       push();
       fill(frozen_c);
       textAlign(RIGHT, TOP);
@@ -126,6 +126,12 @@ public class AccountViewer extends Obj {
 
   // Should be called before updaign the buttons
   private void checkBtns() {
+    if (freezeBtn.clicked) {
+      v.curAcc.frozen = !v.curAcc.frozen;
+    }
+
+    if (v.curAcc.frozen) return;
+
     if (depositBtn.clicked) {
       double amo = Double.parseDouble("0" + amount.getText());
       v.curAcc.amount += amo;
@@ -138,8 +144,6 @@ public class AccountViewer extends Obj {
         v.curAcc.amount -= amo;
         amount.setText("");
       }
-    } else if (freezeBtn.clicked) {
-      v.curAcc.frozen = !v.curAcc.frozen;
     }
   }
 
