@@ -32,7 +32,7 @@ public abstract class Btn extends Obj {
 
   public boolean clicked = false;
 
-  public Btn(BankApp app) { super(app); }
+  public Btn(Snap app) { super(app); }
 
   public void setup(){
     _setup();

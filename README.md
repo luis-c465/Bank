@@ -1,10 +1,10 @@
-# Banking Application
+# Snap App
 
-Banking Application for AP Computer Science AB 2022-2023 in Ivan Rico's class
+Snap Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Dependencies
 
-- Java 1.8 or higher
+- [Java 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html) or [higher](https://adoptium.net/)
 
 ## Building
 
@@ -18,7 +18,7 @@ Banking Application for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Downloading
 
-**[Latest release](https://github.com/luis-c465/BankApp/releases/latest)**
+**[Latest release](https://github.com/luis-c465/Snap/releases/latest)**
 
 ## Running
 
@@ -28,15 +28,15 @@ Banking Application for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Project Requirements
 
-Due: **Sun Dec 11 2022**
+Due: **Sun Jan 22 2023**
 
-- Has a login screen with user: admin and password: password
-- Can select from at least 5 different customers
-- Each customer shows a different name, amount, bank id and frozen status
-- First user’s balance is negative
-- Can deposit money
-- Can withdraw money only if balance is positive
-- Can add a user given the name, amount, bank id and balance
-- Can freeze any account
-- Can remove a user
-- Can exit at any time
+- 2 Players per game
+- 7 cards in a deck, start with 5 (12 total card, 4 per location)
+- Cards have values of 1-12
+- 3 Locations
+- 4 cards can be placed at each location
+- Highest sum of cards wins location
+- 1 card played on the first turn, 2 cards on the second turn, etc..
+- 1 card randomly drawn each turn
+- Ends after all cards played
+- Can exit whenever

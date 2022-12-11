@@ -1,5 +1,5 @@
 public class TransitionOut extends Transition {
-  public TransitionOut(BankApp app) {
+  public TransitionOut(Snap app) {
     super(app);
     v.transOut = this;
 

@@ -4,9 +4,9 @@
 public abstract class Obj {
   protected Assets a;
   protected Variables v;
-  protected BankApp app;
+  protected Snap app;
 
-  public Obj(BankApp app) {
+  public Obj(Snap app) {
     this.a = app.a;
     this.v = app.v;
     this.app = app;

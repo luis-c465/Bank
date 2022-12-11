@@ -4,7 +4,7 @@
  * The update method should be called durring each draw for this to work
  */
 public class TransitionIn extends Transition {
-  public TransitionIn(BankApp app) {
+  public TransitionIn(Snap app) {
     super(app);
     v.transIn = this;
 

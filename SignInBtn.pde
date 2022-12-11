@@ -9,5 +9,5 @@ public class SignInBtn extends Btn {
     txt_space = -2;
   }
 
-  public SignInBtn(BankApp app) { super(app); }
+  public SignInBtn(Snap app) { super(app); }
 }
