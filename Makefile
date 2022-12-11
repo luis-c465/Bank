@@ -12,7 +12,7 @@ procLocal:
 
 # Processing java preprocesor fix
 preFix:
-	cd build; sed -i -e "s/.* size commented out by preprocessor .*;/size(1000, 1000);/" processing/source/CardGame.java
+	cd build; sed -i -e "s/.* size commented out by preprocessor .*;/size(1000, 1000);/" processing/source/BankApp.java
 
 # First compile with processing
 class:
