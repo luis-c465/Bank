@@ -20,7 +20,6 @@ public class Assets {
 
   // * MISC
   public PImage signIn;
-  public PImage intro;
   public PImage bg;
 
   // * ACCOUNTS
@@ -54,7 +53,6 @@ public class Assets {
 
     // * LOAD MISC
     signIn = loadImage("sign-in.png");
-    intro = loadImage("intro.png");
     bg = loadImage("bg.jpg");
 
     // * LOAD ACCOUNTS

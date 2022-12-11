@@ -59,6 +59,10 @@ public class AccountViewer extends Obj {
   private Textfield id;
 
   public void _update() {
+    // Show the bg
+    imageMode(CORNERS);
+    image(a.bg, Sidebar.w, 0);
+
     if (v.newAcc) {
       showAccCreator();
     } else {
@@ -128,7 +132,7 @@ public class AccountViewer extends Obj {
     // Show the image
 
     // Show the text
-    fill(0);
+    fill(255);
     textAlign(LEFT, TOP);
     textFont(a.nunito);
 
@@ -158,7 +162,7 @@ public class AccountViewer extends Obj {
       amount_y
     );
 
-    fill(0);
+    fill(255);
 
     // * Display the users id
     textFont(a.nunito_small);
@@ -199,7 +203,7 @@ public class AccountViewer extends Obj {
       .setColorBackground(#ffffff)
       .setCaptionLabel("Withdraw/Deposit")
       .setLabelVisible(true)
-      .setColorCaptionLabel(#000000)
+      .setColorCaptionLabel(#ffffff)
       .setInputFilter(1)
       .hide();
       ;
@@ -215,7 +219,7 @@ public class AccountViewer extends Obj {
       .setColorBackground(#ffffff)
       .setCaptionLabel("Account name")
       .setLabelVisible(true)
-      .setColorCaptionLabel(#000000)
+      .setColorCaptionLabel(#ffffff)
       .hide();
       ;
 
@@ -229,7 +233,7 @@ public class AccountViewer extends Obj {
       .setColorBackground(#ffffff)
       .setCaptionLabel("Balance")
       .setLabelVisible(true)
-      .setColorCaptionLabel(#000000)
+      .setColorCaptionLabel(#ffffff)
       .setInputFilter(1)
       .hide();
       ;
@@ -243,7 +247,7 @@ public class AccountViewer extends Obj {
       .setColorBackground(#ffffff)
       .setCaptionLabel("Id")
       .setLabelVisible(true)
-      .setColorCaptionLabel(#000000)
+      .setColorCaptionLabel(#ffffff)
       .hide();
       ;
 

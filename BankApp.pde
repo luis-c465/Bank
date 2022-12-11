@@ -15,8 +15,6 @@ TransitionIn transitionIn = new TransitionIn(this);
 TransitionOut transitionOut = new TransitionOut(this);
 
 // * Game classes
-Intro intro = new Intro(this);
-
 SignIn signIn = new SignIn(this);
 Sidebar sidebar = new Sidebar(this);
 AccountViewer accViewer = new AccountViewer(this);
@@ -55,8 +53,6 @@ void draw() {
     signIn.update();
   }
 
-  checkBtns();
-
   // Update the other stuff here
   if (v.signedIn) {
     sidebar.update();
@@ -72,26 +68,6 @@ void mousePressed() {
   signIn.mousePressed();
   sidebar.mousePressed();
   accViewer.mousePressed();
-}
-
-void keyPressed() {
-  intro.keyPressed();
-}
-
-void checkBtns() {
-  // if (!v.hasVoted && intro.done && (lowBtn.clicked || highBtn.clicked)) {
-  //   if (lowBtn.clicked) {
-  //     v.vote = false;
-  //     v.hasVoted = true;
-  //   } else if (highBtn.clicked) {
-  //     v.vote = true;
-  //     v.hasVoted = true;
-  //   }
-
-  //   if (v.hasVoted) {
-  //     check();
-  //   }
-  // }
 }
 
 // Should be called onlly when the number of accounts is equal to 0
