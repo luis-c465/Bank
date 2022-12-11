@@ -94,7 +94,7 @@ public class AccountViewer extends Obj {
       textFont(a.nunito_small);
       fill(warn_c);
       textAlign(CORNERS);
-      text("There is too many accounts, there can only be a max 9 accounts", id_input_x, id_warn_y + 20);
+      text("Maximum 9 accounts can be created", id_input_x, id_warn_y + 20);
       pop();
     }
 
@@ -156,6 +156,7 @@ public class AccountViewer extends Obj {
     }
 
     textFont(a.nunito_large);
+    textSize(40);
     text(
       "$" + String.format("%,.2f", v.curAcc.amount),
       all_x,
