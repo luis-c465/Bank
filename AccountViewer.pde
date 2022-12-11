@@ -5,6 +5,7 @@
 public class AccountViewer extends Obj {
   public boolean sameId = false;
   public boolean tooManyAccounts = false;
+  public boolean invalidBalance = false;
 
   public static final int img_size = 200;
   public static final int padding = 20;
@@ -22,6 +23,9 @@ public class AccountViewer extends Obj {
   public int amount_input_h = 100;
   public int amount_input_w = 300;
 
+  public String amount_warn_txt = "";
+  public int amount_warn_y = amount_input_y + amount_input_h + gap;
+
   // * Account creation input varaibles
   public int name_input_x = name_x + padding;
   public int name_input_w = 1000 - name_x - padding * 2;
@@ -31,6 +35,9 @@ public class AccountViewer extends Obj {
   public int balance_input_y = amount_y + 0;
   public int balance_input_h = gap*2;
   public int balance_input_w = 1000 - all_x - padding;
+
+  public int balance_warn_y = balance_input_y + balance_input_h + gap - 10;
+  public int balance_warn_x = balance_input_x + 200;
 
   public int id_input_x = all_x;
   public int id_input_y = balance_input_y + balance_input_h + gap;
@@ -80,23 +87,25 @@ public class AccountViewer extends Obj {
     imageMode(CORNERS);
     image(a.def, all_x, padding, all_x + 200, padding + 200);
 
+    push();
+
+    textFont(a.nunito_small);
+    textSize(20);
+    fill(warn_c);
+    textAlign(CORNERS);
     if (sameId) {
-      push();
-      textFont(a.nunito_small);
-      fill(warn_c);
-      textAlign(CORNERS);
       text("That user id already exists", id_input_x, id_warn_y);
-      pop();
     }
 
     if (tooManyAccounts) {
-      push();
-      textFont(a.nunito_small);
-      fill(warn_c);
-      textAlign(CORNERS);
       text("Maximum 9 accounts can be created", id_input_x, id_warn_y + 20);
-      pop();
     }
+
+    if (invalidBalance) {
+      text("The input balance is not a number", balance_warn_x, balance_warn_y);
+    }
+
+    pop();
 
     amount.hide();
 
@@ -163,6 +172,13 @@ public class AccountViewer extends Obj {
       amount_y
     );
 
+    push();
+    textSize(20);
+    fill(warn_c);
+    text(amount_warn_txt, all_x, amount_warn_y);
+    pop();
+
+
     fill(255);
 
     // * Display the users id
@@ -205,7 +221,6 @@ public class AccountViewer extends Obj {
       .setCaptionLabel("Withdraw/Deposit")
       .setLabelVisible(true)
       .setColorCaptionLabel(#ffffff)
-      .setInputFilter(1)
       .hide();
       ;
 
@@ -235,7 +250,6 @@ public class AccountViewer extends Obj {
       .setCaptionLabel("Balance")
       .setLabelVisible(true)
       .setColorCaptionLabel(#ffffff)
-      .setInputFilter(1)
       .hide();
       ;
     id = v.cp5.addTextfield("id")
@@ -270,22 +284,44 @@ public class AccountViewer extends Obj {
   }
 
   private void checkNewAccBtns() {
+    boolean err = false;
+
     if (confirmNewAccBtn.clicked) {
       // Check that there adding one more account will not make the accounts array list greater than 9
       if ((v.accounts.size() + 1) > 9) {
         tooManyAccounts = true;
-        return;
+        err = true;
+      } else {
+        tooManyAccounts = false;
       }
 
-      // also check that the account does not have the same id
+      // also check that the account does not have the same id as an account already in the list
       if (accIdAlreadyDone()) {
         sameId = true;
+        err = true;
+      } else {
+        sameId = false;
+      }
+
+      // Now check that the input amount is a valid number
+      double amo;
+      try {
+        amo = Double.parseDouble(balance.getText());
+      } catch (Exception e) {
+        invalidBalance = true;
+
+        return;
+      }
+      invalidBalance = false;
+
+      if (err) {
         return;
       }
 
-      // else
-      double am = Double.parseDouble("0" + balance.getText());
-      Account acc = new Account(name.getText(), am, id.getText());
+      // The amount input is good so hide the warn txt
+
+      // The new account is valid so add it to the list!
+      Account acc = new Account(name.getText(), amo, id.getText());
       v.accounts.add(acc);
     }
   }
@@ -298,24 +334,41 @@ public class AccountViewer extends Obj {
       v.curAcc.frozen = !v.curAcc.frozen;
     }
 
-    if (v.curAcc.frozen) return;
-
-    if (depositBtn.clicked) {
-      double amo = Double.parseDouble("0" + amount.getText());
-      v.curAcc.amount += amo;
-      amount.setText("");
-    } else if (withdrawBtn.clicked) {
-      double amo = Double.parseDouble("0" + amount.getText());
-      if (amo > v.curAcc.amount) {
-        // Show an error msg
-      } else {
-        v.curAcc.amount -= amo;
-        amount.setText("");
-      }
-    } else if (deleteBtn.clicked) {
+    if (deleteBtn.clicked) {
       // Delete the account
       v.accounts.remove(v.curAccIndex);
       v.curAcc = null;
+    }
+
+    if (!depositBtn.clicked && !withdrawBtn.clicked) {
+      return;
+    } else if (v.curAcc.frozen) {
+      amount_warn_txt = "You cannot deposit/withdraw when the account is frozen";
+      return;
+    }
+
+    double amo;
+    try {
+      amo = Double.parseDouble("0" + amount.getText());
+    } catch (Exception e) {
+      amount_warn_txt = "Not a valid number!";
+
+      return;
+    }
+
+
+    if (depositBtn.clicked) {
+      v.curAcc.amount += amo;
+      amount.setText("");
+      amount_warn_txt = "";
+    } else if (withdrawBtn.clicked) {
+      if (amo > v.curAcc.amount) {
+        amount_warn_txt = "You cannot withdraw an account into the negetive!";
+      } else {
+        v.curAcc.amount -= amo;
+        amount.setText("");
+        amount_warn_txt = "";
+      }
     }
   }
 

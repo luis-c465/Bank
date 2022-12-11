@@ -30,8 +30,9 @@ public class AccountDrawer extends Obj {
     textAlign(LEFT, TOP);
     text(acc.name, img_w + p, y + p);
 
+    textSize(18);
     text(
-      "$" + acc.amount + (acc.frozen ? " FROZEN" : ""),
+      "$" + String.format("%,.2f", acc.amount) + (acc.frozen ? " FROZEN" : ""),
        name_x,
       y + p + bottom
      );
