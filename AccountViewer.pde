@@ -85,7 +85,7 @@ public class AccountViewer extends Obj {
       textFont(a.nunito_small);
       fill(warn_c);
       textAlign(CORNERS);
-      text("The input id is the same", id_input_x, id_warn_y);
+      text("That user id already exists", id_input_x, id_warn_y);
       pop();
     }
 
