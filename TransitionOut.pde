@@ -7,6 +7,6 @@ public class TransitionOut extends Transition {
     opacity = starting_opacity;
     end_opacity = 0;
     up = false;
-    step = 4;
+    step = 8;
   }
 }
