@@ -14,5 +14,5 @@ public class Table extends Obj {
     rect(0, start, v.w, v.h);
   }
 
-  public Table(Assets a, Variables v) { super(a, v); }
+  public Table(Snap app) { super(app); }
 }

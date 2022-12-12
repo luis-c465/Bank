@@ -11,84 +11,34 @@ public class Assets {
   public PImage enter;
   public PImage space;
 
-  // * SHAPES
-  public PShape plus;
-  public PShape minus;
-  public PShape snowflake;
-  public PShape trash;
-  public PShape userPlus;
-
-  // * MISC
-  public PImage signIn;
+  // * MISCELANEOUS
   public PImage bg;
-
-  // * ACCOUNTS
-  public PImage sam;
-  public PImage red;
-  public PImage blue;
-  public PImage green;
-  public PImage yellow;
-  public PImage black;
-  public PImage def;
+  public PImage intro;
 
   // * FONTS
   public PFont nunito;
-  public PFont nunito_small;
-  public PFont nunito_large;
 
-  public void _setup(PApplet p) {
-    this.p = p;
+  public void setup(Snap app) {
+    this.p = app;
 
     // * LOAD BUTTONS
     enter = loadImage("btn/enter.png");
     space = loadImage("btn/space.png");
     space.resize(200,100);
 
-    // * LOAD SHAPES
-    plus = loadShape("plus.svg");
-    minus = loadShape("minus.svg");
-    snowflake = loadShape("snowflake.svg");
-    trash = loadShape("trash.svg");
-    userPlus = loadShape("user-plus.svg");
-
     // * LOAD MISC
-    signIn = loadImage("sign-in.png");
     bg = loadImage("bg.jpg");
-
-    // * LOAD ACCOUNTS
-    sam = loadImage("accounts/sam.png");
-    red = loadImage("accounts/red.png");
-    blue = loadImage("accounts/blue.png");
-    green = loadImage("accounts/green.png");
-    yellow = loadImage("accounts/yellow.png");
-    black = loadImage("accounts/black.png");
-    def = loadImage("accounts/default.png");
+    intro = loadImage("bg.jpg");
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
-
-    nunito_small = createFont("fonts/Nunito.ttf", 32);
-
-    nunito_large = createFont("fonts/Nunito.ttf", 96);
 
     textFont(nunito);
   }
 
   /**
-   * Saftely dynamically gets an asset with the given name
-  */
-  public PImage getAsset(Account acc) {
-    PImage img = getAsset(acc.id.toLowerCase());
-    if (img != null) {
-      return img;
-    } else {
-      return def;
-    }
-  }
-
-  /**
-   * Saftely dynamically gets an asset with the given name
-  */
+   * Saftely and dynamically get an asset with the given name
+   */
   public PImage getAsset(String name) {
     try {
       return (PImage) get(name);

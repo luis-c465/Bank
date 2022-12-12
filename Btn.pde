@@ -51,6 +51,11 @@ public abstract class Btn extends Obj {
 
 
   protected void _update() {
+    clicked = false;
+    if (mousePressed) {
+      checkClick();
+    }
+
     rectMode(CENTER);
     shapeMode(CENTER);
 
@@ -69,15 +74,13 @@ public abstract class Btn extends Obj {
       shapeMode(CENTER);
       shape(icon, icon_x, icon_y, icon_size, icon_size);
     }
-
-    clicked = false;
   }
 
   protected void updateVariables() {
     // Does nothing
   }
 
-  public void mousePressed() {
+  private void checkClick() {
     // Ignore mouse clickes when the game is transitioning!
     if (v.transitioning) return;
 
