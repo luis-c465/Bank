@@ -1,17 +1,6 @@
-public abstract class Btn extends Obj {
+public abstract class Btn extends Clickable {
   protected final int btn_safe = 10;
 
-  protected int x = 500;
-  protected int y = 500;
-
-  int left;
-  int right;
-
-  int top;
-  int bottom;
-
-  protected int w = 150;
-  protected int h = 75;
   protected String txt = "Click me!";
   protected int txt_size = 30;
   protected color c = #fac83c;
@@ -30,14 +19,10 @@ public abstract class Btn extends Obj {
 
   protected int txt_space = 10;
 
-  public boolean clicked = false;
-
   public Btn(Snap app) { super(app); }
 
-  public void setup(){
-    _setup();
-
-    setupCorners();
+  protected void postSetup(){
+    super.postSetup();
     setupIcon();
   }
 
@@ -51,11 +36,6 @@ public abstract class Btn extends Obj {
 
 
   protected void _update() {
-    clicked = false;
-    if (mousePressed) {
-      checkClick();
-    }
-
     rectMode(CENTER);
     shapeMode(CENTER);
 
@@ -74,38 +54,6 @@ public abstract class Btn extends Obj {
       shapeMode(CENTER);
       shape(icon, icon_x, icon_y, icon_size, icon_size);
     }
-  }
-
-  protected void updateVariables() {
-    // Does nothing
-  }
-
-  private void checkClick() {
-    // Ignore mouse clickes when the game is transitioning!
-    if (v.transitioning) return;
-
-    if (mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top) {
-      clicked = true;
-    } else {
-      clicked = false;
-    }
-  }
-
-  protected void setupCorners() {
-    left = x - w / 2;
-    bottom = y - h / 2;
-
-    right = x + w;
-    top = y + w;
-  }
-
-  /**
-   * Updates the x and y variables by converting them from corner values to
-   * their corresponding center values
-  */
-  protected void cornerToCenter() {
-    x += w / 2;
-    y -= h / 2;
   }
 
   protected void setupIcon() {

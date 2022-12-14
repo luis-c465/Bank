@@ -14,10 +14,23 @@ public abstract class Obj {
 
   public void setup() {
     // Do sone setup
+    preSetup();
+
     _setup();
+
+    postSetup();
   }
 
-  public void _setup() {
+
+  protected void preSetup() {
+    // Should be used for super classes to setup variables
+  }
+
+  protected void postSetup() {
+    // Should be used for super classes to ovveride variables
+  }
+
+  protected void _setup() {
     // Does nothing
     // Should be overiden by a super class and called in the setup method if needed
   }
