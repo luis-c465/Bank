@@ -18,24 +18,24 @@ public class Intro extends Obj {
   }
 
   private void transition() {
-    if (!transitionIn.done) {
-        transitionIn.update();
+    if (!v.transIn.done) {
+        v.transIn.update();
 
-        if (transitionIn.opacity > 255) {
+        if (v.transIn.opacity > 255) {
           show = false;
         }
       }
     else {
-      if (!transitionOut.done) {
-        transitionOut.update();
+      if (!v.transOut.done) {
+        v.transOut.update();
       }
     }
 
-    if (transitionIn.done && transitionOut.done) {
+    if (v.transIn.done && v.transOut.done) {
       trans = false;
       done = true;
-      transitionIn.reset();
-      transitionOut.reset();
+      v.transIn.reset();
+      v.transOut.reset();
     }
   }
 

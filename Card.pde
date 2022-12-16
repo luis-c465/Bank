@@ -23,7 +23,7 @@ public class Card implements Comparable<Card> {
     col = getColor(s);
 
     // Assign a character
-    if (num == 14) {
+    if (num == 1) {
       c = "a";
     } else if (num >= 2 && num <= 10) {
       c = "" + num;

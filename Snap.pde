@@ -8,9 +8,6 @@ import controlP5.*;
 Assets a = new Assets();
 Variables v = new Variables();
 
-TransitionIn transitionIn = new TransitionIn(this);
-TransitionOut transitionOut = new TransitionOut(this);
-
 // * Game classes
 
 void setup() {
@@ -41,5 +38,4 @@ void procSet() {
 
   // Default fill color is black
   fill(0);
-
 }
