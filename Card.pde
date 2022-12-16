@@ -35,7 +35,22 @@ public class Card implements Comparable<Card> {
       c = "k";
     }
 
-    this.s = "" + c + " of " + s.name();
+    this.s = "" + c.toUpperCase() + getSuit();
+  }
+
+  public String getSuit() {
+    switch(suit) {
+      case CLUB:
+        return "♣";
+      case SPADE:
+        return "♠";
+      case HEART:
+        return "♥";
+      case DIAMOND:
+        return "♦";
+      default:
+        return "□";
+    }
   }
 
   @Override
