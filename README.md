@@ -33,15 +33,15 @@ Snap Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Project Requirements
 
-Due: **Sun Jan 22 2023**
+Due: **Sun, Jan 8 2023**
 
 - 2 Players per game
 - 7 cards in a deck, start with 5 (12 total card, 4 per location)
-- Cards have values of 1-12
+- Cards have values of at least 1-9
 - 3 Locations
 - 4 cards can be placed at each location
 - Highest sum of cards wins location
 - 1 card played on the first turn, 2 cards on the second turn, etc..
 - 1 card randomly drawn each turn
-- Ends after all cards played
+- Ends after at least 3 rounds (suggested 5 rounds)
 - Can exit whenever
