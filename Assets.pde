@@ -7,7 +7,26 @@
 public class Assets {
   public PApplet p;
 
+  // * BUTTONS
+  public PImage enter;
+  public PImage space;
+
+  // * SHAPES
+  public PShape play;
+
+  // * MISCELANEOUS
+  public PImage bg;
+  public PImage intro;
+
+  // * FONTS
+  public PFont nunito;
+
+  // !Smaller versions of fonts are loaded because controlP5 does not give a method to set the font size of the input text
+  public PFont nunito_small;
+
+
   // * Cards
+  /* #region Cards */
   public String[] name = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k", "a"};
   public String[] col = new String[] { "r", "b", "g", "y"};
 
@@ -71,17 +90,7 @@ public class Assets {
   public PImage yq;
   public PImage yk;
   public PImage ya;
-
-  // * BUTTONS
-  public PImage enter;
-  public PImage space;
-
-  // * MISCELANEOUS
-  public PImage bg;
-  public PImage intro;
-
-  // * FONTS
-  public PFont nunito;
+  /* #endregion */
 
   public void setup(Snap app) {
     this.p = app;
@@ -91,12 +100,16 @@ public class Assets {
     space = loadImage("btn/space.png");
     space.resize(200,100);
 
+    // * LOAD SHAPES
+    play = loadShape("play.svg");
+
     // * LOAD MISC
     bg = loadImage("bg.jpg");
     intro = loadImage("bg.jpg");
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
+    nunito_small = createFont("fonts/Nunito.ttf", 32);
 
     textFont(nunito);
 

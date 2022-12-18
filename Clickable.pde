@@ -20,7 +20,12 @@ public abstract class Clickable extends Obj {
   protected int w = 150;
   protected int h = 75;
 
+  // If the user has clicked on the button
+  // Will only be true on the first update when the user first clicks on the button
   public boolean clicked = false;
+
+  // If the user is currently clicking on the button
+  public boolean clicking = false;
 
   protected void postSetup() {
     updateCorners();
@@ -34,19 +39,24 @@ public abstract class Clickable extends Obj {
     }
 
     // Check if the obj was clicked
-    if (mousePressed) {
-      checkClick();
-    }
+    checkClick();
   }
 
   private void checkClick() {
-    if (!shouldClick()) return;
-
-    if (mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top) {
-      clicked = true;
-    } else {
+    if (mousePressed && clicking) {
       clicked = false;
+      return;
+    } else {
+      clicking = false;
     }
+
+    if (!shouldClick() || !mousePressed) {
+      clicked = false;
+      return;
+    }
+
+    clicked = mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top;
+    clicking = clicked;
   }
 
   protected void updateCorners() {
@@ -59,7 +69,7 @@ public abstract class Clickable extends Obj {
 
 
   protected boolean shouldClick() {
-    return v.transitioning;
+    return !m.transitioning;
   }
 
   /**

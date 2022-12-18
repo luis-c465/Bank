@@ -7,6 +7,7 @@
 public class Player extends CardHolder {
   public Deck deck;
   public int num = -1;
+  public String name = "!!GUH!!";
 
   public Player(Snap app) {
     super(app);

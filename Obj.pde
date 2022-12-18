@@ -3,13 +3,11 @@
  */
 public abstract class Obj {
   protected Assets a;
-  protected Variables v;
-  protected Snap app;
+  protected Snap m;
 
   public Obj(Snap app) {
     this.a = app.a;
-    this.v = app.v;
-    this.app = app;
+    this.m = app;
   }
 
   public void setup() {

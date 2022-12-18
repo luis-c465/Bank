@@ -34,7 +34,7 @@ public class Deck extends CardHolder {
   public void setup() {
     // x_hand = x_deck;
 
-    // int dx = v.cw - x_deck ;
+    // int dx = m.cw - x_deck ;
     // hand_x_step = dx / flip_cycles_end;
 
     // int dy = Player.y_hand - y_deck;
@@ -42,16 +42,16 @@ public class Deck extends CardHolder {
   }
 
   public void _update() {
-    // if (v.nextRound) {
+    // if (m.nextRound) {
     //   hardNextRound();
     // }
 
     // drawHand();
     // drawDeck();
 
-    // if (v.hasVoted && !v.isFlippingHand) {
-    //   v.flip = true;
-    //   v.isFlippingHand = true;
+    // if (m.hasVoted && !m.isFlippingHand) {
+    //   m.flip = true;
+    //   m.isFlippingHand = true;
     // }
   }
 
@@ -67,7 +67,7 @@ public class Deck extends CardHolder {
   }
 
   protected void drawHand() {
-    // if (!v.flip) {
+    // if (!m.flip) {
     //   image(a.back, x_hand, y_hand, Card.w, Card.h);
     // } else {
     //   // guh flip the thing
@@ -97,13 +97,13 @@ public class Deck extends CardHolder {
   */
   private void nextRound() {
     // if (flipCycles_back != flip_cycles_end) {
-    //   v.isFlippingHandBack = true;
+    //   m.isFlippingHandBack = true;
 
     //   flipCycles_back++;
     //   y_hand += hand_y_step;
     // } else {
-    //   v.isFlippingHandBack = false;
-    //   v.nextRound = true;
+    //   m.isFlippingHandBack = false;
+    //   m.nextRound = true;
     // }
   }
 
@@ -117,13 +117,13 @@ public class Deck extends CardHolder {
     // hand = cards.remove();
     // updateHandImg();
 
-    // v.flip = false;
-    // v.isFlippingHand = false;
-    // v.isFlippingHandBack = false;
+    // m.flip = false;
+    // m.isFlippingHand = false;
+    // m.isFlippingHandBack = false;
 
-    // v.hasVoted = false;
+    // m.hasVoted = false;
 
-    // v.nextRound = false;
+    // m.nextRound = false;
 
     // x_hand = x_deck;
     // y_hand = y_deck;

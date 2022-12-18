@@ -11,7 +11,7 @@ public class Table extends Obj {
 
     fill(colur);
     noStroke();
-    rect(0, start, v.w, v.h);
+    rect(0, start, m.w, m.h);
   }
 
   public Table(Snap app) { super(app); }

@@ -6,7 +6,6 @@
 public class TransitionIn extends Transition {
   public TransitionIn(Snap app) {
     super(app);
-    v.transIn = this;
 
     starting_opacity = 0;
     opacity = starting_opacity;

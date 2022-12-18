@@ -1,49 +1,49 @@
-public class Intro extends Obj {
-  public boolean show = true;
-  public boolean trans = false;
-  public boolean done = false;
+// public class Intro extends Obj {
+//   public boolean show = true;
+//   public boolean trans = false;
+//   public boolean done = false;
 
 
-  public void _update() {
-    if (!show) {
-      if (trans) { transition(); }
+//   public void _update() {
+//     if (!show) {
+//       if (trans) { transition(); }
 
-      return;
-    }
+//       return;
+//     }
 
-    imageMode(CORNERS);
-    image(a.intro, 0, 0, v.w, v.h);
+//     imageMode(CORNERS);
+//     image(a.intro, 0, 0, m.w, m.h);
 
-    if (trans) { transition(); }
-  }
+//     if (trans) { transition(); }
+//   }
 
-  private void transition() {
-    if (!v.transIn.done) {
-        v.transIn.update();
+//   private void transition() {
+//     if (!m.transIn.done) {
+//         m.transIn.update();
 
-        if (v.transIn.opacity > 255) {
-          show = false;
-        }
-      }
-    else {
-      if (!v.transOut.done) {
-        v.transOut.update();
-      }
-    }
+//         if (m.transIn.opacity > 255) {
+//           show = false;
+//         }
+//       }
+//     else {
+//       if (!m.transOut.done) {
+//         m.transOut.update();
+//       }
+//     }
 
-    if (v.transIn.done && v.transOut.done) {
-      trans = false;
-      done = true;
-      v.transIn.reset();
-      v.transOut.reset();
-    }
-  }
+//     if (m.transIn.done && m.transOut.done) {
+//       trans = false;
+//       done = true;
+//       m.transIn.reset();
+//       m.transOut.reset();
+//     }
+//   }
 
-  public void keyPressed() {
-    if (!done && keyCode == ENTER) {
-      trans = true;
-    }
-  }
+//   public void keyPressed() {
+//     if (!done && keyCode == ENTER) {
+//       trans = true;
+//     }
+//   }
 
-  public Intro(Snap app) { super(app); }
-}
+//   public Intro(Snap app) { super(app); }
+// }
