@@ -8,6 +8,8 @@ public abstract class Transitionable extends Obj {
   public boolean middle = false;
   public boolean done = false;
 
+  public boolean paused = false;
+
   protected void preUpdate() {
     super.preUpdate();
 
@@ -25,6 +27,8 @@ public abstract class Transitionable extends Obj {
   }
 
   private void transition() {
+    if (paused) return;
+
     if (!m.transIn.done) {
         m.transIn.update();
 
@@ -53,7 +57,7 @@ public abstract class Transitionable extends Obj {
 
   // Method whitch inheriting classes should implement
   // for cleanup
-  abstract protected void onTransOutBegin();
+  protected void onTransOutBegin() {}
 
   public Transitionable(Snap app) { super(app); }
 }

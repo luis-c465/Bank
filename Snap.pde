@@ -13,6 +13,9 @@ public static final int cw = 500;
 
 // * VARIABLES
 public boolean transitioning = false;
+public boolean turnOver = true;
+public boolean roundOver = false;
+public int curTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
 
 // * COLORS
 public static final color bg = #1e293b;
@@ -34,6 +37,8 @@ public Dealer dealer = new Dealer();
 public Player p1 = new Player(this);
 public Player p2 = new Player(this);
 
+public Turn turn = new Turn(this);
+
 void setup() {
   size(1000, 1000);
   procSet();
@@ -47,6 +52,8 @@ void setup() {
   p1.setup();
   p2.setup();
   startUp.setup();
+
+  turn.setup();
 }
 
 void draw() {
@@ -54,20 +61,28 @@ void draw() {
 
   // Do game updates here!
   startUp.update();
+
+  if (!startUp.done) return;
+
+  if (turnOver) {
+    turn.update();
+  } else {
+    // guh
+  }
 }
 
 /**
  * Sets th default settings for drawing with processing
  */
 void procSet() {
-  background(255);
+  background(0);
   shapeMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
   noStroke();
 
-  // Default fill color is black
-  fill(0);
+  // Default fill color is white
+  fill(255);
 }
 
 void dealCards() {
