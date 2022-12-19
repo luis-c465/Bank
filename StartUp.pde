@@ -2,9 +2,7 @@
  * Class whitch displays the startup screen
  * Shows 2 inputs for both players names
 */
-public class StartUp extends Obj {
-  public boolean done = false;
-
+public class StartUp extends Transitionable {
   private Textfield p1Name;
   private Textfield p2Name;
   private StartGameBtn startGameBtn;
@@ -81,10 +79,20 @@ public class StartUp extends Obj {
   // Check is the button was clicked
   private void checkBtns() {
     if(startGameBtn.clicked) {
-      // Yeah clicked! :)
       // Start transitioning into the game
-      println("clicked!");
+      println("Starting game!");
+
+      m.p1.name = p1Name.getText();
+      m.p2.name = p2Name.getText();
+
+      // Begin transitioning!
+      trans = true;
     }
+  }
+
+  protected void onTransOutBegin() {
+    p1Name.remove();
+    p2Name.remove();
   }
 
   private  class StartGameBtn extends Btn {

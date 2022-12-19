@@ -4,6 +4,7 @@
 public abstract class Obj {
   protected Assets a;
   protected Snap m;
+  protected boolean shouldUpdate = true;
 
   public Obj(Snap app) {
     this.a = app.a;
@@ -40,7 +41,9 @@ public abstract class Obj {
   public void update() {
     preUpdate();
 
-    _update();
+    if (shouldUpdate) {
+      _update();
+    }
 
     postUpdate();
   }
