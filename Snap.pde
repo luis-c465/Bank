@@ -71,7 +71,6 @@ void draw() {
 
   if (turnOver) return;
 
-  println(curTurn);
   if (curTurn == 1) {
     p1.update();
   } else if (curTurn == 2) {
@@ -96,13 +95,18 @@ void procSet() {
 }
 
 void dealCards() {
-  dealer.deal(p1,5);
-  dealer.deal(p1.deck,7);
+  dealer.deal(p1.hand, 5);
+  dealer.deal(p1.deck, 7);
 
-  dealer.deal(p2,5);
-  dealer.deal(p2.deck,7);
+  dealer.deal(p2.hand, 5);
+  dealer.deal(p2.deck, 7);
 
   // Print out the cards of the player for debuggging
+  printCards();
+}
+
+// Print out the cards of the player for debuggging
+void printCards() {
   println("Player 1: \n" + p1 + "\n\n");
   println("Player 2: \n" + p2 + "\n\n");
 }

@@ -8,6 +8,4 @@ public abstract class CardHolder extends Obj {
   public String toString() {
     return cards.toString();
   }
-
-  abstract protected void _update();
 }

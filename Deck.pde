@@ -16,10 +16,6 @@ public class Deck extends CardHolder {
     super(app);
   }
 
-  public void setup() {
-
-  }
-
   protected void _update() {
     textAlign(CORNERS);
     textSize(32);

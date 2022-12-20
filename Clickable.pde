@@ -26,6 +26,7 @@ public abstract class Clickable extends Obj {
 
   // If the user is currently clicking on the button
   public boolean clicking = false;
+  public boolean hovered = false;
 
   protected void postSetup() {
     updateCorners();
@@ -39,6 +40,7 @@ public abstract class Clickable extends Obj {
     }
 
     // Check if the obj was clicked
+    checkHover();
     checkClick();
   }
 
@@ -55,16 +57,20 @@ public abstract class Clickable extends Obj {
       return;
     }
 
-    clicked = mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top;
-    clicking = clicked;
+    clicked = hovered;
+    clicking = hovered;
+  }
+
+  protected void checkHover() {
+    hovered = mouseX >= left && mouseX <= right && mouseY >= bottom && mouseY <= top;
   }
 
   protected void updateCorners() {
     left = x - w / 2;
     bottom = y - h / 2;
 
-    right = x + w;
-    top = y + w;
+    right = x + w / 2;
+    top = y + h / 2;
   }
 
 
