@@ -41,6 +41,17 @@ public class Location extends Clickable {
       text("" + p2Scor, x, y_score_bellow);
       text("" + p1Scor, x, y_score_above);
     }
+
+    if (clicked && m.curCard != null) {
+      // handle adding the card to that location based on the current player
+      if (curTurn == 1) {
+        p1.add(curCard);
+        m.curCard = null;
+      } else if (curTurn == 2) {
+        p2.add(curCard);
+        m.curCard = null;
+      }
+    }
   }
 
   protected void preUpdate() {

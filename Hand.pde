@@ -19,6 +19,10 @@ public class Hand extends CardHolder {
 
     for(ClickableCard c : drawCards) {
       c.update();
+
+      if (c.clicked) {
+        m.curCard = c.c;
+      }
     }
   }
 
