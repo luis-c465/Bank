@@ -1,10 +1,10 @@
 public class Deck extends CardHolder {
   // * DRAWING CONSTANTS
   public static final int x_deck = 20;
-  public static final int y_deck = 0;
+  public int y_deck = m.h - Card.h;
 
   public static final int x_txt = 20;
-  public int y_txt = y_deck + Card.h + 20;
+  public int y_txt = y_deck - 30;
 
   // int x_hand;
   // int y_hand = 500;
