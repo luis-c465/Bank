@@ -21,7 +21,7 @@ public class Hand extends CardHolder {
       c.update();
 
       if (c.clicked) {
-        m.curCard = c.c;
+        m.curCardIndex = c.i;
       }
     }
   }
@@ -37,7 +37,7 @@ public class Hand extends CardHolder {
         addCard(i);
       }
     } else if (drawCards.size() > cards.size()) {
-      for (int i=0; i<drawCards.size(); i++) {
+      for (int i=0; i<cards.size(); i++) {
         ClickableCard cc = drawCards.get(i);
         Card c = cards.get(i);
 
@@ -47,10 +47,17 @@ public class Hand extends CardHolder {
         }
       }
 
+      if (drawCards.size() > cards.size()) {
+        // Trims the draw cards array to the size of the cards array
+        // ? https://stackoverflow.com/a/22802295
+        drawCards.subList(cards.size(), drawCards.size()).clear();
+      }
+
       // Cursed but who cares
       for (int i=0; i<drawCards.size(); i++) {
         ClickableCard cc = drawCards.get(i);
         cc.i = i;
+        cc.recalc();
       }
     } else {
       // Do nothing lol
@@ -76,6 +83,10 @@ public class Hand extends CardHolder {
       min_y = y - 50;
 
       canMove = true;
+    }
+
+    public void recalc() {
+      x = hand.x_cards_start + cards_space * i + w/2;
     }
 
     protected void updateCorners() {

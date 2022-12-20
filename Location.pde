@@ -42,14 +42,14 @@ public class Location extends Clickable {
       text("" + p1Scor, x, y_score_above);
     }
 
-    if (clicked && m.curCard != null) {
+    if (clicked && m.curCardIndex >= 0) {
       // handle adding the card to that location based on the current player
       if (curTurn == 1) {
-        p1.add(curCard);
-        m.curCard = null;
+        p1.add(m.p1.hand.cards.remove(curCardIndex));
+        m.curCardIndex = -1;
       } else if (curTurn == 2) {
-        p2.add(curCard);
-        m.curCard = null;
+        p2.add(m.p2.hand.cards.remove(curCardIndex));
+        m.curCardIndex = -1;
       }
     }
   }
