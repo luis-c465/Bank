@@ -39,6 +39,10 @@ public Player p2 = new Player(this);
 
 public Turn turn = new Turn(this);
 
+public Location l1 = new Location(this, -1);
+public Location l2 = new Location(this, 0);
+public Location l3 = new Location(this, 1);
+
 void setup() {
   size(1000, 1000);
   procSet();
@@ -52,6 +56,10 @@ void setup() {
   p1.setup();
   p2.setup();
   startUp.setup();
+
+  l1.setup();
+  l2.setup();
+  l3.setup();
 
   turn.setup();
 }
@@ -78,6 +86,10 @@ void draw() {
   } else {
     println("aaaaaaaaaa wtf happened to the turn?");
   }
+
+  l1.update();
+  l2.update();
+  l3.update();
 }
 
 /**

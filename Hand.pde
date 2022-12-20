@@ -76,12 +76,12 @@ public class Hand extends CardHolder {
 
     protected void updateCorners() {
       super.updateCorners();
-      left += Hand.overlap * (i);
+      right -= Hand.overlap * 2;
     }
 
     protected void _update() {
-      imageMode(CORNER);
-      image(a.getCard(c), x, y - h / 2, Card.w, Card.h);
+      imageMode(CENTER);
+      image(a.getCard(c), x, y, Card.w, Card.h);
 
       if (hovered) {
         if (y > min_y) {
