@@ -59,6 +59,7 @@ public class StartUp extends Transitionable {
     if (done) {
       p1Name.hide();
       p2Name.hide();
+      paused = true;
       return;
     }
 

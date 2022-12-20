@@ -10,6 +10,13 @@ public abstract class Transitionable extends Obj {
 
   public boolean paused = false;
 
+  protected void postSetup() {
+    super.postSetup();
+
+    m.transIn.reset();
+    m.transOut.reset();
+  }
+
   protected void preUpdate() {
     super.preUpdate();
 

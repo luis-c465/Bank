@@ -1,4 +1,4 @@
-public class Turn extends Transitionable {
+public class Turn extends Obj {
   public static final int x = Snap.cw;
   public static final int y = Snap.ch;
   public String pName = "NULL";
@@ -6,15 +6,11 @@ public class Turn extends Transitionable {
   public EnterBtn enterBtn;
 
   protected void _setup() {
-    trans = true;
     enterBtn = new EnterBtn(m);
     enterBtn.setup();
-
-    paused = true;
   }
 
   protected void _update() {
-
     background(0);
     updatePlayer();
     textAlign(CENTER);
@@ -22,13 +18,10 @@ public class Turn extends Transitionable {
 
     enterBtn.update();
     if (enterBtn.clicked) {
-      paused = false;
+      m.turnOver = false;
     }
   }
 
-  protected void onTransOutBegin() {
-    paused = true;
-  }
 
   private void updatePlayer() {
     if (m.curTurn == 1) {

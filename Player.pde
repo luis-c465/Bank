@@ -14,8 +14,12 @@ public class Player extends CardHolder {
     deck = new Deck(app);
   }
 
+  protected void _setup() {
+    deck.setup();
+  }
+
   protected void _update() {
-    // guh
+    deck.update();
   }
 
   public String toString() {

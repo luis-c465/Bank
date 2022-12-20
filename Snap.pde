@@ -66,8 +66,18 @@ void draw() {
 
   if (turnOver) {
     turn.update();
+    return;
+  }
+
+  if (turnOver) return;
+
+  println(curTurn);
+  if (curTurn == 1) {
+    p1.update();
+  } else if (curTurn == 2) {
+    p2.update();
   } else {
-    // guh
+    println("aaaaaaaaaa wtf happened to the turn?");
   }
 }
 

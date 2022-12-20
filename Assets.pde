@@ -113,6 +113,7 @@ public class Assets {
 
     textFont(nunito);
 
+    back = loadImage("card/back.jpeg");
     for (String n : name) {
       for (String c : col) {
         try {

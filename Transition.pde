@@ -47,13 +47,13 @@ public abstract class Transition extends Obj {
   */
   protected void _tick() {
     if (up) {
-      if (opacity <= end_opacity) {
+      if (opacity < end_opacity) {
         opacity += step;
       } else {
         done = true;
       }
     } else {
-      if (opacity >= end_opacity) {
+      if (opacity > end_opacity) {
         opacity -= step;
       } else {
         done = true;

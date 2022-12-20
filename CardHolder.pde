@@ -5,5 +5,9 @@ public abstract class CardHolder extends Obj {
     super(app);
   }
 
+  public String toString() {
+    return cards.toString();
+  }
+
   abstract protected void _update();
 }
