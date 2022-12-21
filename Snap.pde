@@ -17,6 +17,8 @@ public boolean turnOver = true;
 public boolean roundOver = false;
 public int curTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
 public int curCardIndex = -1;
+public int curRound = 1;
+public int numTurns = 1;
 
 // * COLORS
 public static final color bg = #1e293b;

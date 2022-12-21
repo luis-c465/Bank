@@ -20,7 +20,9 @@ public class Hand extends CardHolder {
     for(ClickableCard c : drawCards) {
       c.update();
 
-      if (c.clicked) {
+      // Do not let the play more then their current num of turns
+      // TODO: Show an error msg on the screen if they are out of turns
+      if (c.clicked && numTurns >= 1) {
         m.curCardIndex = c.i;
       }
     }
@@ -98,7 +100,7 @@ public class Hand extends CardHolder {
       imageMode(CENTER);
       image(a.getCard(c), x, y, Card.w, Card.h);
 
-      if (hovered) {
+      if (hovered || curCardIndex == i) {
         if (y > min_y) {
           y -= y_step;
         }
