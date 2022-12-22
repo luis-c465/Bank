@@ -18,6 +18,10 @@ public boolean roundOver = false;
 public int startTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
 public int curTurn = startTurn;
 public int curCardIndex = -1;
+
+public boolean gameOver = false;
+// The highest round the game can reach before ending
+public int maxRound = 6;
 public int curRound = 1;
 public int numTurns = 1;
 
@@ -75,6 +79,11 @@ void setup() {
 void draw() {
   background(bg);
 
+  if (gameOver) {
+    // show a game over screen
+    return;
+  }
+
   // Do game updates here!
   startUp.update();
 
@@ -106,6 +115,10 @@ void draw() {
 
     if (curTurn == startTurn) {
       curRound++;
+
+      if (curRound >= maxRound) {
+        gameOver = true;
+      }
     }
     numTurns = curRound;
   }
