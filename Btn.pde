@@ -12,6 +12,7 @@ public abstract class Btn extends Clickable {
   protected int icon_space = 45;
   protected int icon_size = 50;
 
+  // ! Calculated in setup
   protected int icon_x;
   protected int icon_y;
 
@@ -30,7 +31,7 @@ public abstract class Btn extends Clickable {
    * Should be overriden by inheriting classes if needed
    * Icon should be setup here
   */
-  public void _setup() {
+  protected void _setup() {
 
   }
 

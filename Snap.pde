@@ -15,7 +15,8 @@ public static final int cw = 500;
 public boolean transitioning = false;
 public boolean turnOver = true;
 public boolean roundOver = false;
-public int curTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
+public int startTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
+public int curTurn = startTurn;
 public int curCardIndex = -1;
 public int curRound = 1;
 public int numTurns = 1;
@@ -46,6 +47,8 @@ public Location l1 = new Location(this, -1);
 public Location l2 = new Location(this, 0);
 public Location l3 = new Location(this, 1);
 
+public SkipBtn skipBtn = new SkipBtn(this);
+
 void setup() {
   size(1000, 1000);
   procSet();
@@ -63,6 +66,8 @@ void setup() {
   l1.setup();
   l2.setup();
   l3.setup();
+
+  skipBtn.setup();
 
   turn.setup();
 }
@@ -93,6 +98,17 @@ void draw() {
   l1.update();
   l2.update();
   l3.update();
+
+  skipBtn.update();
+  if (skipBtn.clicked) {
+    turnOver = true;
+    curTurn = curTurn == 1 ? 2 : 1;
+
+    if (curTurn == startTurn) {
+      curRound++;
+    }
+    numTurns = curRound;
+  }
 }
 
 /**

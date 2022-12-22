@@ -13,6 +13,7 @@ public class Assets {
 
   // * SHAPES
   public PShape play;
+  public PShape cont;
 
   // * MISCELANEOUS
   public PImage bg;
@@ -102,6 +103,7 @@ public class Assets {
 
     // * LOAD SHAPES
     play = loadShape("play.svg");
+    cont = loadShape("continue.svg");
 
     // * LOAD MISC
     bg = loadImage("bg.jpg");
