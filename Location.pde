@@ -42,7 +42,7 @@ public class Location extends Clickable {
       text("" + p1Scor, x, y_score_above);
     }
 
-    if (clicked && m.curCardIndex >= 0 && curTurn != -1) {
+    if (clicked && m.curCardIndex >= 0 && curTurn != -1 && (p1.size() + p2.size()) < 4) {
       // handle adding the card to that location based on the current player
       if (curTurn == 1) {
         p1.add(m.p1.hand.cards.remove(curCardIndex));
