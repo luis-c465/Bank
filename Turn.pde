@@ -24,6 +24,8 @@ public class Turn extends Obj {
     enterBtn.update();
     if (enterBtn.clicked) {
       m.turnOver = false;
+      enterBtn.clicked = false;
+      enterBtn.clicking = false;
     }
   }
 

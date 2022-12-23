@@ -12,8 +12,15 @@ public abstract class KeyboardBtn extends Clickable {
     imageMode(CENTER);
     image(img, x, y);
 
-    if (!clicked && keyCode == kc) {
-      clicked = true;
+    if (keyCode == kc) {
+      if (!clicked && !clicking) {
+        clicked = true;
+        clicking = true;
+      } else {
+        clicked = false;
+      }
+
+      keyCode = 0;
     }
   }
 

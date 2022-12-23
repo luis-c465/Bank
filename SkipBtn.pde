@@ -6,6 +6,7 @@
 public class SkipBtn extends Btn {
   public int txt_cards_x;
   public int txt_cards_y;
+  public boolean changed_txt = false;
 
   protected void _setup() {
     w = 200;
@@ -41,6 +42,10 @@ public class SkipBtn extends Btn {
 
     // Update the txt
     // and maybe the icon
+    if (!changed_txt && m.numTurns < m.curRound) {
+      txt = "End turn";
+      changed_txt = true;
+    }
   }
 
   public SkipBtn(Snap app) { super(app); }
