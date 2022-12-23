@@ -4,7 +4,7 @@ public class Hand extends CardHolder {
   // * DRAWING CONSTANTS
   public static final int overlap = 20;
   public int cards_space = Card.w - overlap;
-  public int x_cards_start = Snap.cw - (int)(cards_space * 2.5);
+  public int x_cards_start = Snap.cw + (int)(cards_space * 1.5);
   public int y_cards = Snap.h - 20;
 
   public static final int x_txt = Snap.cw;
@@ -17,7 +17,9 @@ public class Hand extends CardHolder {
   protected void _update() {
     updateCards();
 
-    for(ClickableCard c : drawCards) {
+    for (int i = drawCards.size() - 1; i>=0; i--) {
+      ClickableCard c = drawCards.get(i);
+
       c.update();
 
       // Do not let the play more then their current num of turns
@@ -77,7 +79,7 @@ public class Hand extends CardHolder {
     protected void _setup() {
       w = Card.w;
       h = Card.h;
-      x = hand.x_cards_start + cards_space * i;
+      x = hand.x_cards_start - cards_space * i;
       y = hand.y_cards;
 
       cornerToCenter();
@@ -88,7 +90,7 @@ public class Hand extends CardHolder {
     }
 
     public void recalc() {
-      x = hand.x_cards_start + cards_space * i + w/2;
+      x = hand.x_cards_start - cards_space * i + w/2;
     }
 
     protected void updateCorners() {
