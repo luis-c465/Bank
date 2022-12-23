@@ -6,6 +6,11 @@ public class Card implements Comparable<Card> {
   public static final int w = 125;
   public static final int h = 187; // (int) Math.round(w * _ratio)
 
+  public static final int ace = 1;
+  public static final int jack = 11;
+  public static final int queen = 12;
+  public static final int king = 13;
+
   public int num;
   public Suit suit;
   public String s;
@@ -23,15 +28,15 @@ public class Card implements Comparable<Card> {
     col = getColor(s);
 
     // Assign a character
-    if (num == 1) {
+    if (num == ace) {
       c = "a";
     } else if (num >= 2 && num <= 10) {
       c = "" + num;
-    } else if (num == 11){
+    } else if (num == jack){
       c = "j";
-    } else if (num == 12) {
+    } else if (num == queen) {
       c = "q";
-    } else if (num == 13) {
+    } else if (num == king) {
       c = "k";
     }
 

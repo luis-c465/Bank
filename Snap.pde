@@ -56,6 +56,8 @@ public SkipBtn skipBtn = new SkipBtn(this);
 
 public Header header = new Header(this);
 
+public Tooltip tooltip = new Tooltip(this);
+
 void setup() {
   size(1000, 1000);
   procSet();
@@ -77,6 +79,8 @@ void setup() {
   skipBtn.setup();
 
   turn.setup();
+  header.setup();
+  tooltip.setup();
 }
 
 void draw() {
@@ -113,6 +117,7 @@ void draw() {
 
   skipBtn.update();
   header.update();
+  tooltip.update();
 
   if (skipBtn.clicked) {
     turnOver = true;
