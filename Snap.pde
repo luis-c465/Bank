@@ -54,6 +54,8 @@ public Location l3 = new Location(this, 1);
 
 public SkipBtn skipBtn = new SkipBtn(this);
 
+public Header header = new Header(this);
+
 void setup() {
   size(1000, 1000);
   procSet();
@@ -110,6 +112,8 @@ void draw() {
   l3.update();
 
   skipBtn.update();
+  header.update();
+
   if (skipBtn.clicked) {
     turnOver = true;
     curTurn = curTurn == 1 ? 2 : 1;
