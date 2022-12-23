@@ -6,6 +6,7 @@
  */
 public class Assets {
   public PApplet p;
+  public Class _class;
 
   // * BUTTONS
   public PImage enter;
@@ -95,6 +96,7 @@ public class Assets {
 
   public void setup(Snap app) {
     this.p = app;
+    this._class = this.getClass();
 
     // * LOAD BUTTONS
     enter = loadImage("btn/enter.png");
@@ -150,6 +152,6 @@ public class Assets {
   }
 
   public Object get(String k) throws IllegalAccessException, NoSuchFieldException {
-    return (this.getClass().getDeclaredField(k).get(this));
+    return (_class.getDeclaredField(k).get(this));
   }
 }

@@ -10,10 +10,11 @@ public class Player extends Obj {
   public int num = -1;
   public String name = "!!GUH!!";
 
-  public Player(Snap app) {
+  public Player(Snap app, int num) {
     super(app);
     deck = new Deck(app);
     hand = new Hand(app);
+    this.num = num;
   }
 
   protected void _setup() {

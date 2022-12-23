@@ -1,11 +1,7 @@
 public class Location extends Clickable {
-  public LinkedList<Card> p1 = new LinkedList();
-  public LinkedList<Card> p2 = new LinkedList();
-  public PImage top;
+  public LinkedList<CardInfo> cards = new LinkedList();
 
-  protected int p1Len = 0;
-  protected int p2Len = 0;
-
+  protected int len;
   protected int p1Scor = 0;
   protected int p2Scor = 0;
 
@@ -24,14 +20,18 @@ public class Location extends Clickable {
 
     w = Card.w;
     h = Card.h;
-
-    top = a.back;
   }
 
   protected void _update() {
     // Draw the image
     imageMode(CENTER);
-    image(top, x, y, Card.w, Card.h);
+    image(
+      getTop(),
+      x,
+      y,
+      Card.w,
+      Card.h
+    );
 
     // show the current players cards score bellow the card
     // show the other players score above the card
@@ -45,18 +45,16 @@ public class Location extends Clickable {
       text("" + p1Scor, x, y_score_above);
     }
 
-    if (clicked && m.curCardIndex >= 0 && curTurn != -1 && (p1.size() + p2.size()) < 4) {
+    // If the elocation was clicked on
+    // and the card index is a valid card
+    // and the curent turn is -1 (to prevent crashes)
+    // and the number of cards already on the location is bellow the limit
+    if (clicked && m.curCardIndex >= 0 && curTurn != -1 && cards.size() < 4) {
       // handle adding the card to that location based on the current player
-      if (curTurn == 1) {
-        Card c = m.p1.hand.cards.remove(curCardIndex);
-        p1.add(c);
-        top = a.getCard(c);
-      } else if (curTurn == 2) {
-        Card c = m.p2.hand.cards.remove(curCardIndex);
-        p2.add(c);
-        top = a.getCard(c);
-      }
+      Card c = m.curPlayer.hand.cards.remove(curCardIndex);
+      cards.add(new CardInfo(c, m.curPlayer));
 
+      // Update global variables
       m.curCardIndex = -1;
       numTurns--;
     }
@@ -65,42 +63,41 @@ public class Location extends Clickable {
   protected void preUpdate() {
     super.preUpdate();
 
-    if (p1.size() != p1Len) {
-      p1Scor = sum(p1);
-      p1Len = p1.size();
-    } else if (p2.size() != p2Len) {
-      p2Scor = sum(p2);
-      p2Len = p2.size();
+    if (cards.size() != len) {
+      p1Scor = 0;
+      p2Scor = 0;
+
+      for(CardInfo c : cards) {
+        if (c.player.num == 1) {
+          p1Scor += c.card.num;
+        } else if (c.player.num == 2) {
+          p2Scor += c.card.num;
+        }
+      }
+
+      len = cards.size();
     }
   }
 
-  // protected PImage getTop() {
-  //   PImage card = null;
-
-  //   try {
-  //     if (curTurn == 1) {
-  //       card = a.getCard(p1.get(p1.size() - 1));
-  //     } else if (curTurn == 2) {
-  //       card = a.getCard(p2.get(p2.size() - 1));
-  //     }
-  //   } catch (Exception e) {
-  //     // dont care
-  //   }
-
-  //   if (card != null) {
-  //     return card;
-  //   } else {
-  //     return a.back;
-  //   }
-  // }
-
-  protected int sum(List<Card> cards) {
-    int sum = 0;
-    for(Card c : cards) {
-      sum += c.num;
+  private PImage getTop() {
+    if (cards.size() == 0) {
+      return a.back;
     }
 
-    return sum;
+    Card c = (cards.get(cards.size() - 1)).card;
+    return a.getCard(c);
+  }
+
+
+  // Wrapper class for contianing information about the cards in the location
+  private class CardInfo {
+    public Card card;
+    public Player player;
+
+    public CardInfo(Card c, Player p) {
+      card = c;
+      player = p;
+    }
   }
 
   public Location(Snap app, int i) { super(app); this.i = i; }

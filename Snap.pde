@@ -42,8 +42,8 @@ public TransitionOut transOut = new TransitionOut(this);
 public StartUp startUp = new StartUp(this);
 
 public Dealer dealer = new Dealer();
-public Player p1 = new Player(this);
-public Player p2 = new Player(this);
+public Player p1 = new Player(this, 1);
+public Player p2 = new Player(this, 2);
 public Player curPlayer = startTurn == 1 ? p1 : p2;
 
 public Turn turn = new Turn(this);
