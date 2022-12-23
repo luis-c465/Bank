@@ -22,6 +22,8 @@ public class Tooltip extends Obj {
     if (m.curCardIndex == -1) {
       shouldUpdate = false;
       return;
+    } else {
+      shouldUpdate = true;
     }
 
     Card c = m.curPlayer.hand.cards.get(m.curCardIndex);

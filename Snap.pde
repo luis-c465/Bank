@@ -123,6 +123,7 @@ void draw() {
     turnOver = true;
     curTurn = curTurn == 1 ? 2 : 1;
     curPlayer = curTurn == 1 ? p1 : p2;
+    curCardIndex = -1;
 
     if (curTurn == startTurn) {
       curRound++;
