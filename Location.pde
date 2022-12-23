@@ -1,6 +1,7 @@
 public class Location extends Clickable {
   public LinkedList<Card> p1 = new LinkedList();
   public LinkedList<Card> p2 = new LinkedList();
+  public PImage top;
 
   protected int p1Len = 0;
   protected int p2Len = 0;
@@ -23,12 +24,14 @@ public class Location extends Clickable {
 
     w = Card.w;
     h = Card.h;
+
+    top = a.back;
   }
 
   protected void _update() {
     // Draw the image
     imageMode(CENTER);
-    image(getTop(), x, y, Card.w, Card.h);
+    image(top, x, y, Card.w, Card.h);
 
     // show the current players cards score bellow the card
     // show the other players score above the card
@@ -45,9 +48,13 @@ public class Location extends Clickable {
     if (clicked && m.curCardIndex >= 0 && curTurn != -1 && (p1.size() + p2.size()) < 4) {
       // handle adding the card to that location based on the current player
       if (curTurn == 1) {
-        p1.add(m.p1.hand.cards.remove(curCardIndex));
+        Card c = m.p1.hand.cards.remove(curCardIndex);
+        p1.add(c);
+        top = a.getCard(c);
       } else if (curTurn == 2) {
-        p2.add(m.p2.hand.cards.remove(curCardIndex));
+        Card c = m.p2.hand.cards.remove(curCardIndex);
+        p2.add(c);
+        top = a.getCard(c);
       }
 
       m.curCardIndex = -1;
@@ -67,25 +74,25 @@ public class Location extends Clickable {
     }
   }
 
-  protected PImage getTop() {
-    PImage card = null;
+  // protected PImage getTop() {
+  //   PImage card = null;
 
-    try {
-      if (curTurn == 1) {
-        a.getCard(p1.get(p1.size() - 1));
-      } else if (curTurn == 2) {
-        a.getCard(p2.get(p2.size() - 1));
-      }
-    } catch (Exception e) {
-      // dont care
-    }
+  //   try {
+  //     if (curTurn == 1) {
+  //       card = a.getCard(p1.get(p1.size() - 1));
+  //     } else if (curTurn == 2) {
+  //       card = a.getCard(p2.get(p2.size() - 1));
+  //     }
+  //   } catch (Exception e) {
+  //     // dont care
+  //   }
 
-    if (card != null) {
-      return card;
-    } else {
-      return a.back;
-    }
-  }
+  //   if (card != null) {
+  //     return card;
+  //   } else {
+  //     return a.back;
+  //   }
+  // }
 
   protected int sum(List<Card> cards) {
     int sum = 0;
