@@ -38,7 +38,7 @@ public class Hand extends Obj implements ICardHolder {
       }
     } else if (drawCards.size() < cards.size()) {
       // The cards will always be added to the end of the array
-      for (int i=drawCards.size(); i < cards.size(); i++) {
+      for (int i=drawCards.size() - 1; i < cards.size(); i++) {
         addCard(i);
       }
     } else if (drawCards.size() > cards.size()) {

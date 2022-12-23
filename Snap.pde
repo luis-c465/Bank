@@ -44,6 +44,7 @@ public StartUp startUp = new StartUp(this);
 public Dealer dealer = new Dealer();
 public Player p1 = new Player(this);
 public Player p2 = new Player(this);
+public Player curPlayer = startTurn == 1 ? p1 : p2;
 
 public Turn turn = new Turn(this);
 
@@ -112,6 +113,7 @@ void draw() {
   if (skipBtn.clicked) {
     turnOver = true;
     curTurn = curTurn == 1 ? 2 : 1;
+    curPlayer = curTurn == 1 ? p1 : p2;
 
     if (curTurn == startTurn) {
       curRound++;

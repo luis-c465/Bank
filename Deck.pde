@@ -1,20 +1,21 @@
-public class Deck extends Obj implements ICardHolder {
+public class Deck extends Clickable implements ICardHolder {
   public LinkedList<Card> cards = new LinkedList();
+  public LinkedList<MovableCard> movableCards = new LinkedList();
+
   // * DRAWING CONSTANTS
-  public static final int x_deck = 20;
-  public int y_deck = m.h - Card.h;
+  public int x_txt;
+  public int y_txt;
 
-  public static final int x_txt = 20;
-  public int y_txt = y_deck - 30;
+  protected void _setup() {
+    x = 20;
+    y = m.h - 20;
+    w = Card.w;
+    h = Card.h;
 
-  // int x_hand;
-  // int y_hand = 500;
+    x_txt = x;
+    y_txt = y - h - 30;
 
-  // public Card moving;
-  // public PImage moving_img;
-
-  public Deck(Snap app) {
-    super(app);
+    cornerToCenter();
   }
 
   protected void _update() {
@@ -22,81 +23,74 @@ public class Deck extends Obj implements ICardHolder {
     textSize(32);
     text("" + cards.size() + " cards", x_txt, y_txt);
 
+    for(int i=movableCards.size() - 1; i>=0; i--) {
+      MovableCard mc = movableCards.get(i);
+      mc.update();
+
+      if (mc.done) {
+        movableCards.remove(i);
+      }
+    }
+
+
     // Draw the deck
     if (cards.size() >= 1) {
-      imageMode(CORNER);
-      image(a.back, x_deck, y_deck, Card.w, Card.h);
+      imageMode(CENTER);
+      image(a.back, x, y, Card.w, Card.h);
+    }
+
+    if (clicked) {
+      println("clicked!");
+      if (cards.size() < 1 || (m.curPlayer.hand.cards.size() + movableCards.size()) >= 5) return;
+
+      Card c = cards.remove();
+      MovableCard mc = new MovableCard(m);
+      mc.c = c;
+      mc.deck = this;
+
+      mc.setup();
+
+      movableCards.add(mc);
     }
   }
 
-  protected void drawHand() {
-    // if (!m.flip) {
-    //   image(a.back, x_hand, y_hand, Card.w, Card.h);
-    // } else {
-    //   // guh flip the thing
-    //   image(hand_img, x_hand, y_hand, Card.w, Card.h);
 
-    //   // Move the card
-    //   if (flipCycles != flip_cycles_end) {
-    //     x_hand += hand_x_step;
-    //     flipCycles++;
-    //   } else {
-    //     if (cycles_next_round != cycles_next_round_end) {
-    //       cycles_next_round++;
-    //     } else {
-    //       nextRound();
-    //     }
-    //   }
-    // }
+  private class MovableCard extends Obj {
+    public Card c;
+    public Deck deck;
 
-  }
+    public static final float lerp_step = 0.15;
+    public int max_x = Snap.w - 300;
+    public boolean done;
+    public int x = 20 + Card.h / 2;
+    public int y = Snap.h - 20 - Card.h / 2;
 
-  private void updateHandImg() {
-    // hand_img = a.getCard(hand);
-  }
+    protected void _setup() {
+      max_x = (m.curPlayer.hand.drawCards.size() - 1) * (Card.w - Hand.overlap);
+    }
 
-  /**
-   * Should handle the case where this is the last round
-  */
-  private void nextRound() {
-    // if (flipCycles_back != flip_cycles_end) {
-    //   m.isFlippingHandBack = true;
+    protected void _update() {
+      imageMode(CENTER);
+      image(a.getCard(c), x, y, Card.w, Card.h);
 
-    //   flipCycles_back++;
-    //   y_hand += hand_y_step;
-    // } else {
-    //   m.isFlippingHandBack = false;
-    //   m.nextRound = true;
-    // }
-  }
+      if (x >= max_x - 3) {
+        done = true;
+        // Stop updating the object
+        shouldUpdate = false;
 
-  /**
-   * Shold be called when the transitions are done
-   * Updates the palyers cards and resets all local variables
-  */
-  private void hardNextRound() {
-    // player.hand = hand;
+        m.curPlayer.hand.cards.add(c);
+        return;
+      }
 
-    // hand = cards.remove();
-    // updateHandImg();
+      x = Math.round(lerp(x, max_x, lerp_step));
+    }
 
-    // m.flip = false;
-    // m.isFlippingHand = false;
-    // m.isFlippingHandBack = false;
-
-    // m.hasVoted = false;
-
-    // m.nextRound = false;
-
-    // x_hand = x_deck;
-    // y_hand = y_deck;
-
-    // flipCycles = 0;
-    // flipCycles_back = 0;
-    // cycles_next_round = 0;
+    public MovableCard(Snap app) { super(app); }
   }
 
   public void add(Card c) {
     cards.add(c);
   }
+
+  public Deck(Snap app) { super(app); }
 }
