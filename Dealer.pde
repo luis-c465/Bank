@@ -16,9 +16,9 @@ public class Dealer {
   /**
    * Deals n cards to the card holder
   */
-  public void deal(CardHolder c, int n) {
+  public void deal(ICardHolder c, int n) {
     for(int i =0; i<n; i++) {
-      c.cards.add(cards.remove());
+      c.add(cards.remove());
     }
   }
 }

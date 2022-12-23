@@ -1,4 +1,5 @@
-public class Hand extends CardHolder {
+public class Hand extends Obj implements ICardHolder {
+  public LinkedList<Card> cards = new LinkedList();
   public LinkedList<ClickableCard> drawCards = new LinkedList();
 
   // * DRAWING CONSTANTS
@@ -124,6 +125,10 @@ public class Hand extends CardHolder {
 
       cc.setup();
       drawCards.add(cc);
+  }
+
+  public void add(Card c) {
+    cards.add(c);
   }
 
   public Hand(Snap app) { super(app); }

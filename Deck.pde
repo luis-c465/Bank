@@ -1,4 +1,5 @@
-public class Deck extends CardHolder {
+public class Deck extends Obj implements ICardHolder {
+  public LinkedList<Card> cards = new LinkedList();
   // * DRAWING CONSTANTS
   public static final int x_deck = 20;
   public int y_deck = m.h - Card.h;
@@ -93,5 +94,9 @@ public class Deck extends CardHolder {
     // flipCycles = 0;
     // flipCycles_back = 0;
     // cycles_next_round = 0;
+  }
+
+  public void add(Card c) {
+    cards.add(c);
   }
 }
