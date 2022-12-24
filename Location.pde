@@ -76,11 +76,17 @@ public class Location extends Clickable {
 
     }
 
-    // If the elocation was clicked on
+    // If the location was clicked on
     // and the card index is a valid card
     // and the curent turn is -1 (to prevent crashes)
     // and the number of cards already on the location is bellow the limit
-    if (clicked && m.curCardIndex >= 0 && curTurn != -1 && cards.size() < 4) {
+    // ! OR the card is a special card and WILL NOT be added to the pile
+    if (
+      clicked &&
+      m.curCardIndex >= 0 &&
+      curTurn != -1 &&
+      (cards.size() < 4 || m.curPlayer.hand.cards.get(curCardIndex).num >= Card.jack)
+    ) {
       // handle adding the card to that location based on the current player
       Card c = m.curPlayer.hand.cards.get(curCardIndex);
 
@@ -126,6 +132,12 @@ public class Location extends Clickable {
       cards.remove(lastI);
     } else if (c.num == Card.jack) {
       Location loc = randLocation();
+      // This card cannot be placed
+      // because there is nowhere to the card to move to!
+      if (loc == null) {
+        return false;
+      }
+
       loc.cards.add(cards.remove(lastI));
     }
 
@@ -134,18 +146,33 @@ public class Location extends Clickable {
 
   /**
    * Returns a random location that is not the current one
+   * and that has less than 4 placed cards on it
   */
   protected Location randLocation() {
     int index = int(random(-1, 2));
-    while(index == i) {
+    Location loc = getLoc(index);
+    final int maxTries = 15;
+    int tries = 0;
+
+    while(index == i || loc.cards.size() < 4 && tries < maxTries) {
       index = int(random(-1, 2));
+      loc = getLoc(index);
+      tries++;
     }
 
-    if (index == -1) {
+    if (maxTries <= maxTries) {
+      return null;
+    }
+
+    return getLoc(index);
+  }
+
+  protected Location getLoc(int i) {
+    if (i == -1) {
       return m.l1;
-    } else if (index == 0) {
+    } else if (i == 0) {
       return m.l2;
-    } else if (index == 1) {
+    } else if (i == 1) {
       return m.l3;
     } else {
       // This shoundn't happen
