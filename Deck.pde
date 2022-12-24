@@ -61,12 +61,13 @@ public class Deck extends Clickable implements ICardHolder {
 
     public static final float lerp_step = 0.15;
     public int max_x = Snap.w - 300;
-    public boolean done;
+    public boolean done = false;
     public int x = 20 + Card.h / 2;
     public int y = Snap.h - 20 - Card.h / 2;
 
-    protected void _setup() {
-      max_x = (m.curPlayer.hand.drawCards.size() - 1) * (Card.w - Hand.overlap);
+    protected void preUpdate() {
+      super.preUpdate();
+      max_x = (m.curPlayer.hand.cards.size() - 1) * (Card.w - Hand.overlap);
     }
 
     protected void _update() {

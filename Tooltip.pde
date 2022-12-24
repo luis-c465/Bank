@@ -3,7 +3,7 @@
 */
 public class Tooltip extends Obj {
   public static final String ace = "Changes the value of the next placed card on a location to a 1";
-  public static final String jack = "Moves the top card onto another location";
+  public static final String jack = "Moves the top card onto another random location";
   public static final String queen = "Decrements the value of the top card by 5";
   public static final String king = "Kills the top card on the location";
 

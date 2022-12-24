@@ -33,6 +33,7 @@ public class Assets {
   public String[] col = new String[] { "r", "b", "g", "y"};
 
   public PImage back;
+  public PImage bad;
 
   public PImage r2;
   public PImage r3;
@@ -118,6 +119,7 @@ public class Assets {
     textFont(nunito);
 
     back = loadImage("card/back.jpeg");
+    bad = loadImage("card/bad.jpeg");
     for (String n : name) {
       for (String c : col) {
         try {
@@ -133,6 +135,10 @@ public class Assets {
   }
 
   public PImage getCard(Card c) {
+    if (c.bad) {
+      return bad;
+    }
+
     try {
       return (PImage) get(c.col + c.c);
     } catch(Exception e) {

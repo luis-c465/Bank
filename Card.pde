@@ -17,6 +17,8 @@ public class Card implements Comparable<Card> {
   public String c = "?";
   // Color
   public String col;
+  public boolean bad = false;
+  public boolean queened = false;
 
   /**
    * Generates a card with a given value [1, 13]
