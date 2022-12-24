@@ -15,6 +15,8 @@ public class Assets {
   // * SHAPES
   public PShape play;
   public PShape cont;
+  public PShape cardFull;
+  public PShape cardEmpty;
 
   // * MISCELANEOUS
   public PImage bg;
@@ -107,6 +109,8 @@ public class Assets {
     // * LOAD SHAPES
     play = loadShape("play.svg");
     cont = loadShape("continue.svg");
+    cardFull = loadShape("card_full.svg");
+    cardEmpty = loadShape("card_empty.svg");
 
     // * LOAD MISC
     bg = loadImage("bg.jpg");
@@ -144,6 +148,10 @@ public class Assets {
     } catch(Exception e) {
       return null;
     }
+  }
+
+  public PImage getCard(CardInfo c) {
+    return getCard(c.card);
   }
 
   /**

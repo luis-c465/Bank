@@ -10,9 +10,18 @@ public class Location extends Clickable {
   public static final int space = 200;
   public static final int gap = 100;
 
-  // ? Processing moment
-  public int y_score_above = Snap.ch - Card.h - 10;
-  public int y_score_bellow = Snap.ch + Card.h + 10;
+  // ? Numbers are wierd because Processing moment
+  public int y_score_above = Snap.ch - Card.h - 20;
+  public int y_score_bellow = Snap.ch + Card.h + 20;
+
+  // Cards
+  public static final int cards_gap = 4;
+  public static final int cards_space = 70;
+  public static final int cards_size = 40;
+  public int cards_y_above = y_score_above + cards_space;
+  public int cards_y_bellow = y_score_bellow - cards_space;
+  public int cards_h = (int) (cards_size * Card._ratio);
+
 
   protected void _setup() {
     x = m.cw + space * i;
@@ -35,14 +44,36 @@ public class Location extends Clickable {
 
     // show the current players cards score bellow the card
     // show the other players score above the card
-
     textAlign(CENTER);
+    textSize(40);
     if (curTurn == 1) {
       text("" + p1Scor, x, y_score_bellow);
       text("" + p2Scor, x, y_score_above);
     } else if (curTurn == 2) {
       text("" + p2Scor, x, y_score_bellow);
       text("" + p1Scor, x, y_score_above);
+    }
+
+    // Draw the icons
+    for(int i=-1; i<3; i++) {
+      int x = this.x + i*(cards_gap + cards_size) - cards_size / 2;
+
+      int index = i + 1;
+      boolean exists = index < len;
+      shapeMode(CENTER);
+      imageMode(CENTER);
+
+      if (exists) {
+        CardInfo cc = cards.get(index);
+        if (cc.player.num == m.curTurn) {
+          image(a.getCard(cc), x, cards_y_bellow, cards_size, cards_h);
+        } else {
+          image(a.getCard(cc), x, cards_y_above, cards_size, cards_h);
+        }
+      } else {
+        shape(a.cardEmpty, x, cards_y_above, cards_size, cards_size);
+      }
+
     }
 
     // If the elocation was clicked on
@@ -146,18 +177,6 @@ public class Location extends Clickable {
 
     Card c = (cards.get(cards.size() - 1)).card;
     return a.getCard(c);
-  }
-
-
-  // Wrapper class for contianing information about the cards in the location
-  private class CardInfo {
-    public Card card;
-    public Player player;
-
-    public CardInfo(Card c, Player p) {
-      card = c;
-      player = p;
-    }
   }
 
   public Location(Snap app, int i) { super(app); this.i = i; }

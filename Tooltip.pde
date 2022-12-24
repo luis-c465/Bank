@@ -12,9 +12,9 @@ public class Tooltip extends Obj {
   public static final color c = #94a3b8;
 
   public int w = 750;
-  public int h = 400;
+  public int h = 100;
   public int x = Snap.cw - w / 2;
-  public int y = Snap.h - 100 - h / 2;
+  public int y = Snap.h - 275 - h / 2;
 
   protected void preUpdate() {
     super.preUpdate();
