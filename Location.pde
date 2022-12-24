@@ -103,9 +103,12 @@ public class Location extends Clickable {
 
     // Is a normal card so just add it to the pile
     if (c.num >= 1 && c.num <= 10) {
-      if (len > 0 && cards.get(lastI).card.num == Card.ace) {
-        c.bad = true;
-        c.num = 1;
+      if (len > 0) {
+        Card prev = cards.get(lastI).card;
+        if (prev.num == Card.ace && !prev.bad) {
+          c.bad = true;
+          c.num = 1;
+        }
       }
       cards.add(new CardInfo(c, m.curPlayer));
       return true;

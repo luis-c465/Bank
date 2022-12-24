@@ -14,7 +14,7 @@ public class Tooltip extends Obj {
   public int w = 750;
   public int h = 100;
   public int x = Snap.cw - w / 2;
-  public int y = Snap.h - 275 - h / 2;
+  public int y = Snap.h - 250 - h / 2;
 
   protected void preUpdate() {
     super.preUpdate();
