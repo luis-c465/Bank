@@ -6,14 +6,16 @@
 public class SkipBtn extends Btn {
   public int txt_cards_x;
   public int txt_cards_y;
-  public boolean changed_txt = false;
+
+  public static final String skip = "Skip Turn";
+  public static final String end = "End Turn";
 
   protected void _setup() {
     w = 200;
     x = m.w - w - 10;
     y = m.h - h / 2 - 20;
 
-    txt = "Skip Turn";
+    txt = skip;
     icon = a.cont;
     icon_space = 70;
     txt_space = 20;
@@ -42,9 +44,10 @@ public class SkipBtn extends Btn {
 
     // Update the txt
     // and maybe the icon
-    if (!changed_txt && m.numTurns < m.curRound) {
-      txt = "End turn";
-      changed_txt = true;
+    if (m.numTurns < m.curRound) {
+      txt = end;
+    } else {
+      txt = skip;
     }
   }
 
