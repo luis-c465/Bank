@@ -125,6 +125,8 @@ void draw() {
     curPlayer = curTurn == 1 ? p1 : p2;
     curCardIndex = -1;
 
+    gameOver = isGameOver();
+
     if (curTurn == startTurn) {
       curRound++;
 
@@ -165,4 +167,12 @@ void dealCards() {
 void printCards() {
   println("Player 1: \n" + p1 + "\n\n");
   println("Player 2: \n" + p2 + "\n\n");
+}
+
+boolean isGameOver() {
+  // A card can be placed in a location!
+  boolean hasSpace = l1.cards.size() < 4 || l2.cards.size() < 4 || l3.cards.size() < 4;
+  boolean hasCards = p1.hasCards() || p2.hasCards();
+  boolean hasSpecialCards = p1.hasSpecialCard() || p2.hasSpecialCard();
+  return (!hasSpace && !hasCards) && !hasSpecialCards;
 }

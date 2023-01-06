@@ -41,7 +41,6 @@ public class StartUp extends Transitionable {
       .setPosition(name_x, p2Name_y)
       .setSize(name_w, name_h)
       .setFont(a.nunito_small)
-      .setFocus(true)
       .setColor(name_txt_c)
       .setColorForeground(name_txt_c)
       .setColorBackground(name_bg_c)

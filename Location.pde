@@ -71,7 +71,7 @@ public class Location extends Clickable {
           image(a.getCard(cc), x, cards_y_above, cards_size, cards_h);
         }
       } else {
-        shape(a.cardEmpty, x, cards_y_above, cards_size, cards_size);
+        shape(a.cardEmpty, x, cards_y_bellow, cards_size, cards_size);
       }
 
     }
@@ -154,13 +154,13 @@ public class Location extends Clickable {
     final int maxTries = 15;
     int tries = 0;
 
-    while(index == i || loc.cards.size() < 4 && tries < maxTries) {
+    while((index == i || loc.cards.size() >= 4) && tries < maxTries) {
       index = int(random(-1, 2));
       loc = getLoc(index);
       tries++;
     }
 
-    if (maxTries <= maxTries) {
+    if (tries >= maxTries) {
       return null;
     }
 
@@ -182,7 +182,10 @@ public class Location extends Clickable {
 
   protected void preUpdate() {
     super.preUpdate();
+    calc();
+  }
 
+  public void calc() {
     if (cards.size() != len || queened) {
       p1Scor = 0;
       p2Scor = 0;

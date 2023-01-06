@@ -30,4 +30,24 @@ public class Player extends Obj {
   public String toString() {
     return "Cards: " + hand.toString() + "\n Deck: " + deck.toString();
   }
+
+  public boolean hasCards() {
+    return (deck.cards.size() + hand.cards.size()) > 0;
+  }
+
+  public boolean hasSpecialCard() {
+    for (Card c : deck.cards) {
+      if (c.num >= Card.jack) {
+        return true;
+      }
+    }
+
+    for (Card c : hand.cards) {
+      if (c.num >= Card.jack) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
