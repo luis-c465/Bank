@@ -107,6 +107,9 @@ void draw() {
 
   if (turnOver) return;
 
+  // Draw the background
+  image(a.bg, cw, ch);
+
   if (curTurn == 1) {
     p1.update();
   } else if (curTurn == 2) {

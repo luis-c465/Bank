@@ -9,7 +9,7 @@ public class Tooltip extends Obj {
 
   public String def = "";
   public String s = def;
-  public static final color c = #94a3b8;
+  public static final color c = #e2e8f0;
 
   public int w = 750;
   public int h = 100;

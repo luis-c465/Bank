@@ -160,6 +160,8 @@ public class Location extends Clickable {
     final int maxTries = 15;
     int tries = 0;
 
+    // The jack cannot move a cawrd to the same location or
+    // a location with 4 or more cards (already full)
     while((index == i || loc.cards.size() >= 4) && tries < maxTries) {
       index = int(random(-1, 2));
       loc = getLoc(index);

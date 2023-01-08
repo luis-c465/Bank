@@ -119,7 +119,7 @@ public class Assets {
     cardEmpty = loadShape("card_empty.svg");
 
     // * LOAD MISC
-    bg = loadImage("bg.jpg");
+    bg = loadImage("bg-blur.jpg");
     intro = loadImage("bg.jpg");
     king = loadImage("king.png");
 
