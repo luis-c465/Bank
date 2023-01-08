@@ -1,24 +1,47 @@
 public class GameOver extends Transitionable {
+  // * DRAWING CONSTANTS
+  public int txt_size = 50;
+  public static final int txt_h = Snap.ch - 200;
+
   public int p1Scor = 0;
   public int p2Scor = 0;
   public String winnerName = null;
-  public boolean begin = false;
+  public boolean alreadyCalculated = false;
   public boolean tie = false;
+
+  protected void _setup() {
+    shouldUpdate = false;
+  }
 
   protected void preUpdate() {
     super.preUpdate();
 
     // Calculate the winner
-    if(begin) {
+    if (m.gOver && !alreadyCalculated) {
       calc();
 
       trans = true;
-      begin = false;
+      alreadyCalculated = true;
+
+      clean();
     }
   }
 
   protected void _update() {
-    // update
+    textAlign(CENTER);
+    imageMode(CENTER);
+
+    if (tie) {
+      text("GAME TIED", m.cw, m.ch);
+    } else {
+      text(winnerName + " WON the game!", m.cw, txt_h);
+      image(a.king, 500, 700);
+    }
+  }
+
+  protected void onTransOutBegin() {
+    paused = true;
+    shouldUpdate = true;
   }
 
   // Calculates the winner for the game

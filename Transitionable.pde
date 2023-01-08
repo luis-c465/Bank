@@ -57,9 +57,13 @@ public abstract class Transitionable extends Obj {
       done = true;
       middle = false;
 
-      m.transIn.reset();
-      m.transOut.reset();
+      clean();
     }
+  }
+
+  protected void clean() {
+    m.transIn.reset();
+    m.transOut.reset();
   }
 
   // Method whitch inheriting classes should implement

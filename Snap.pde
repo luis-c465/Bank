@@ -19,11 +19,12 @@ public int startTurn = ((Math.random() * 2) > 1.0) ? 1 : 2;
 public int curTurn = startTurn;
 public int curCardIndex = -1;
 
-public boolean gameOver = false;
+public boolean gOver = false;
 // The highest round the game can reach before ending
 public int maxRound = 6;
+
 public int curRound = 1;
-public int numTurns = 1;
+public int numTurns = curRound;
 
 // * COLORS
 public static final color bg = #1e293b;
@@ -57,6 +58,7 @@ public SkipBtn skipBtn = new SkipBtn(this);
 public Header header = new Header(this);
 
 public Tooltip tooltip = new Tooltip(this);
+public GameOver gameOver = new GameOver(this);
 
 void setup() {
   size(1000, 1000);
@@ -81,13 +83,15 @@ void setup() {
   turn.setup();
   header.setup();
   tooltip.setup();
+  gameOver.setup();
 }
 
 void draw() {
   background(bg);
 
-  if (gameOver) {
-    // show a game over screen
+  // If the game over transition is done only update the game over screen to avoid redrawing hidden items to the screen
+  if (gOver && gameOver.paused) {
+    gameOver.update();
     return;
   }
 
@@ -125,21 +129,23 @@ void draw() {
     curPlayer = curTurn == 1 ? p1 : p2;
     curCardIndex = -1;
 
-    gameOver = isGameOver();
+    gOver = isGameOver();
 
     if (curTurn == startTurn) {
       curRound++;
 
       if (curRound >= maxRound) {
-        gameOver = true;
+        gOver = true;
       }
     }
     numTurns = curRound;
   }
+
+  gameOver.update();
 }
 
 /**
- * Sets th default settings for drawing with processing
+ * Sets the default settings for drawing with processing
  */
 void procSet() {
   background(0);
@@ -170,8 +176,10 @@ void printCards() {
 }
 
 boolean isGameOver() {
-  // A card can be placed in a location!
-  boolean hasSpace = l1.cards.size() < 4 || l2.cards.size() < 4 || l3.cards.size() < 4;
+  // ! Uncomment this line for debbugging the game over screen
+  // return true;
+
+  boolean hasSpace = l1.cards.size() < 2 || l2.cards.size() < 4 || l3.cards.size() < 4;
   boolean hasCards = p1.hasCards() || p2.hasCards();
   boolean hasSpecialCards = p1.hasSpecialCard() || p2.hasSpecialCard();
   return (!hasSpace && !hasCards) && !hasSpecialCards;

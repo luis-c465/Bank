@@ -21,6 +21,7 @@ public class Assets {
   // * MISCELANEOUS
   public PImage bg;
   public PImage intro;
+  public PImage king;
 
   // * FONTS
   public PFont nunito;
@@ -115,6 +116,7 @@ public class Assets {
     // * LOAD MISC
     bg = loadImage("bg.jpg");
     intro = loadImage("bg.jpg");
+    king = loadImage("king.png");
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
