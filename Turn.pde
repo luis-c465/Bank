@@ -3,7 +3,7 @@ public class Turn extends Obj {
   public static final int y = Snap.ch;
 
   public int round_x = x;
-  public int round_y = y + 50;
+  public int round_y = y + 100;
   public String pName = "NULL";
 
   public EnterBtn enterBtn;

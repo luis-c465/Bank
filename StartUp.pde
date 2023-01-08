@@ -6,6 +6,8 @@ public class StartUp extends Transitionable {
   private Textfield p1Name;
   private Textfield p2Name;
   private StartGameBtn startGameBtn;
+  private static final String instructions = "Enter the names for the people playing the game!";
+  private static final int txt_y = 200;
 
   // * DRAWING CONSTANTS
   private static final int   name_w = 200;
@@ -73,6 +75,9 @@ public class StartUp extends Transitionable {
     fill(255);
     text("VS", m.cw, vs_y);
 
+    // Show instructions
+    textSize(30);
+    text(instructions, m.cw, txt_y);
     checkBtns();
   }
 
