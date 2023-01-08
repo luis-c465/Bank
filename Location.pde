@@ -95,6 +95,12 @@ public class Location extends Clickable {
         m.curPlayer.hand.cards.remove(curCardIndex);
         m.curCardIndex = -1;
         numTurns--;
+
+        // Play a place sound effect
+        a.place.jump(0);
+      } else {
+        // Play an error sound effect
+        a.error.jump(0);
       }
     }
   }

@@ -40,7 +40,6 @@ public class Deck extends Clickable implements ICardHolder {
     }
 
     if (clicked) {
-      println("clicked!");
       if (cards.size() < 1 || (m.curPlayer.hand.cards.size() + movableCards.size()) >= 5) return;
 
       Card c = cards.remove();
@@ -51,6 +50,9 @@ public class Deck extends Clickable implements ICardHolder {
       mc.setup();
 
       movableCards.add(mc);
+
+      // Play a swipe sound effect
+      a.swipe.jump(0);
     }
   }
 

@@ -29,6 +29,11 @@ public class Assets {
   // !Smaller versions of fonts are loaded because controlP5 does not give a method to set the font size of the input text
   public PFont nunito_small;
 
+  // * SOUNDS
+  public SoundFile place;
+  public SoundFile swipe;
+  public SoundFile error;
+
 
   // * Cards
   /* #region Cards */
@@ -117,6 +122,13 @@ public class Assets {
     bg = loadImage("bg.jpg");
     intro = loadImage("bg.jpg");
     king = loadImage("king.png");
+
+    // * LOAD SOUNDS
+    place = new SoundFile(app, "place.wav");
+    swipe = new SoundFile(app, "swipe.mp3");
+    error = new SoundFile(app, "error.mp3");
+
+    error.amp(0.1);
 
     // * LOAD FONTS
     nunito = createFont("fonts/Nunito.ttf", 64);
