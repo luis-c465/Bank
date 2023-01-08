@@ -15,6 +15,7 @@ public class Assets {
   // * SHAPES
   public PShape play;
   public PShape cont;
+  public PShape backS;
   public PShape cardFull;
   public PShape cardEmpty;
 
@@ -34,14 +35,19 @@ public class Assets {
   public SoundFile swipe;
   public SoundFile error;
 
+  // * SLIDES
+  public PImage slide1;
+  public PImage slide2;
+  public PImage slide3;
+  public PImage slide4;
 
   // * Cards
   /* #region Cards */
   public String[] name = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k", "a"};
   public String[] col = new String[] { "r", "b", "g", "y"};
 
-  public PImage back;
   public PImage bad;
+  public PImage back;
 
   public PImage r2;
   public PImage r3;
@@ -115,6 +121,7 @@ public class Assets {
     // * LOAD SHAPES
     play = loadShape("play.svg");
     cont = loadShape("continue.svg");
+    backS = loadShape("back.svg");
     cardFull = loadShape("card_full.svg");
     cardEmpty = loadShape("card_empty.svg");
 
@@ -136,8 +143,16 @@ public class Assets {
 
     textFont(nunito);
 
-    back = loadImage("card/back.jpeg");
+    // * LOAD SLIDES
+    slide1 = loadImage("slide/1.png");
+    slide2 = loadImage("slide/2.png");
+    slide3 = loadImage("slide/3.png");
+    slide4 = loadImage("slide/4.png");
+
     bad = loadImage("card/bad.jpeg");
+    back = loadImage("card/back.jpeg");
+
+
     for (String n : name) {
       for (String c : col) {
         try {

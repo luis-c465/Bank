@@ -12,6 +12,7 @@ public static final int ch = 500;
 public static final int cw = 500;
 
 // * VARIABLES
+public boolean doingIntro = true;
 public boolean transitioning = false;
 public boolean turnOver = true;
 public boolean roundOver = false;
@@ -41,6 +42,7 @@ public TransitionOut transOut = new TransitionOut(this);
 
 // * Game classes
 public StartUp startUp = new StartUp(this);
+public Intro intro = new Intro(this);
 
 public Dealer dealer = new Dealer();
 public Player p1 = new Player(this, 1);
@@ -72,7 +74,9 @@ void setup() {
   dealCards();
   p1.setup();
   p2.setup();
+
   startUp.setup();
+  intro.setup();
 
   l1.setup();
   l2.setup();
@@ -92,6 +96,11 @@ void draw() {
   // If the game over transition is done only update the game over screen to avoid redrawing hidden items to the screen
   if (gOver && gameOver.paused) {
     gameOver.update();
+    return;
+  }
+
+  intro.update();
+  if (doingIntro) {
     return;
   }
 
