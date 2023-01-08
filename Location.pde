@@ -156,7 +156,8 @@ public class Location extends Clickable {
    * and that has less than 4 placed cards on it
   */
   protected Location randLocation() {
-    int index = int(random(-1, 2));
+    // Doesnt include -2 or 2
+    int index = int(random(-2, 2));
     Location loc = getLoc(index);
     final int maxTries = 15;
     int tries = 0;
