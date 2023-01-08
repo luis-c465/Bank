@@ -1,9 +1,9 @@
 <project name="ArithmeticGen" default="jar" basedir=".">
-  <property name="src" location="."/>
-  <property name="build" location="build"/>
-  <property name="processing" location="build/processing"/>
-  <property name="lib" location="build/lib"/>
-  <property name="data" location="data"/>
+  <property name="src" location="." />
+  <property name="build" location="build" />
+  <property name="processing" location="build/processing" />
+  <property name="lib" location="build/lib" />
+  <property name="data" location="data" />
 
   <target name="compile">
     <exec dir="${src}" executable="processing-java">
@@ -13,12 +13,12 @@
 
   <target name="jar" depends="compile">
     <jar destfile="${build}/Main.jar" basedir="${processing}">
-        <fileset dir="${data}" includes="**"/>
-        <zipgroupfileset dir="${lib}" includes="*.jar" />
-        <manifest>
-            <attribute name="DependencyFinder" value="main"/>
-            <attribute name="Main-Class" value="ArithmeticGen"/>
-        </manifest>
+      <fileset dir="${data}" includes="**" />
+      <zipgroupfileset dir="${lib}" includes="*.jar" />
+      <manifest>
+        <attribute name="DependencyFinder" value="main" />
+        <attribute name="Main-Class" value="Snap" />
+      </manifest>
     </jar>
   </target>
 
