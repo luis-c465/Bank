@@ -85,14 +85,17 @@ public class StartUp extends Transitionable {
       m.p1.name = p1Name.getText();
       m.p2.name = p2Name.getText();
 
+      p1Name.remove();
+      p2Name.remove();
+
       // Begin transitioning!
       trans = true;
+
     }
   }
 
   protected void onTransOutBegin() {
-    p1Name.remove();
-    p2Name.remove();
+    onDone();
   }
 
   private  class StartGameBtn extends Btn {

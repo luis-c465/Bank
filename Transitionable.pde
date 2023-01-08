@@ -53,17 +53,21 @@ public abstract class Transitionable extends Obj {
 
     if (m.transIn.done && m.transOut.done) {
       // When the trans is done
-      trans = false;
-      done = true;
-      middle = false;
-
-      clean();
+      onDone();
     }
   }
 
   protected void clean() {
     m.transIn.reset();
     m.transOut.reset();
+  }
+
+  protected void onDone() {
+    trans = false;
+    done = true;
+    middle = false;
+
+    clean();
   }
 
   // Method whitch inheriting classes should implement
