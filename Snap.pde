@@ -178,7 +178,7 @@ void dealCards() {
   dealer.deal(p2.deck, 7);
 
   // Print out the cards of the player for debuggging
-  printCards();
+  // printCards();
 }
 
 // Print out the cards of the player for debuggging

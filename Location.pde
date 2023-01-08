@@ -7,6 +7,8 @@ public class Location extends Clickable {
   protected int p1Scor = 0;
   protected int p2Scor = 0;
 
+  public static final color bigger_score_col = #4ade80;
+
   public static final int space = 200;
   public static final int gap = 100;
 
@@ -47,10 +49,22 @@ public class Location extends Clickable {
     textAlign(CENTER);
     textSize(40);
     if (curTurn == 1) {
+      push();
+      if (p1Scor > p2Scor) {
+        fill(bigger_score_col);
+      }
       text("" + p1Scor, x, y_score_bellow);
+      pop();
+
       text("" + p2Scor, x, y_score_above);
     } else if (curTurn == 2) {
+      push();
+      if (p2Scor > p1Scor) {
+        fill(bigger_score_col);
+      }
       text("" + p2Scor, x, y_score_bellow);
+      pop();
+
       text("" + p1Scor, x, y_score_above);
     }
 
@@ -140,7 +154,6 @@ public class Location extends Clickable {
       Location loc = randLocation();
       // This card cannot be placed
       // because there is nowhere to the card to move to!
-      println(loc);
       if (loc == null) {
         return false;
       }
