@@ -28,7 +28,7 @@ public class Player extends Obj {
   }
 
   public String toString() {
-    return "Cards: " + hand.toString() + "\n Deck: " + deck.toString();
+    return "Hand: " + hand.toString() + "\nDeck: " + deck.toString();
   }
 
   public boolean hasCards() {

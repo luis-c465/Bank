@@ -131,5 +131,9 @@ public class Hand extends Obj implements ICardHolder {
     cards.add(c);
   }
 
+  public String toString() {
+    return cards.toString();
+  }
+
   public Hand(Snap app) { super(app); }
 }

@@ -140,6 +140,7 @@ public class Location extends Clickable {
       Location loc = randLocation();
       // This card cannot be placed
       // because there is nowhere to the card to move to!
+      println(loc);
       if (loc == null) {
         return false;
       }

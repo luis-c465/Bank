@@ -67,16 +67,22 @@ public class Deck extends Clickable implements ICardHolder {
     public int x = 20 + Card.h / 2;
     public int y = Snap.h - 20 - Card.h / 2;
 
+    public int space = Card.w - Hand.overlap;
+
+    protected void _setup() {
+      int pos = (5 - m.curPlayer.hand.cards.size() + 2 - movableCards.size());
+      max_x = pos * space - Hand.overlap;
+    }
+
     protected void preUpdate() {
       super.preUpdate();
-      max_x = (m.curPlayer.hand.cards.size() - 1) * (Card.w - Hand.overlap);
     }
 
     protected void _update() {
       imageMode(CENTER);
       image(a.getCard(c), x, y, Card.w, Card.h);
 
-      if (x >= max_x - 3) {
+      if (x >= max_x) {
         done = true;
         // Stop updating the object
         shouldUpdate = false;
@@ -85,7 +91,7 @@ public class Deck extends Clickable implements ICardHolder {
         return;
       }
 
-      x = Math.round(lerp(x, max_x, lerp_step));
+      x = Math.round(lerp(x, max_x, lerp_step)) + 1;
     }
 
     public MovableCard(Snap app) { super(app); }
@@ -93,6 +99,10 @@ public class Deck extends Clickable implements ICardHolder {
 
   public void add(Card c) {
     cards.add(c);
+  }
+
+  public String toString() {
+    return cards.toString();
   }
 
   public Deck(Snap app) { super(app); }
